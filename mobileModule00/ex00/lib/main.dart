@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'functions.dart';
 import 'image_section.dart';
+import 'favorite_widget.dart';
 
 void main() => runApp(const MyApp());
 
@@ -79,11 +80,7 @@ class TitleSection extends StatelessWidget {
 			),
 		  ),
 		  /*3*/
-		  Icon(
-			Icons.star,
-			color: Colors.red[500],
-		  ),
-		  const Text('41'),
+      const FavoriteWidget(),
 		],
 	  ),
 	);
