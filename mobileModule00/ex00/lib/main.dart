@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
        	 ),
     	child: const Text(
       	"A Simple Text", style: TextStyle(color: Colors.white)),
-  	)	,), TextButton(onPressed: () { log('button pressed');},
+  	)	,), const SizedBox(height: 5),
+    ElevatedButton(onPressed: () { log('button pressed');},
   		child: const Text('click here'),
 )
 ])
