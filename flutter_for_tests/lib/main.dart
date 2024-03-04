@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
 	return MaterialApp(
 	  title: appTitle,
-	  home: Scaffold(
+	  home: Scaffold( //
 		appBar: AppBar(
 		  title: const Text('OKTM')
 		),
@@ -49,7 +49,7 @@ class TitleSection extends StatelessWidget {
   final String location;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // built describes the part of the user interface represented by this widget.
 	return Padding(
 	  padding: const EdgeInsets.all(32),
 	  child: Row(
