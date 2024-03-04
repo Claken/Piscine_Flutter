@@ -12,7 +12,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 	int   _favoriteCount = 41;
 
 
-	void _toggleFavorite() {
+	void   _toggleFavorite() {
 	setState(() {
 		if (_isFavorited)
 		{
