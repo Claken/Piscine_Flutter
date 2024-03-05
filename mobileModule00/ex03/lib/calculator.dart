@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 import 'text_fields.dart';
 import 'custom_button.dart';
 
@@ -11,8 +12,8 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-	String userInput = "454544";
-	String result = "0";
+	String userInput = "0";
+	String result = "";
 
 	List<String> buttons = [
 	'7', '8', '9', 'C', 'AC',
@@ -21,14 +22,41 @@ class _CalculatorState extends State<Calculator> {
 	'0', '.', '', '=', ''
   ];
 
-  void handleButton(String buttonText) {
+  String 	calculate() {
+	try
+	{
+		var exp = Parser().parse(userInput);
+		debugPrint("exp == $exp.toString()");
+		var evaluation = exp.evaluate(EvaluationType.REAL, ContextModel());
+		debugPrint("eval == $evaluation.toString()");
+		return evaluation.toString();
+	}
+	catch (e) {
+		return ("Error: $e");
+	}
+  }
+
+  void		handleButton(String buttonText) {
 
 	setState(() {
 	if (buttonText == 'AC') {
-		userInput = "";
-		result = "0";
-		return;
+		userInput = "0";
+		result = "";
+	}
+	else if (buttonText == 'C') {
+		userInput = userInput.length == 1 ? "0" : userInput.substring(0, userInput.length - 1);
+	}
+	else if (buttonText == '=') {
+		
+		result = calculate();
+		if (result.endsWith(".0")) {
+			result = result.replaceAll(".0", "");
 		}
+		userInput = "0";
+	}
+	else {
+		userInput = userInput == "0" ? buttonText : userInput + buttonText;
+	}
 	});
   }
 
