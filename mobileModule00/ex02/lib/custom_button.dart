@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'dart:developer';
+
+class CustomButton extends StatelessWidget {
+
+  	final String buttonText;
+
+	const CustomButton({
+		super.key,
+		required this.buttonText,
+  });
+
+	getColor(String text)
+	{
+		if (text == 'C' || text == 'AC') {
+			return Colors.red;
+		}
+		if (text == '.' ||
+			text == '=' ||
+			text == '+' || 
+			text == '-' || 
+			text == '*' ||
+			text == '/') {
+				return Colors.white;
+			}
+		return Colors.black;
+	}
+
+	@override
+	Widget build(BuildContext context) {
+	return InkWell( 						// A rectangular area of a Material that responds to touch.
+	splashColor: const Color.fromARGB(255, 55, 109, 136), // color of the button when it is touched
+	onTap:() {print('button pressed : $buttonText');},
+	child: Ink(
+		decoration: BoxDecoration(
+			color: Colors.blueGrey,
+			borderRadius: BorderRadius.circular(10),
+			boxShadow: [
+				BoxShadow(
+					color: Colors.white.withOpacity(0.1),
+					blurRadius: 4,
+					spreadRadius: 0.5,
+					offset: const Offset(-3, -3),
+
+				)
+			]
+			
+		),
+		child: Center(child:
+		Text(
+			buttonText,
+			style: TextStyle(
+				color: getColor(buttonText),
+				fontSize: 30,
+				fontWeight: FontWeight.bold
+
+			)
+		)
+		)
+	), 
+	);
+  } 
+
+}

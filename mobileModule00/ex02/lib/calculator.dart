@@ -1,4 +1,6 @@
+import 'package:ex02/text_fields.dart';
 import 'package:flutter/material.dart';
+import 'custom_button.dart';
 
 class Calculator extends StatefulWidget {
 
@@ -9,17 +11,16 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-	String userInput = "";
-	String result = "0";
+	String userInput = "Input";
+	String result = "Result";
 
 	List<String> buttons = [
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-	'.',
 	'AC',
 	'C',
-	'=',
-	'+',  '-' , '*' , '/ '];
+	'.', '=', '+',  '-' , '*' , '/'];
 
+	
 
 	@override
 	Widget build(BuildContext context) {
@@ -32,6 +33,24 @@ class _CalculatorState extends State<Calculator> {
 				toolbarHeight: 60.2,
 				backgroundColor: Colors.blueGrey,
 			),
+	  		body: Column(children: [TextFields(userInput: userInput, result: result),
+			Expanded( child: Container(
+				padding: const EdgeInsets.all(10),
+				child: GridView.builder(
+					itemCount: buttons.length,
+					gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+						crossAxisCount: 4,
+						crossAxisSpacing: 12,
+						mainAxisSpacing : 12),
+					itemBuilder: (BuildContext context, int index) {
+						return CustomButton(buttonText: buttons[index]);
+					},
+						
+						),
+				)
+			)])
+
+			
 		);
   }
 }
