@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:extended_text/extended_text.dart';
 
 class TextFields extends StatelessWidget {
 
@@ -19,8 +20,13 @@ class TextFields extends StatelessWidget {
 		Container(
 		  padding: const EdgeInsets.all(20),
 		  alignment: Alignment.centerRight,
-		  child: Text(
+		  child: ExtendedText(
 			userInput,
+			maxLines: 1,
+			overflowWidget: const TextOverflowWidget(
+			position: TextOverflowPosition.start,
+			child: Text("", style: TextStyle(fontSize: 32))
+			),
 			style: const TextStyle(
 			  fontSize: 32,
 			  color: Colors.white,)
@@ -30,8 +36,13 @@ class TextFields extends StatelessWidget {
 		Container(
 		  padding: const EdgeInsets.all(10),
 		  alignment: Alignment.centerRight,
-		  child: Text(
+		  child: ExtendedText(
 			result,
+			maxLines: 1,
+			overflowWidget: const TextOverflowWidget(
+			position: TextOverflowPosition.start,
+			child: Text("", style: TextStyle(fontSize: 48))
+			),
 			style: const TextStyle(
 			  	fontSize: 48,
 			  	color: Colors.white,

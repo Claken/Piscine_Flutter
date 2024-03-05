@@ -32,7 +32,11 @@ class _CalculatorState extends State<Calculator> {
 		return evaluation.toString();
 	}
 	catch (e) {
-		return ("Error: $e");
+
+		if (e.toString().length > 10) {
+			return "Invalid Expression";
+		}
+		return ("$e");
 	}
   }
 
@@ -44,7 +48,8 @@ class _CalculatorState extends State<Calculator> {
 		result = "";
 	}
 	else if (buttonText == 'C') {
-		userInput = userInput.length == 1 ? "0" : userInput.substring(0, userInput.length - 1);
+		userInput = userInput.length == 1 ?
+		"0" : userInput.substring(0, userInput.length - 1);
 	}
 	else if (buttonText == '=') {
 		
@@ -55,7 +60,9 @@ class _CalculatorState extends State<Calculator> {
 		userInput = "0";
 	}
 	else {
-		userInput = userInput == "0" ? buttonText : userInput + buttonText;
+		userInput = userInput == "0" ?
+		buttonText :
+		userInput + buttonText;
 	}
 	});
   }
@@ -80,7 +87,7 @@ class _CalculatorState extends State<Calculator> {
 					itemCount: buttons.length,
 					gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
 						crossAxisCount: 5,
-						mainAxisExtent: 120,
+						mainAxisExtent: 120, //
 						),
 				  	itemBuilder: (BuildContext context, int index) {
 						return CustomButton(buttonText: buttons[index], handleButton: handleButton,);
