@@ -14,7 +14,7 @@ class TextFields extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return 	SizedBox(
-	  height: MediaQuery.of(context).size.height / 3,
+	  // height: MediaQuery.of(context).size.height / 3,
 	  child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
 		Container(
 		  padding: const EdgeInsets.all(20),
@@ -40,7 +40,7 @@ class TextFields extends StatelessWidget {
 				
 			),
 		  ),
-		const Divider(color: Colors.white,)
+		// const Divider(color: Colors.white,)
 	  ],)
 	);
 	}

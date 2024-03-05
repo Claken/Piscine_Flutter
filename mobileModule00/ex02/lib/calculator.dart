@@ -11,16 +11,15 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-	String userInput = "Input";
-	String result = "Result";
+	String userInput = "0";
+	String result = "0";
 
 	List<String> buttons = [
-	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-	'AC',
-	'C',
-	'.', '=', '+',  '-' , '*' , '/'];
-
-	
+	'7', '8', '9', 'C', 'AC',
+  '4', '5', '6', '+', '-',
+  '1', '2', '3', '*', '/',
+	'0', '.', '', '=', ''
+  ];
 
 	@override
 	Widget build(BuildContext context) {
@@ -34,15 +33,17 @@ class _CalculatorState extends State<Calculator> {
 				backgroundColor: Colors.blueGrey,
 			),
 	  		body: Column(children: [TextFields(userInput: userInput, result: result),
-			Expanded( child: Container(
-				padding: const EdgeInsets.all(10),
+			Expanded( // widget that fills the available space of the widget that it's in
+        		child: SizedBox(
+				height: 10,
 				child: GridView.builder(
+
 					itemCount: buttons.length,
 					gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-						crossAxisCount: 4,
-						crossAxisSpacing: 12,
-						mainAxisSpacing : 12),
-					itemBuilder: (BuildContext context, int index) {
+						crossAxisCount: 5,
+						mainAxisExtent: 120,
+						),
+				  	itemBuilder: (BuildContext context, int index) {
 						return CustomButton(buttonText: buttons[index]);
 					},
 						
