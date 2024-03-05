@@ -23,8 +23,8 @@ class TextFields extends StatelessWidget {
 		  child: ExtendedText(
 			userInput,
 			maxLines: 1,
-			overflowWidget: const TextOverflowWidget(
-			position: TextOverflowPosition.start,
+				overflowWidget: const TextOverflowWidget(
+				position: TextOverflowPosition.start,
 			child: Text("", style: TextStyle(fontSize: 32))
 			),
 			style: const TextStyle(
@@ -40,8 +40,8 @@ class TextFields extends StatelessWidget {
 			result,
 			maxLines: 1,
 			overflowWidget: const TextOverflowWidget(
-			position: TextOverflowPosition.start,
-			child: Text("", style: TextStyle(fontSize: 48))
+				position: TextOverflowPosition.start,
+				child: Text("", style: TextStyle(fontSize: 48))
 			),
 			style: const TextStyle(
 			  	fontSize: 48,
