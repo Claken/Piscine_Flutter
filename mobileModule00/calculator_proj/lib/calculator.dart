@@ -11,9 +11,9 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  String  userInput = "";
-  String  result = "";
-  bool    begin = true;
+  String userInput = "";
+  String result = "";
+  bool begin = true;
 
   List<String> buttons = [
     '7',
@@ -62,13 +62,9 @@ class _CalculatorState extends State<Calculator> {
       if (buttonText == 'AC') {
         userInput = "";
         result = "";
-        begin = true;
       } else if (buttonText == 'C') {
         if (userInput.isNotEmpty) {
           userInput = userInput.substring(0, userInput.length - 1);
-        }
-        else {
-          begin = true;
         }
       } else if (buttonText == '=') {
         result = calculate();

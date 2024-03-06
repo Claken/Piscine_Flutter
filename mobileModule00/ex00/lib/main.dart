@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           const SizedBox(height: 5),
           ElevatedButton(
             onPressed: () {
-              log('button pressed');
+              debugPrint('button pressed');
             },
             child: const Text('click here'),
           )
