@@ -45,7 +45,9 @@ class MainApp extends StatelessWidget {
             )
           ],
         ),
-        // body: Center()
+        body: const Center(
+          child: Text('A TEXT BITCH'),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromARGB(255, 78, 68, 107),
           items: const <BottomNavigationBarItem>[
