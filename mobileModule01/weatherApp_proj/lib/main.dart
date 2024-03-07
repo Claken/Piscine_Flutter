@@ -45,27 +45,26 @@ class MainApp extends StatelessWidget {
             )
           ],
         ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
         bottomNavigationBar: BottomAppBar(
           color: const Color.fromARGB(255, 78, 68, 107),
+          height: 120,
           child: DefaultTabController(
               length: 3,
               child: Scaffold(
                   appBar: AppBar(
+                backgroundColor: const Color.fromARGB(255, 78, 68, 107),
                 bottom: const TabBar(
                   tabs: [
-                    Tab(icon: Icon(Icons.rocket),),
-                    Tab(icon: Icon(Icons.rocket),),
-                    Tab(icon: Icon(Icons.rocket),)
+                    Tab(icon: Icon(Icons.rocket, color: Colors.white), text: "Currently"),
+                    Tab(icon: Icon(Icons.today_outlined, color: Colors.white), text: "Today"),
+                    Tab(icon: Icon(Icons.calendar_month_outlined, color: Colors.white), text: "Weekly")
                   ]
                 ),
               ),
-                body: TabBarView(children: [
-                  Container(color: Colors.white, child: const Icon(Icons.rocket)),
-                  Container(color: Colors.white, child: const Icon(Icons.rocket)),
-                  Container(color: Colors.white, child: const Icon(Icons.rocket)),
+                body: const TabBarView(children: [
+                  Icon(Icons.rocket),
+                  Icon(Icons.g_mobiledata_outlined),
+                  Icon(Icons.rocket),
                 ],) 
               )
               ),
