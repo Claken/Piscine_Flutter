@@ -9,8 +9,11 @@ class WeatherApp extends StatefulWidget {
 
 class _WeatherAppState extends State<WeatherApp> {
   
-  final List<String> _tabsText = ['Currently', 'Today', 'Weekly'];
-  int _currentTab = 0;
+  final List<String>  _tabsText = ['Currently', 'Today', 'Weekly'];
+  final Color         _iconColor = Colors.white.withOpacity(0.7);
+  final Color         _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
+  int                 _currentTab = 0;
+
 
   void changeTab(int index) {
     setState(() {
@@ -30,7 +33,7 @@ class _WeatherAppState extends State<WeatherApp> {
           color: Colors.white,
         ),
         toolbarHeight: 80.2,
-        backgroundColor: const Color.fromARGB(255, 78, 68, 107),
+        backgroundColor: _backgroundColor,
         title: Text(
           'Search location...',
           style: TextStyle(
@@ -62,14 +65,16 @@ class _WeatherAppState extends State<WeatherApp> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 78, 68, 107),
+        backgroundColor: _backgroundColor,
+        currentIndex: _currentTab,
         onTap: (value) => changeTab(value),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.rocket), label: 'Currently'),
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.today_outlined), label: 'Today'),
+              icon: Icon(Icons.rocket, color: _iconColor), label: 'Currently'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined), label: 'Weekly')
+              icon: Icon(Icons.today_outlined, color: _iconColor), label: 'Today'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined, color: _iconColor), label: 'Weekly')
         ],
       ),
     );
