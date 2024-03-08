@@ -1,3 +1,4 @@
+import 'package:ex00/top_bar.dart';
 import 'package:flutter/material.dart';
 
 class WeatherApp extends StatefulWidget {
@@ -11,8 +12,8 @@ class _WeatherAppState extends State<WeatherApp> {
   final List<String> _tabsText = ['Currently', 'Today', 'Weekly'];
   final Color _iconColor = Colors.white.withOpacity(0.7);
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  int         _currentTab = 0;
-  String      _localisation = "";
+  int _currentTab = 0;
+  String _text = "fefef";
 
   void changeTab(int index) {
     setState(() {
@@ -20,48 +21,18 @@ class _WeatherAppState extends State<WeatherApp> {
     });
   }
 
-  void changeLocalisation(String where) {
+  void changeText(String newText) {
     setState(() {
-      _localisation = where;
+      _text = newText;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            debugPrint("button pressed");
-          },
-          icon: const Icon(Icons.search),
-          color: Colors.white,
-        ),
-        toolbarHeight: 80.2,
+      appBar: MyTopBar(
+        changeText: changeText,
         backgroundColor: _backgroundColor,
-        title: Text(
-          'Search location...',
-          style: TextStyle(
-              fontStyle: FontStyle.italic,
-              color: Colors.white.withOpacity(0.1)),
-        ),
-        actions: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const VerticalDivider(color: Colors.white),
-              IconButton(
-                onPressed: () {
-                  debugPrint("button pressed");
-                },
-                icon: const Icon(
-                  Icons.location_on,
-                ),
-                color: Colors.white,
-              ),
-            ],
-          )
-        ],
       ),
       body: Center(
           child: Column(
@@ -72,7 +43,9 @@ class _WeatherAppState extends State<WeatherApp> {
               _tabsText[_currentTab],
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            Text(_localisation),
+            Text(
+              _text,
+            ),
           ])),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: _backgroundColor,
