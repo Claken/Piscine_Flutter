@@ -8,16 +8,21 @@ class WeatherApp extends StatefulWidget {
 }
 
 class _WeatherAppState extends State<WeatherApp> {
-  
-  final List<String>  _tabsText = ['Currently', 'Today', 'Weekly'];
-  final Color         _iconColor = Colors.white.withOpacity(0.7);
-  final Color         _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  int                 _currentTab = 0;
-
+  final List<String> _tabsText = ['Currently', 'Today', 'Weekly'];
+  final Color _iconColor = Colors.white.withOpacity(0.7);
+  final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
+  int         _currentTab = 0;
+  String      _localisation = "";
 
   void changeTab(int index) {
     setState(() {
       _currentTab = index;
+    });
+  }
+
+  void changeLocalisation(String where) {
+    setState(() {
+      _localisation = where;
     });
   }
 
@@ -59,22 +64,30 @@ class _WeatherAppState extends State<WeatherApp> {
         ],
       ),
       body: Center(
-        child: Text(
-          _tabsText[_currentTab],
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+            Text(
+              _tabsText[_currentTab],
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(_localisation),
+          ])),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: _backgroundColor,
         currentIndex: _currentTab,
         onTap: (value) => changeTab(value),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.rocket, color: _iconColor), label: 'Currently'),
+              icon: Icon(Icons.settings, color: _iconColor),
+              label: 'Currently'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.today_outlined, color: _iconColor), label: 'Today'),
+              icon: Icon(Icons.today_outlined, color: _iconColor),
+              label: 'Today'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined, color: _iconColor), label: 'Weekly')
+              icon: Icon(Icons.calendar_month_outlined, color: _iconColor),
+              label: 'Weekly')
         ],
       ),
     );
