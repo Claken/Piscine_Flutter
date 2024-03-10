@@ -13,7 +13,7 @@ class _WeatherAppState extends State<WeatherApp> {
   final Color _iconColor = Colors.white.withOpacity(0.7);
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
   int _currentTab = 0;
-  String _text = "fefef";
+  String _text = "";
 
   void changeTab(int index) {
     setState(() {

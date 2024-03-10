@@ -27,7 +27,11 @@ class _MyTopBarState extends State<MyTopBar> {
     });
   }
 
-  Widget visibleOrNot() {
+  void clearText() {
+    _controller.clear();
+  }
+
+  Widget textFieldOrNot() {
     if (_textFieldVisible == false) {
       return Text(
         'Search location...',
@@ -36,24 +40,46 @@ class _MyTopBarState extends State<MyTopBar> {
       );
     }
     return TextField(
+      style: TextStyle(
+          fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       controller: _controller,
-      onChanged: (value) => widget.changeText(value),
+      textInputAction: TextInputAction.go,
+      onSubmitted: (value) => widget.changeText(value),
+      decoration: InputDecoration(
+        hintText: 'Press Enter/Go when you done',
+        hintStyle: TextStyle(
+            fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
+      ),
     );
+  }
+
+  IconButton searchOrCross() {
+    if (_textFieldVisible == false) {
+      return IconButton(
+        onPressed: () {
+          _toggleTextFieldVisibility();
+          clearText();
+        },
+        icon: const Icon(Icons.search),
+        color: Colors.white,
+      );
+    }
+    return IconButton(
+        onPressed: () {
+          _toggleTextFieldVisibility();
+        },
+        icon: const Icon(Icons.close),
+        color: Colors.white,
+      );
   }
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        onPressed: () {
-          _toggleTextFieldVisibility();
-        },
-        icon: const Icon(Icons.search),
-        color: Colors.white,
-      ),
+      leading: searchOrCross(),
       toolbarHeight: 80.2,
       backgroundColor: widget.backgroundColor,
-      title: visibleOrNot(),
+      title: textFieldOrNot(),
       actions: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
