@@ -43,10 +43,10 @@ class _MyTopBarState extends State<MyTopBar> {
       style: TextStyle(
           fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       controller: _controller,
-      textInputAction: TextInputAction.go,
-      onSubmitted: (value) => widget.changeText(value),
+      // textInputAction: TextInputAction.go,
+      onChanged: (value) => widget.changeText(value),
       decoration: InputDecoration(
-        hintText: 'Press Enter/Go when you done',
+       hintText: 'Search location...',
         hintStyle: TextStyle(
             fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       ),
@@ -65,12 +65,12 @@ class _MyTopBarState extends State<MyTopBar> {
       );
     }
     return IconButton(
-        onPressed: () {
-          _toggleTextFieldVisibility();
-        },
-        icon: const Icon(Icons.close),
-        color: Colors.white,
-      );
+      onPressed: () {
+        _toggleTextFieldVisibility();
+      },
+      icon: const Icon(Icons.close),
+      color: Colors.white,
+    );
   }
 
   @override

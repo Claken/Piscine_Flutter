@@ -41,10 +41,16 @@ class _WeatherAppState extends State<WeatherApp> {
               children: [
             Text(
               _tabsText[_currentTab],
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30),
             ),
             Text(
-              _text,
+              _text.length > 15 ? '${_text.substring(0, 10)}...' : _text,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+               style: const TextStyle(
+                fontSize: 20)
             ),
           ])),
       bottomNavigationBar: BottomNavigationBar(
