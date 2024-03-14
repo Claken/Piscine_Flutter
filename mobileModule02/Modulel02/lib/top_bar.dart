@@ -90,7 +90,12 @@ class _MyTopBarState extends State<MyTopBar> {
               onPressed: () async {
                 if (await location.LocationService().requestPermission()) {
                   final geolocation = await location.LocationService().getCurrentLocation();
-                  widget.changeText(geolocation.toString());
+                  final String lat = geolocation.latitude.toString();
+                  final String long = geolocation.longitude.toString();
+                  widget.changeText('$lat $long');
+                }
+                else {
+                  widget.changeText("Geolocation not available. Please enable it");
                 }
               },
               icon: const Icon(

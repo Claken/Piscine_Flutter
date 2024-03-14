@@ -20,7 +20,7 @@ class APage extends StatelessWidget {
             textOne,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
-          Text(textTwo.length > 15 ? '${textTwo.substring(0, 10)}...' : textTwo,
+          Text(textTwo.length > 30 ? '${textTwo.substring(0, 10)}...' : textTwo,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: const TextStyle(fontSize: 20)),
