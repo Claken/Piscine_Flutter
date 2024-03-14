@@ -21,7 +21,7 @@ class APage extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Text(
-            textTwo.length > 50 ? '${textTwo.substring(0, 10)}...' : textTwo,
+            textTwo.length > 25 ? '${textTwo.substring(0, 25)}...' : textTwo,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(

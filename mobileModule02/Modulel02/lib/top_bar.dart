@@ -44,8 +44,7 @@ class _MyTopBarState extends State<MyTopBar> {
       style: TextStyle(
           fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       controller: _controller,
-      textInputAction: TextInputAction.go,
-      onSubmitted: (value) => widget.changeText(value),
+      onChanged: (value) => widget.changeText(value),
       decoration: InputDecoration(
        hintText: 'Search location...',
         hintStyle: TextStyle(
