@@ -20,10 +20,15 @@ class APage extends StatelessWidget {
             textOne,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
-          Text(textTwo.length > 30 ? '${textTwo.substring(0, 10)}...' : textTwo,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: const TextStyle(fontSize: 20)),
+          Text(
+            textTwo.length > 50 ? '${textTwo.substring(0, 10)}...' : textTwo,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: TextStyle(
+                fontSize: 20,
+                color: textTwo.contains("Geo") ? Colors.red : Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ]);
   }
 }

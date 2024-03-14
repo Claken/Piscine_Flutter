@@ -44,8 +44,8 @@ class _MyTopBarState extends State<MyTopBar> {
       style: TextStyle(
           fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       controller: _controller,
-      // textInputAction: TextInputAction.go,
-      onChanged: (value) => widget.changeText(value),
+      textInputAction: TextInputAction.go,
+      onSubmitted: (value) => widget.changeText(value),
       decoration: InputDecoration(
        hintText: 'Search location...',
         hintStyle: TextStyle(
@@ -95,7 +95,7 @@ class _MyTopBarState extends State<MyTopBar> {
                   widget.changeText('$lat $long');
                 }
                 else {
-                  widget.changeText("Geolocation not available. Please enable it");
+                  widget.changeText('Geolocation is not available.\nPlease enable it.');
                 }
               },
               icon: const Icon(
