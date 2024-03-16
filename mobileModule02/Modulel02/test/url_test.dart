@@ -10,6 +10,10 @@ try {
 
   final responseData = json.decode(response.body);
 
+  int len = responseData["results"].length;
+
+  debugPrint(len.toString());
+
   int i = 0;
   for (var data in responseData['results']) {
     debugPrint(data['name']);

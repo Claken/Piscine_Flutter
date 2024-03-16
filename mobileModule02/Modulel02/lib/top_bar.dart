@@ -5,11 +5,15 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
   const MyTopBar({
     super.key,
     required this.changeText,
+    required this.text,
     required this.backgroundColor,
+    required this.getCityInfo,
   });
 
-  final Function(String newText) changeText;
-  final Color backgroundColor;
+  final Function(String newText)  changeText;
+  final Color                     backgroundColor;
+  final String                    text;
+  final Function(String cityName) getCityInfo;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -46,6 +50,7 @@ class _MyTopBarState extends State<MyTopBar> {
       controller: _controller,
       onChanged: (value) {
         widget.changeText(value);
+        widget.getCityInfo(widget.text);
         },
       decoration: InputDecoration(
        hintText: 'Search location...',
