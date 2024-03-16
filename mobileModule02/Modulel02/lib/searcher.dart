@@ -4,9 +4,11 @@ class CityInfoPage extends StatelessWidget {
   const CityInfoPage({
     super.key,
     required this.listOfCities,
+    required this.changeText,
   });
 
-  final dynamic listOfCities;
+  final dynamic                   listOfCities;
+  final Function(String newText)  changeText;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,12 @@ class CityInfoPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             itemCount: listOfCities?.length ?? 10,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                  height: 20,
-                  child: Text(
+              return ListTile(
+                onTap:() {
+                  debugPrint("${listOfCities?[index]["latitude"]}, ${listOfCities?[index]["longitude"]} ");
+                  changeText("");
+                },
+                  title: Text(
                       '${listOfCities?[index]['name']}, ${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']} '));
             },
             separatorBuilder: (BuildContext context, int index) =>

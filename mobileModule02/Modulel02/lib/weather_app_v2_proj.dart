@@ -80,7 +80,7 @@ class _WeatherAppState extends State<WeatherApp> {
                   APage(textOne: "Today", textTwo: _text),
                   APage(textOne: "Weekly", textTwo: _text),
                 ])
-          : CityInfoPage(listOfCities: _listOfCities),
+          : CityInfoPage(listOfCities: _listOfCities, changeText: changeText),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           currentTab: _currentTab,
