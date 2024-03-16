@@ -22,7 +22,7 @@ class _CityInfoPageState extends State<CityInfoPage> {
           return SizedBox(
             height: 20,
             child: Center(
-                child: widget.listOfCities == null
+                child: widget.listOfCities != null
                 ? Text(
                     '${widget.listOfCities?[index]['name']}, ${widget.listOfCities?[index]['admin1']}, ${widget.listOfCities?[index]['country']} ')
                 : const Text('wait for list'),
