@@ -44,7 +44,9 @@ class _MyTopBarState extends State<MyTopBar> {
       style: TextStyle(
           fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       controller: _controller,
-      onChanged: (value) => widget.changeText(value),
+      onChanged: (value) {
+        widget.changeText(value);
+        },
       decoration: InputDecoration(
        hintText: 'Search location...',
         hintStyle: TextStyle(
@@ -57,8 +59,8 @@ class _MyTopBarState extends State<MyTopBar> {
     if (_textFieldVisible == false) {
       return IconButton(
         onPressed: () {
-          _toggleTextFieldVisibility();
           clearText();
+          _toggleTextFieldVisibility();
         },
         icon: const Icon(Icons.search),
         color: Colors.white,
@@ -67,6 +69,7 @@ class _MyTopBarState extends State<MyTopBar> {
     return IconButton(
       onPressed: () {
         _toggleTextFieldVisibility();
+        widget.changeText("");
       },
       icon: const Icon(Icons.close),
       color: Colors.white,
@@ -103,7 +106,7 @@ class _MyTopBarState extends State<MyTopBar> {
               color: Colors.white,
             ),
           ],
-        )
+        ),
       ],
     );
   }
