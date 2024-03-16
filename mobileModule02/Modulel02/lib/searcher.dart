@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CityInfoPage extends StatefulWidget {
+class CityInfoPage extends StatelessWidget {
   const CityInfoPage({
     super.key,
     required this.listOfCities,
@@ -9,24 +9,23 @@ class CityInfoPage extends StatefulWidget {
   final dynamic listOfCities;
 
   @override
-  State<CityInfoPage> createState() => _CityInfoPageState();
-}
-
-class _CityInfoPageState extends State<CityInfoPage> {
-  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: widget.listOfCities == null ? widget.listOfCities?.length : 10,
+    return ListView.separated(
+        padding: const EdgeInsets.all(10),
+        itemCount: listOfCities?.length ?? 10,
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
-            height: 20,
-            child: Center(
-                child: widget.listOfCities != null
-                ? Text(
-                    '${widget.listOfCities?[index]['name']}, ${widget.listOfCities?[index]['admin1']}, ${widget.listOfCities?[index]['country']} ')
-                : const Text('wait for list'),
-          ));
-        });
+              height: 20,
+              child: Container(
+                child: listOfCities != null
+                    ? Text(
+                        '${listOfCities?[index]['name']}, ${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']} '
+                        
+                        )
+                    : const Text('wait for list'),
+              ));
+        },
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        );
   }
 }
