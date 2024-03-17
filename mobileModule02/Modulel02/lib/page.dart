@@ -4,13 +4,11 @@ class APage extends StatelessWidget {
   const APage({
     super.key,
     required this.textOne,
-    required this.lat,
-    required this.long,
+    required this.coord,
   });
 
-  final String  textOne;
-  final double  lat;
-  final double  long;
+  final String                textOne;
+  final Map<String, String>   coord;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +17,16 @@ class APage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            textOne,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            "${coord['cityName']}",
           ),
           Text(
-            "$lat $long",
+            "${coord['region']}",
+          ),
+          Text(
+            "${coord['country']}",
+          ),
+          Text(
+            "${coord['lat']} ${coord['long']}",
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: const TextStyle(

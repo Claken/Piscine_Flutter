@@ -6,11 +6,13 @@ class CityInfoPage extends StatelessWidget {
     required this.listOfCities,
     required this.changeText,
     required this.changeLatAndLong,
+    required this.changeLocation,
   });
 
   final dynamic listOfCities;
   final Function(String newText) changeText;
   final Function(double lat, double long) changeLatAndLong;
+  final Function(String name, String region, String country) changeLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,19 @@ class CityInfoPage extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                   onTap: () {
-                    
                     if (listOfCities[index]["latitude"] != null &&
-                        listOfCities?[index]["longitude"] != null) {
+                        listOfCities[index]["longitude"] != null) {
                       changeLatAndLong(listOfCities[index]["latitude"],
                           listOfCities[index]["longitude"]);
-                        debugPrint(
-                        "${listOfCities?[index]["latitude"]}, ${listOfCities?[index]["longitude"]} ");
-                        changeText("");
+                      changeText("");
+                    }
+                    if (listOfCities[index]['name'] != null &&
+                        listOfCities[index]['admin1'] != null &&
+                        listOfCities[index]['country'] != null) {
+                      changeLocation(
+                          listOfCities[index]['name'],
+                          listOfCities[index]['admin1'],
+                          listOfCities[index]['country']);
                     }
                   },
                   title: Text(

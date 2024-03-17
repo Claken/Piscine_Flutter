@@ -17,11 +17,15 @@ class WeatherApp extends StatefulWidget {
 class _WeatherAppState extends State<WeatherApp> {
   final Color _iconColor = Colors.white.withOpacity(0.7);
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  final       _pageViewController = PageController();
-  dynamic     _listOfCities;
-  double?     _cityLatitude;
-  double?     _cityLongitude;
-  dynamic     _cityWeather;
+  final _pageViewController = PageController();
+  dynamic _listOfCities;
+  final Map<String, String> _location = {
+    'cityName': '',
+    'region': '',
+    'country': '',
+    'lat': '',
+    'long': ''
+  };
 
   int _currentTab = 0;
   String _text = "";
@@ -46,10 +50,18 @@ class _WeatherAppState extends State<WeatherApp> {
 
   void changeLatAndLong(double lat, double long) {
     setState(() {
-      _cityLatitude = lat;
-      _cityLongitude = long;
+      _location['lat'] = lat.toString();
+      _location['long'] = long.toString();
     });
+  }
 
+  void changeLocation(String name, String region, String country) {
+    setState(() {
+      _location['cityName'] = name;
+      _location['region'] = region;
+      _location['country'] = country;
+      debugPrint(_location.toString());
+    });
   }
 
   Future<void> getCityInfo(String cityName) async {
@@ -70,7 +82,7 @@ class _WeatherAppState extends State<WeatherApp> {
   }
 
   // Future<void> getWeather(double lat, double long) {
-  //   final url = 
+  //   final url =
   // }
 
   @override
@@ -90,14 +102,15 @@ class _WeatherAppState extends State<WeatherApp> {
                 changeTab(value);
               },
               children: [
-                  APage(textOne: "Currently", lat: _cityLatitude ?? 0.0, long: _cityLongitude ??  0.0),
-                  APage(textOne: "Today", lat: _cityLatitude ?? 0.0, long: _cityLongitude ?? 0.0),
-                  APage(textOne: "Weekly", lat: _cityLatitude ?? 0.0, long: _cityLongitude ?? 0.0),
+                  APage(textOne: "Currently", coord: _location),
+                  APage(textOne: "Today", coord: _location),
+                  APage(textOne: "Weekly", coord: _location),
                 ])
           : CityInfoPage(
               listOfCities: _listOfCities,
               changeText: changeText,
-              changeLatAndLong: changeLatAndLong),
+              changeLatAndLong: changeLatAndLong,
+              changeLocation: changeLocation),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           currentTab: _currentTab,
