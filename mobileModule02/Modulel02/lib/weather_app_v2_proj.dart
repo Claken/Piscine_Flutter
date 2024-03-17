@@ -15,15 +15,16 @@ class WeatherApp extends StatefulWidget {
 }
 
 class _WeatherAppState extends State<WeatherApp> {
-  final Color       _iconColor = Colors.white.withOpacity(0.7);
-  final Color       _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  final             _pageViewController = PageController();
-  dynamic           _listOfCities;
-  late double       _cityLatitude;
-  late double       _cityLongitude;
+  final Color _iconColor = Colors.white.withOpacity(0.7);
+  final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
+  final       _pageViewController = PageController();
+  dynamic     _listOfCities;
+  double?     _cityLatitude;
+  double?     _cityLongitude;
+  dynamic     _cityWeather;
 
-  int     _currentTab = 0;
-  String  _text = "";
+  int _currentTab = 0;
+  String _text = "";
 
   @override
   void dispose() {
@@ -48,6 +49,7 @@ class _WeatherAppState extends State<WeatherApp> {
       _cityLatitude = lat;
       _cityLongitude = long;
     });
+
   }
 
   Future<void> getCityInfo(String cityName) async {
@@ -62,12 +64,14 @@ class _WeatherAppState extends State<WeatherApp> {
       setState(() {
         _listOfCities = responseData["results"];
       });
-    }
-    catch (e) {
+    } catch (e) {
       throw Exception("$e");
     }
-    
   }
+
+  // Future<void> getWeather(double lat, double long) {
+  //   final url = 
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -86,11 +90,14 @@ class _WeatherAppState extends State<WeatherApp> {
                 changeTab(value);
               },
               children: [
-                  APage(textOne: "Currently", textTwo: _text),
-                  APage(textOne: "Today", textTwo: _text),
-                  APage(textOne: "Weekly", textTwo: _text),
+                  APage(textOne: "Currently", lat: _cityLatitude ?? 0.0, long: _cityLongitude ??  0.0),
+                  APage(textOne: "Today", lat: _cityLatitude ?? 0.0, long: _cityLongitude ?? 0.0),
+                  APage(textOne: "Weekly", lat: _cityLatitude ?? 0.0, long: _cityLongitude ?? 0.0),
                 ])
-          : CityInfoPage(listOfCities: _listOfCities, changeText: changeText),
+          : CityInfoPage(
+              listOfCities: _listOfCities,
+              changeText: changeText,
+              changeLatAndLong: changeLatAndLong),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           currentTab: _currentTab,

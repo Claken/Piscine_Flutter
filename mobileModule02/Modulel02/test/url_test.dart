@@ -5,18 +5,23 @@ import 'package:http/http.dart' as http;
 void main() async {
   // const url = 'https://geocoding-api.open-meteo.com/v1/search?name=Berli&count=10&language=en&format=json';
 
-  const url2 = 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&hourly=temperature_2m';
+  const currentUrl = 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&current_weather=true';
+  
+  
+  
 
 try {
   // final response = await http.get(Uri.parse(url));
-  final response2 = await http.get(Uri.parse(url2));
+  final currentResponse = await http.get(Uri.parse(currentUrl));
 
   // final responseData = json.decode(response.body);
-  final responseData2 = json.decode(response2.body);
+  final currentResponseData = json.decode(currentResponse.body);
 
   // int len = responseData["results"].length;
 
-  debugPrint(responseData2.toString());
+  debugPrint("windspeed ${currentResponseData['current_weather']['windspeed']} km/h");
+  debugPrint("temperature ${currentResponseData['current_weather']['temperature']} °C");
+  debugPrint(currentResponseData.toString());
 
   // debugPrint(len.toString());
 

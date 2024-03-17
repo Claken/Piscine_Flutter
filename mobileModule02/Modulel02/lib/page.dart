@@ -4,16 +4,18 @@ class APage extends StatelessWidget {
   const APage({
     super.key,
     required this.textOne,
-    required this.textTwo,
+    required this.lat,
+    required this.long,
   });
 
-  final String textOne;
-  final String textTwo;
+  final String  textOne;
+  final double  lat;
+  final double  long;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
@@ -21,12 +23,12 @@ class APage extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Text(
-            textTwo.length > 25 ? '${textTwo.substring(0, 25)}...' : textTwo,
+            "$lat $long",
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20,
-                color: textTwo.contains("Geo") ? Colors.red : Colors.black),
+                color: Colors.black),
             textAlign: TextAlign.center,
           ),
         ]);

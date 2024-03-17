@@ -103,8 +103,8 @@ class _MyTopBarState extends State<MyTopBar> {
                   final double? long = geolocation.longitude;
                   if (lat != null && long != null) {
                     widget.changeLatAndLong(lat, long);
+                    widget.changeText('$lat $long');
                   }
-                  widget.changeText('$lat $long');
                 }
                 else {
                   widget.changeText('Geolocation is not available.\nPlease enable it.');
