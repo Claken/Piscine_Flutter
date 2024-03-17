@@ -8,12 +8,14 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
     required this.text,
     required this.backgroundColor,
     required this.getCityInfo,
+    required this.changeLatAndLong,
   });
 
-  final Function(String newText)  changeText;
-  final Color                     backgroundColor;
-  final String                    text;
-  final Function(String cityName) getCityInfo;
+  final Function(String newText)          changeText;
+  final Color                             backgroundColor;
+  final String                            text;
+  final Function(String cityName)         getCityInfo;
+  final Function(double lat, double long) changeLatAndLong;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -97,8 +99,11 @@ class _MyTopBarState extends State<MyTopBar> {
               onPressed: () async {
                 if (await location.LocationService().requestPermission()) {
                   final geolocation = await location.LocationService().getCurrentLocation();
-                  final String lat = geolocation.latitude.toString();
-                  final String long = geolocation.longitude.toString();
+                  final double? lat = geolocation.latitude;
+                  final double? long = geolocation.longitude;
+                  if (lat != null && long != null) {
+                    widget.changeLatAndLong(lat, long);
+                  }
                   widget.changeText('$lat $long');
                 }
                 else {

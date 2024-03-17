@@ -15,10 +15,12 @@ class WeatherApp extends StatefulWidget {
 }
 
 class _WeatherAppState extends State<WeatherApp> {
-  final Color _iconColor = Colors.white.withOpacity(0.7);
-  final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  final       _pageViewController = PageController();
-  dynamic     _listOfCities;
+  final Color       _iconColor = Colors.white.withOpacity(0.7);
+  final Color       _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
+  final             _pageViewController = PageController();
+  dynamic           _listOfCities;
+  late double       _cityLatitude;
+  late double       _cityLongitude;
 
   int     _currentTab = 0;
   String  _text = "";
@@ -38,6 +40,13 @@ class _WeatherAppState extends State<WeatherApp> {
   void changeText(String newText) {
     setState(() {
       _text = newText;
+    });
+  }
+
+  void changeLatAndLong(double lat, double long) {
+    setState(() {
+      _cityLatitude = lat;
+      _cityLongitude = long;
     });
   }
 
@@ -68,6 +77,7 @@ class _WeatherAppState extends State<WeatherApp> {
         text: _text,
         backgroundColor: _backgroundColor,
         getCityInfo: getCityInfo,
+        changeLatAndLong: changeLatAndLong,
       ),
       body: _text.isEmpty
           ? PageView(
