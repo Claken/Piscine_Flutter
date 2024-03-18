@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'geolocation.dart' as location;
+import 'package:http/http.dart' as http;
 
 class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
   const MyTopBar({
@@ -9,6 +12,7 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
     required this.backgroundColor,
     required this.getCityInfo,
     required this.changeLatAndLong,
+    required this.changeLocation,
   });
 
   final Function(String newText)          changeText;
@@ -16,6 +20,7 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
   final String                            text;
   final Function(String cityName)         getCityInfo;
   final Function(double lat, double long) changeLatAndLong;
+  final Function(String name, String region, String country) changeLocation;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -62,6 +67,24 @@ class _MyTopBarState extends State<MyTopBar> {
     );
   }
 
+   Future<void> reverseGeocoding(double lat, double long) async {
+    // const String apiKey = '65f890b324662655210750wlrcc4094';
+    final String lati = lat.toString();
+    final String longi = long.toString();
+    final url ='https://geocode.maps.co/reverse?lat=$lati&lon=$longi&api_key=65f890b324662655210750wlrcc4094';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final responseData = json.decode(response.body);
+      final String cityName = responseData['address']['town'];
+      final String cityRegion = responseData['address']['state'];
+      final String cityCountry = responseData['address']['country'];
+      widget.changeLocation(cityName, cityRegion, cityCountry);
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
+
   IconButton searchOrCross() {
     if (_textFieldVisible == false) {
       return IconButton(
@@ -103,6 +126,7 @@ class _MyTopBarState extends State<MyTopBar> {
                   final double? long = geolocation.longitude;
                   if (lat != null && long != null) {
                     widget.changeLatAndLong(lat, long);
+                    reverseGeocoding(lat, long);
                   }
                 }
                 else {

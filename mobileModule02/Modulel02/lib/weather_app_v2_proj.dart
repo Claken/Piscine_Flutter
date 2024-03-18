@@ -94,6 +94,7 @@ class _WeatherAppState extends State<WeatherApp> {
         backgroundColor: _backgroundColor,
         getCityInfo: getCityInfo,
         changeLatAndLong: changeLatAndLong,
+        changeLocation: changeLocation,
       ),
       body: _text.isEmpty
           ? PageView(

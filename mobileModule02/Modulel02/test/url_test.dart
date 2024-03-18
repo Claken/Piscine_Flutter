@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 void main() async {
-  // const url = 'https://geocoding-api.open-meteo.com/v1/search?latitude=48.85341&longitude=2.3488&language=en&format=json';
-  const url = 'https://geocoding-api.open-meteo.com/geocode?latitude=48.85341&longitude=2.3488&language=en&format=json';
+
+
+  const String apiKey = '65f890b324662655210750wlrcc4094';
+  const String lati = '48.9107872';
+  const String longi = '2.3099892';
+  final url ='https://geocode.maps.co/reverse?lat=$lati&lon=$longi&api_key=$apiKey';
 
   const currentUrl = 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&current_weather=true';
   
@@ -23,6 +27,9 @@ try {
   debugPrint("temperature ${currentResponseData['current_weather']['temperature']} °C");
   debugPrint(currentResponseData.toString());
   debugPrint(responseData.toString());
+  debugPrint(responseData['address']['town']);
+  debugPrint(responseData['address']['state']);
+  debugPrint(responseData['address']['country']);
 
   // debugPrint(len.toString());
 
