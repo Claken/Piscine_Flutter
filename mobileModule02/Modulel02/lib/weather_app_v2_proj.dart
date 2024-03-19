@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:ex00/bottom_bar.dart';
 import 'package:ex00/page.dart';
 import 'package:ex00/searcher.dart';
@@ -103,9 +102,9 @@ class _WeatherAppState extends State<WeatherApp> {
                 changeTab(value);
               },
               children: [
-                  APage(textOne: "Currently", coord: _location),
-                  APage(textOne: "Today", coord: _location),
-                  APage(textOne: "Weekly", coord: _location),
+                  APage(textOne: "Currently", coord: _location, currentTab: _currentTab,),
+                  APage(textOne: "Today", coord: _location, currentTab: _currentTab,),
+                  APage(textOne: "Weekly", coord: _location, currentTab: _currentTab,),
                 ])
           : CityInfoPage(
               listOfCities: _listOfCities,
