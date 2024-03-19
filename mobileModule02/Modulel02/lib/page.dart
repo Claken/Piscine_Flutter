@@ -52,6 +52,7 @@ class _APageState extends State<APage> {
 
   final _current = {'temp': '', 'weather': '', 'wind': ''};
   final Map<String, Map<String, String>> _today = {};
+  final Map<String, Map<String, String>> _week = {};
 
   Future<void> getCurrentInfo(String lat, String long) async {
     var url =
@@ -64,7 +65,7 @@ class _APageState extends State<APage> {
       if (responseData != null) {
         setState(() {
           _current['temp'] =
-              "${responseData['current_weather']['temperature']} °C";
+              "${responseData['current_weather']['temperature']}°C";
           var code = responseData['current_weather']['weathercode'];
           _current['weather'] = _weatherMap[code.toString()]!;
           _current['wind'] =
@@ -99,11 +100,44 @@ class _APageState extends State<APage> {
             String index = i.toString();
             _today[index] = {
               'hour': hour,
-              'temp': "$temp °C",
+              'temp': "$temp°C",
               'weather': weather,
               'wind': "$wind km/h"
             };
             i++;
+          }
+        });
+      }
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
+
+  Future<void> getWeeklyInfo(String lat, String long) async {
+    var url =
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&start_date=2024-03-18&end_date=2024-03-24";
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final responseData = json.decode(response.body);
+
+      if (responseData != null) {
+        setState(() {
+          int i = -1;
+          while (++i < 7) {
+            String date = responseData['daily']['time'][i].toString();
+            String max =
+                responseData['daily']['temperature_2m_max'][i].toString();
+            String min =
+                responseData['daily']['temperature_2m_min'][i].toString();
+            String wcode = responseData['daily']['weather_code'][i].toString();
+            String weather = _weatherMap[wcode] ?? '';
+            _week[i.toString()] = {
+              'date': date,
+              'min': "$min°C",
+              'max': "$max°C",
+              'weather': weather,
+            };
           }
         });
       }
@@ -142,7 +176,27 @@ class _APageState extends State<APage> {
         children: _today.entries
             .map(
               (entry) => Text(
-                  '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}'),
+                '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            )
+            .toList(),
+      );
+    }if (widget.currentTab == 2) {
+      if (widget.coord['lat'] != '' && widget.coord['long'] != '') {
+        getWeeklyInfo(widget.coord['lat'] ?? '', widget.coord['long'] ?? '');
+      }
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _week.entries
+            .map(
+              (entry) => Text(
+                '${entry.value['date']}   ${entry.value['min']}    ${entry.value['max']}    ${entry.value['weather']}',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             )
             .toList(),
       );
