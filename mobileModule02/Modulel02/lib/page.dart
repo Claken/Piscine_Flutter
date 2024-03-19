@@ -51,6 +51,7 @@ class _APageState extends State<APage> {
   };
 
   final _current = {'temp': '', 'weather': '', 'wind': ''};
+  final Map<String, Map<String, String>> _today = {};
 
   Future<void> getCurrentInfo(String lat, String long) async {
     var url =
@@ -68,6 +69,42 @@ class _APageState extends State<APage> {
           _current['weather'] = _weatherMap[code.toString()]!;
           _current['wind'] =
               "${responseData['current_weather']['windspeed']} km/h";
+        });
+      }
+    } catch (e) {
+      throw Exception("$e");
+    }
+  }
+
+  Future<void> getTodayInfo(String lat, String long) async {
+    var url =
+        'https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&hourly=temperature_2m,weather_code,wind_speed_10m';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final responseData = json.decode(response.body);
+
+      if (responseData != null) {
+        setState(() {
+          int i = 0;
+          while (i < 24) {
+            String hourAndDay = responseData["hourly"]['time'][i].toString();
+            String hour = hourAndDay.substring(11);
+            String temp =
+                responseData["hourly"]['temperature_2m'][i].toString();
+            String wcode = responseData["hourly"]['weather_code'][i].toString();
+            String weather = _weatherMap[wcode] ?? '';
+            String wind =
+                responseData["hourly"]['wind_speed_10m'][i].toString();
+            String index = i.toString();
+            _today[index] = {
+              'hour': hour,
+              'temp': "$temp °C",
+              'weather': weather,
+              'wind': "$wind km/h"
+            };
+            i++;
+          }
         });
       }
     } catch (e) {
@@ -94,6 +131,21 @@ class _APageState extends State<APage> {
               "${_current['wind']}",
             ),
           ]);
+    }
+    if (widget.currentTab == 1) {
+      if (widget.coord['lat'] != '' && widget.coord['long'] != '') {
+        getTodayInfo(widget.coord['lat'] ?? '', widget.coord['long'] ?? '');
+      }
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _today.entries
+            .map(
+              (entry) => Text(
+                  '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}'),
+            )
+            .toList(),
+      );
     }
     return Text(
       "${widget.coord['lat']} ${widget.coord['long']}",
