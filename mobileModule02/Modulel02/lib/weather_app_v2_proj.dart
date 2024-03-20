@@ -273,7 +273,9 @@ class _WeatherAppState extends State<WeatherApp> {
               listOfCities: _listOfCities,
               changeText: changeText,
               changeLatAndLong: changeLatAndLong,
-              changeLocation: changeLocation),
+              changeLocation: changeLocation,
+              errorText: _errorText,
+              ),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           currentTab: _currentTab,
