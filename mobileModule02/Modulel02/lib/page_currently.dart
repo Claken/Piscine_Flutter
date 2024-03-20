@@ -1,3 +1,4 @@
+import 'package:ex00/error_message.dart';
 import 'package:flutter/material.dart';
 
 class CurrentlyPage extends StatelessWidget {
@@ -5,17 +6,19 @@ class CurrentlyPage extends StatelessWidget {
     super.key,
     required this.coord,
     required this.current,
+    required this.errorText,
   });
 
   final Map<String, String> coord;
   final Map<String, String> current;
+  final String errorText;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return errorText.isEmpty ? Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Text(
             "${coord['cityName']}",
           ),
@@ -34,6 +37,9 @@ class CurrentlyPage extends StatelessWidget {
           Text(
             "${current['wind']}",
           ),
-        ]);
+        ]
+        )
+        : ErrorMessage(errorMessage: errorText,);
+        
   }
 }

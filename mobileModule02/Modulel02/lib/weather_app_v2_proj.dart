@@ -64,6 +64,8 @@ class _WeatherAppState extends State<WeatherApp> {
 
   int _currentTab = 0;
   String _text = "";
+  String _errorText = "";
+  final String errorAPI = "No Connexion\nPlease check your Internet connexion";
 
   Future<void> getCurrentInfo(String lat, String long) async {
     var url =
@@ -82,8 +84,11 @@ class _WeatherAppState extends State<WeatherApp> {
           _current['wind'] =
               "${responseData['current_weather']['windspeed']} km/h";
         });
+        changeErrorText('');
       }
     } catch (e) {
+      changeErrorText(errorAPI);
+
       throw Exception("$e");
     }
   }
@@ -118,8 +123,11 @@ class _WeatherAppState extends State<WeatherApp> {
             i++;
           }
         });
+        changeErrorText('');
       }
     } catch (e) {
+      changeErrorText(errorAPI);
+
       throw Exception("$e");
     }
   }
@@ -151,8 +159,11 @@ class _WeatherAppState extends State<WeatherApp> {
             };
           }
         });
+        changeErrorText('');
       }
     } catch (e) {
+      changeErrorText(errorAPI);
+
       throw Exception("$e");
     }
   }
@@ -166,6 +177,12 @@ class _WeatherAppState extends State<WeatherApp> {
   void changeTab(int index) {
     setState(() {
       _currentTab = index;
+    });
+  }
+
+  void changeErrorText(String error) {
+    setState(() {
+      _errorText = error;
     });
   }
 
@@ -210,17 +227,19 @@ class _WeatherAppState extends State<WeatherApp> {
       setState(() {
         _listOfCities = responseData["results"];
       });
+      changeErrorText('');
     } catch (e) {
+      changeErrorText(errorAPI);
       throw Exception("$e");
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyTopBar(
         changeText: changeText,
+        changeErrorText: changeErrorText,
         text: _text,
         backgroundColor: _backgroundColor,
         getCityInfo: getCityInfo,
@@ -234,9 +253,21 @@ class _WeatherAppState extends State<WeatherApp> {
                 changeTab(value);
               },
               children: [
-                  CurrentlyPage(coord: _location, current: _current),
-                  TodayPage(coord: _location, today: _today),
-                  WeeklyPage(coord: _location, weekly: _week),
+                  CurrentlyPage(
+                    coord: _location,
+                    current: _current,
+                    errorText: _errorText,
+                  ),
+                  TodayPage(
+                    coord: _location,
+                    today: _today,
+                    errorText: _errorText,
+                  ),
+                  WeeklyPage(
+                    coord: _location,
+                    weekly: _week,
+                    errorText: _errorText,
+                  ),
                 ])
           : CityInfoPage(
               listOfCities: _listOfCities,

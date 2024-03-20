@@ -1,3 +1,4 @@
+import 'package:ex00/error_message.dart';
 import 'package:flutter/material.dart';
 
 class TodayPage extends StatelessWidget {
@@ -5,10 +6,14 @@ class TodayPage extends StatelessWidget {
     super.key,
     required this.coord,
     required this.today,
+    required this.errorText,
+
   });
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> today;
+  final String            errorText;
+
 
   List<Text> todayList() {
     List<Text> list = [];
@@ -28,9 +33,12 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return errorText.isEmpty ? Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: todayList());
+        children: todayList()
+        ) : ErrorMessage(errorMessage: errorText,)
+        
+        ;
   }
 }

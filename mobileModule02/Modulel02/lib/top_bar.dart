@@ -8,6 +8,7 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
   const MyTopBar({
     super.key,
     required this.changeText,
+    required this.changeErrorText,
     required this.text,
     required this.backgroundColor,
     required this.getCityInfo,
@@ -16,6 +17,7 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
   });
 
   final Function(String newText) changeText;
+  final Function(String error) changeErrorText;
   final Color backgroundColor;
   final String text;
   final Function(String cityName) getCityInfo;
@@ -129,8 +131,11 @@ class _MyTopBarState extends State<MyTopBar> {
                   if (lat != null && long != null) {
                     widget.changeLatAndLong(lat, long);
                     reverseGeocoding(lat, long);
+                    widget.changeErrorText("");
                   }
-                } else {}
+                } else {
+                  widget.changeErrorText("Geolocation is not available\nPlease enable it");
+                }
               },
               icon: const Icon(
                 Icons.location_on,

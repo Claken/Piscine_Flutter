@@ -1,3 +1,4 @@
+import 'package:ex00/error_message.dart';
 import 'package:flutter/material.dart';
 
 class WeeklyPage extends StatelessWidget {
@@ -5,10 +6,14 @@ class WeeklyPage extends StatelessWidget {
     super.key,
     required this.coord,
     required this.weekly,
+    required this.errorText,
+
   });
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> weekly;
+  final String            errorText;
+
 
   List<Text> weeklyList() {
     List<Text> list = [];
@@ -28,9 +33,12 @@ class WeeklyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return errorText.isEmpty ? Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: weeklyList());
+        children: weeklyList() 
+        )
+        : ErrorMessage(errorMessage: errorText,)
+        ;
   }
 }
