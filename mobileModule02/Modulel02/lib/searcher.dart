@@ -44,6 +44,9 @@ class CityInfoPage extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
           )
-        : const Center(child: Text('no city found'));
+        : const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children : [Center(child: Text('no city found'))]);
   }
 }

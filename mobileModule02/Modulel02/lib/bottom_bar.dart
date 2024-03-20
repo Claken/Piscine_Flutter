@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BottomBar extends StatefulWidget {
+class BottomBar extends StatelessWidget {
   const BottomBar({
     super.key,
     required this.backgroundColor,
@@ -17,29 +17,21 @@ class BottomBar extends StatefulWidget {
   final PageController pageViewController;
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<BottomBar> {
-  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: widget.backgroundColor,
-      currentIndex: widget.currentTab,
+      backgroundColor: backgroundColor,
+      currentIndex: currentTab,
       onTap: (value) {
-        widget.pageViewController.animateToPage(value,
-            duration: const Duration(milliseconds: 1),
-            curve: Curves.bounceOut);
+        pageViewController.animateToPage(value,
+            duration: const Duration(milliseconds: 1), curve: Curves.bounceOut);
       },
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: widget.iconColor),
-            label: 'Currently'),
+            icon: Icon(Icons.settings, color: iconColor), label: 'Currently'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.today_outlined, color: widget.iconColor),
-            label: 'Today'),
+            icon: Icon(Icons.today_outlined, color: iconColor), label: 'Today'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_outlined, color: widget.iconColor),
+            icon: Icon(Icons.calendar_month_outlined, color: iconColor),
             label: 'Weekly')
       ],
     );

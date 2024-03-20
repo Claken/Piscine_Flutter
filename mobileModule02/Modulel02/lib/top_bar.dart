@@ -15,10 +15,10 @@ class MyTopBar extends StatefulWidget implements PreferredSizeWidget {
     required this.changeLocation,
   });
 
-  final Function(String newText)          changeText;
-  final Color                             backgroundColor;
-  final String                            text;
-  final Function(String cityName)         getCityInfo;
+  final Function(String newText) changeText;
+  final Color backgroundColor;
+  final String text;
+  final Function(String cityName) getCityInfo;
   final Function(double lat, double long) changeLatAndLong;
   final Function(String name, String region, String country) changeLocation;
 
@@ -58,20 +58,21 @@ class _MyTopBarState extends State<MyTopBar> {
       onChanged: (value) {
         widget.changeText(value);
         widget.getCityInfo(widget.text);
-        },
+      },
       decoration: InputDecoration(
-       hintText: 'Search location...',
+        hintText: 'Search location...',
         hintStyle: TextStyle(
             fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.5)),
       ),
     );
   }
 
-   Future<void> reverseGeocoding(double lat, double long) async {
+  Future<void> reverseGeocoding(double lat, double long) async {
     // const String apiKey = '65f890b324662655210750wlrcc4094';
     final String lati = lat.toString();
     final String longi = long.toString();
-    final url ='https://geocode.maps.co/reverse?lat=$lati&lon=$longi&api_key=65f890b324662655210750wlrcc4094';
+    final url =
+        'https://geocode.maps.co/reverse?lat=$lati&lon=$longi&api_key=65f890b324662655210750wlrcc4094';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -121,17 +122,15 @@ class _MyTopBarState extends State<MyTopBar> {
             IconButton(
               onPressed: () async {
                 if (await location.LocationService().requestPermission()) {
-                  final geolocation = await location.LocationService().getCurrentLocation();
+                  final geolocation =
+                      await location.LocationService().getCurrentLocation();
                   final double? lat = geolocation.latitude;
                   final double? long = geolocation.longitude;
                   if (lat != null && long != null) {
                     widget.changeLatAndLong(lat, long);
                     reverseGeocoding(lat, long);
                   }
-                }
-                else {
-                  widget.changeText('Geolocation is not available.\nPlease enable it.');
-                }
+                } else {}
               },
               icon: const Icon(
                 Icons.location_on,

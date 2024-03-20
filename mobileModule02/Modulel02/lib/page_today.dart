@@ -11,22 +11,18 @@ class TodayPage extends StatelessWidget {
   final Map<String, Map<String, String>> today;
 
   List<Text> todayList() {
-
     List<Text> list = [];
 
     list.add(Text("${coord['cityName']}"));
     list.add(Text("${coord['region']}"));
     list.add(Text("${coord['country']}"));
-    list.addAll(today.entries
-            .map(
-              (entry) => Text(
-                '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-            )
-    );
-
+    list.addAll(today.entries.map(
+      (entry) => Text(
+        '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}',
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
+    ));
     return list;
   }
 
@@ -36,4 +32,5 @@ class TodayPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: todayList());
-}}
+  }
+}
