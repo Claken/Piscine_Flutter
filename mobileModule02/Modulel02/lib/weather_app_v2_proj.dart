@@ -152,7 +152,7 @@ class _WeatherAppState extends State<WeatherApp> {
             String wcode = responseData['daily']['weather_code'][i].toString();
             String weather = _weatherMap[wcode] ?? '';
             _week[i.toString()] = {
-              'date': date,
+              'date': date.replaceAll("-", "/"),
               'min': "$min°C",
               'max': "$max°C",
               'weather': weather,

@@ -15,12 +15,12 @@ class TodayPage extends StatelessWidget {
   final String            errorText;
 
 
-  List<Text> todayList() {
-    List<Text> list = [];
+  List<Widget> todayList() {
+    List<Widget> list = [];
 
-    list.add(Text("${coord['cityName']}"));
-    list.add(Text("${coord['region']}"));
-    list.add(Text("${coord['country']}"));
+    list.add(Center(child: Text("${coord['cityName']}")));
+    list.add(Center(child: Text("${coord['region']}")));
+    list.add(Center(child: Text("${coord['country']}")));
     list.addAll(today.entries.map(
       (entry) => Text(
         '${entry.value['hour']}   ${entry.value['temp']}    ${entry.value['wind']}    ${entry.value['weather']}',
@@ -33,9 +33,7 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return errorText.isEmpty ? Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+    return errorText.isEmpty ? ListView(
         children: todayList()
         ) : ErrorMessage(errorMessage: errorText,)
         

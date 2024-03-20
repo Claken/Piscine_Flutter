@@ -15,12 +15,12 @@ class WeeklyPage extends StatelessWidget {
   final String            errorText;
 
 
-  List<Text> weeklyList() {
-    List<Text> list = [];
+  List<Widget> weeklyList() {
+    List<Widget> list = [];
 
-    list.add(Text("${coord['cityName']}"));
-    list.add(Text("${coord['region']}"));
-    list.add(Text("${coord['country']}"));
+    list.add(Center(child: Text("${coord['cityName']}")));
+    list.add(Center(child: Text("${coord['region']}")));
+    list.add(Center(child: Text("${coord['country']}")));
     list.addAll(weekly.entries.map(
       (entry) => Text(
         '${entry.value['date']}   ${entry.value['min']}    ${entry.value['max']}    ${entry.value['weather']}',
@@ -33,9 +33,7 @@ class WeeklyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return errorText.isEmpty ? Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+    return errorText.isEmpty ? ListView(
         children: weeklyList() 
         )
         : ErrorMessage(errorMessage: errorText,)
