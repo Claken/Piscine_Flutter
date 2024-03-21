@@ -22,8 +22,11 @@ class BottomBar extends StatelessWidget {
       backgroundColor: backgroundColor,
       currentIndex: currentTab,
       onTap: (value) {
-        pageViewController.animateToPage(value,
-            duration: const Duration(milliseconds: 1), curve: Curves.bounceOut);
+        if (pageViewController.hasClients) {
+          pageViewController.animateToPage(value,
+              duration: const Duration(milliseconds: 1),
+              curve: Curves.bounceOut);
+        }
       },
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(

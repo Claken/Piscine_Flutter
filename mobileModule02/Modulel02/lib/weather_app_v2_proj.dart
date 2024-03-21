@@ -1,15 +1,15 @@
 import 'dart:convert';
+import 'package:ex00/body_of_the_app.dart';
 import 'package:ex00/bottom_bar.dart';
-import 'package:ex00/page_currently.dart';
-import 'package:ex00/page_today.dart';
-import 'package:ex00/page_weekly.dart';
 import 'package:ex00/searcher.dart';
 import 'package:ex00/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherApp extends StatefulWidget {
-  const WeatherApp({super.key});
+  const WeatherApp({
+    super.key,
+  });
 
   @override
   State<WeatherApp> createState() => _WeatherAppState();
@@ -18,7 +18,7 @@ class WeatherApp extends StatefulWidget {
 class _WeatherAppState extends State<WeatherApp> {
   final Color _iconColor = Colors.white.withOpacity(0.7);
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  final _pageViewController = PageController();
+  late PageController _pageViewController;
   dynamic _listOfCities;
   final Map<String, String> _location = {
     'cityName': '',
@@ -66,6 +66,78 @@ class _WeatherAppState extends State<WeatherApp> {
   String _text = "";
   String _errorText = "";
   final String errorAPI = "No Connexion\nPlease check your Internet connexion";
+
+  @override
+  void initState() {
+    super.initState();
+    _pageViewController = PageController(initialPage: _currentTab);
+  }
+
+  @override
+  void dispose() {
+    _pageViewController.dispose();
+    super.dispose();
+  }
+
+  void changeTab(int index) {
+    setState(() {
+      debugPrint("index = $index");
+      _currentTab = index;
+    });
+  }
+
+  void changeErrorText(String error) {
+    setState(() {
+      _errorText = error;
+    });
+  }
+
+  void changeText(String newText) {
+    setState(() {
+      _text = newText;
+    });
+  }
+
+  void changeLatAndLong(double lat, double long) async {
+    String lati = lat.toString();
+    String longi = long.toString();
+    setState(() {
+      _location['lat'] = lati;
+      _location['long'] = longi;
+    });
+    if (lati != '' && longi != '') {
+      await getCurrentInfo(lati, longi);
+      await getTodayInfo(lati, longi);
+      await getWeeklyInfo(lati, longi);
+    }
+  }
+
+  void changeLocation(String name, String region, String country) {
+    setState(() {
+      _location['cityName'] = name;
+      _location['region'] = region;
+      _location['country'] = country;
+    });
+  }
+
+  Future<void> getCityInfo(String cityName) async {
+    cityName = _text;
+    final url =
+        'https://geocoding-api.open-meteo.com/v1/search?name=$cityName&count=10&language=en&format=json';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final responseData = json.decode(response.body);
+
+      setState(() {
+        _listOfCities = responseData["results"];
+      });
+      changeErrorText('');
+    } catch (e) {
+      changeErrorText(errorAPI);
+      throw Exception("$e");
+    }
+  }
 
   Future<void> getCurrentInfo(String lat, String long) async {
     var url =
@@ -169,72 +241,6 @@ class _WeatherAppState extends State<WeatherApp> {
   }
 
   @override
-  void dispose() {
-    _pageViewController.dispose();
-    super.dispose();
-  }
-
-  void changeTab(int index) {
-    setState(() {
-      _currentTab = index;
-    });
-  }
-
-  void changeErrorText(String error) {
-    setState(() {
-      _errorText = error;
-    });
-  }
-
-  void changeText(String newText) {
-    setState(() {
-      _text = newText;
-    });
-  }
-
-  void changeLatAndLong(double lat, double long) async {
-    String lati = lat.toString();
-    String longi = long.toString();
-    setState(() {
-      _location['lat'] = lati;
-      _location['long'] = longi;
-    });
-    if (lati != '' && longi != '') {
-      await getCurrentInfo(lati, longi);
-      await getTodayInfo(lati, longi);
-      await getWeeklyInfo(lati, longi);
-    }
-  }
-
-  void changeLocation(String name, String region, String country) {
-    setState(() {
-      _location['cityName'] = name;
-      _location['region'] = region;
-      _location['country'] = country;
-      debugPrint(_location.toString());
-    });
-  }
-
-  Future<void> getCityInfo(String cityName) async {
-    cityName = _text;
-    final url =
-        'https://geocoding-api.open-meteo.com/v1/search?name=$cityName&count=10&language=en&format=json';
-
-    try {
-      final response = await http.get(Uri.parse(url));
-      final responseData = json.decode(response.body);
-
-      setState(() {
-        _listOfCities = responseData["results"];
-      });
-      changeErrorText('');
-    } catch (e) {
-      changeErrorText(errorAPI);
-      throw Exception("$e");
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyTopBar(
@@ -246,36 +252,19 @@ class _WeatherAppState extends State<WeatherApp> {
         changeLatAndLong: changeLatAndLong,
         changeLocation: changeLocation,
       ),
-      body: _text.isEmpty
-          ? PageView(
-              controller: _pageViewController,
-              onPageChanged: (value) {
-                changeTab(value);
-              },
-              children: [
-                  CurrentlyPage(
-                    coord: _location,
-                    current: _current,
-                    errorText: _errorText,
-                  ),
-                  TodayPage(
-                    coord: _location,
-                    today: _today,
-                    errorText: _errorText,
-                  ),
-                  WeeklyPage(
-                    coord: _location,
-                    weekly: _week,
-                    errorText: _errorText,
-                  ),
-                ])
-          : CityInfoPage(
-              listOfCities: _listOfCities,
-              changeText: changeText,
-              changeLatAndLong: changeLatAndLong,
-              changeLocation: changeLocation,
-              errorText: _errorText,
-              ),
+      body: BodyOfApp(
+          text: _text,
+          errorText: _errorText,
+          controller: _pageViewController,
+          location: _location,
+          current: _current,
+          today: _today,
+          week: _week,
+          listOfCities: _listOfCities,
+          changeTab: changeTab,
+          changeText: changeText,
+          changeLatAndLong: changeLatAndLong,
+          changeLocation: changeLocation),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           currentTab: _currentTab,

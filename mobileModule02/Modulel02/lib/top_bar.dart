@@ -60,6 +60,7 @@ class _MyTopBarState extends State<MyTopBar> {
       onChanged: (value) {
         widget.changeText(value);
         widget.getCityInfo(widget.text);
+        
       },
       decoration: InputDecoration(
         hintText: 'Search location...',
