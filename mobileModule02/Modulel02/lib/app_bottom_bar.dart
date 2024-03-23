@@ -23,12 +23,9 @@ class BottomBar extends StatelessWidget {
       currentIndex: currentTab,
       onTap: (value) {
           changeTab(value);
-          // ignore: invalid_use_of_protected_member
-          if (tabController.hasListeners) {
           tabController.animateTo(value,
               duration: const Duration(milliseconds: 1),
               curve: Curves.bounceOut);
-          }
 
       },
       items: <BottomNavigationBarItem>[
