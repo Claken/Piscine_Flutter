@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:ex00/body_of_the_app.dart';
-import 'package:ex00/bottom_bar.dart';
-import 'package:ex00/top_bar.dart';
+import 'package:ex00/app_body.dart';
+import 'package:ex00/app_bottom_bar.dart';
+import 'package:ex00/app_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
