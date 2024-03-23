@@ -46,9 +46,6 @@ class BodyOfApp extends StatelessWidget {
     }
     return TabBarView(
         controller: controller,
-        // onPageChanged: (value) {
-        //   changeTab(value);
-        // },
         children: [
           CurrentlyPage(
             coord: location,

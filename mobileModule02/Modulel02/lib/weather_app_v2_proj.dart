@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:ex00/body_of_the_app.dart';
 import 'package:ex00/bottom_bar.dart';
-import 'package:ex00/searcher.dart';
 import 'package:ex00/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -70,7 +69,8 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(initialIndex: _currentTab, length: 3, vsync: this);
+    _tabController =
+        TabController(initialIndex: _currentTab, length: 3, vsync: this);
   }
 
   @override
