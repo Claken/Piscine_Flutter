@@ -23,7 +23,7 @@ class BodyOfApp extends StatelessWidget {
 
   final String text;
   final String errorText;
-  final PageController controller;
+  final TabController controller;
   final Map<String, String> location;
   final Map<String, String> current;
   final Map<String, Map<String, String>> today;
@@ -36,27 +36,35 @@ class BodyOfApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-            controller: controller,
-            onPageChanged: (value) {
-              changeTab(value);
-            },
-            children: [
-                CurrentlyPage(
-                  coord: location,
-                  current: current,
-                  errorText: errorText,
-                ),
-                TodayPage(
-                  coord: location,
-                  today: today,
-                  errorText: errorText,
-                ),
-                WeeklyPage(
-                  coord: location,
-                  weekly: week,
-                  errorText: errorText,
-                ),
-              ]);
+    if (text.isNotEmpty) {
+      return CityInfoPage(
+          listOfCities: listOfCities,
+          changeText: changeText,
+          changeLatAndLong: changeLatAndLong,
+          changeLocation: changeLocation,
+          errorText: errorText);
+    }
+    return TabBarView(
+        controller: controller,
+        // onPageChanged: (value) {
+        //   changeTab(value);
+        // },
+        children: [
+          CurrentlyPage(
+            coord: location,
+            current: current,
+            errorText: errorText,
+          ),
+          TodayPage(
+            coord: location,
+            today: today,
+            errorText: errorText,
+          ),
+          WeeklyPage(
+            coord: location,
+            weekly: week,
+            errorText: errorText,
+          ),
+        ]);
   }
 }

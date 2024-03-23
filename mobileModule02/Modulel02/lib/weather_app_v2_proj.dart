@@ -15,10 +15,10 @@ class WeatherApp extends StatefulWidget {
   State<WeatherApp> createState() => _WeatherAppState();
 }
 
-class _WeatherAppState extends State<WeatherApp> {
+class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   final Color _iconColor = Colors.white.withOpacity(0.7);
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
-  late PageController _pageViewController;
+  late TabController _tabController;
   dynamic _listOfCities;
   final Map<String, String> _location = {
     'cityName': '',
@@ -70,12 +70,12 @@ class _WeatherAppState extends State<WeatherApp> {
   @override
   void initState() {
     super.initState();
-    _pageViewController = PageController(initialPage: _currentTab);
+    _tabController = TabController(initialIndex: _currentTab, length: 3, vsync: this);
   }
 
   @override
   void dispose() {
-    _pageViewController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -255,7 +255,7 @@ class _WeatherAppState extends State<WeatherApp> {
       body: BodyOfApp(
           text: _text,
           errorText: _errorText,
-          controller: _pageViewController,
+          controller: _tabController,
           location: _location,
           current: _current,
           today: _today,
@@ -270,7 +270,7 @@ class _WeatherAppState extends State<WeatherApp> {
           currentTab: _currentTab,
           changeTab: changeTab,
           iconColor: _iconColor,
-          pageViewController: _pageViewController),
+          tabController: _tabController),
     );
   }
 }

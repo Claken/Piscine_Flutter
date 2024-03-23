@@ -7,14 +7,14 @@ class BottomBar extends StatelessWidget {
     required this.currentTab,
     required this.changeTab,
     required this.iconColor,
-    required this.pageViewController,
+    required this.tabController,
   });
 
   final Color backgroundColor;
   final Color iconColor;
   final Function(int tab) changeTab;
   final int currentTab;
-  final PageController pageViewController;
+  final TabController tabController;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,10 @@ class BottomBar extends StatelessWidget {
       backgroundColor: backgroundColor,
       currentIndex: currentTab,
       onTap: (value) {
-        if (pageViewController.hasClients) {
-          pageViewController.animateToPage(value,
+          changeTab(value);
+          tabController.animateTo(value,
               duration: const Duration(milliseconds: 1),
               curve: Curves.bounceOut);
-        }
       },
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
