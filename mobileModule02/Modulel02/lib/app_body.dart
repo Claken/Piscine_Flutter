@@ -15,7 +15,6 @@ class BodyOfApp extends StatelessWidget {
     required this.today,
     required this.week,
     required this.listOfCities,
-    required this.changeTab,
     required this.changeText,
     required this.changeLatAndLong,
     required this.changeLocation,
@@ -29,7 +28,6 @@ class BodyOfApp extends StatelessWidget {
   final Map<String, Map<String, String>> today;
   final Map<String, Map<String, String>> week;
   final dynamic listOfCities;
-  final Function(int newTab) changeTab;
   final Function(String newText) changeText;
   final Function(double lat, double long) changeLatAndLong;
   final Function(String name, String region, String country) changeLocation;

@@ -12,8 +12,7 @@ class WeeklyPage extends StatelessWidget {
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> weekly;
-  final String            errorText;
-
+  final String errorText;
 
   List<Widget> weeklyList() {
     List<Widget> list = [];
@@ -33,10 +32,10 @@ class WeeklyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return errorText.isEmpty ? ListView(
-        children: weeklyList() 
-        )
-        : ErrorMessage(errorMessage: errorText,)
-        ;
+    return errorText.isEmpty
+        ? ListView(children: weeklyList())
+        : ErrorMessage(
+            errorMessage: errorText,
+          );
   }
 }

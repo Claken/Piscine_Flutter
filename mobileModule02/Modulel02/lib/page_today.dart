@@ -7,13 +7,11 @@ class TodayPage extends StatelessWidget {
     required this.coord,
     required this.today,
     required this.errorText,
-
   });
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> today;
-  final String            errorText;
-
+  final String errorText;
 
   List<Widget> todayList() {
     List<Widget> list = [];
@@ -33,10 +31,10 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return errorText.isEmpty ? ListView(
-        children: todayList()
-        ) : ErrorMessage(errorMessage: errorText,)
-        
-        ;
+    return errorText.isEmpty
+        ? ListView(children: todayList())
+        : ErrorMessage(
+            errorMessage: errorText,
+          );
   }
 }

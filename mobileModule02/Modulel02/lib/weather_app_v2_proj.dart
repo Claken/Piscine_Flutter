@@ -61,7 +61,6 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   final Map<String, Map<String, String>> _today = {};
   final Map<String, Map<String, String>> _week = {};
 
-  int _currentTab = 0;
   String _text = "";
   String _errorText = "";
   final String errorAPI = "No Connexion\nPlease check your Internet connexion";
@@ -70,20 +69,13 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController =
-        TabController(initialIndex: _currentTab, length: 3, vsync: this);
+        TabController(initialIndex: 0, length: 3, vsync: this);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  void changeTab(int index) {
-    setState(() {
-      debugPrint("index = $index");
-      _currentTab = index;
-    });
   }
 
   void changeErrorText(String error) {
@@ -261,14 +253,11 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
           today: _today,
           week: _week,
           listOfCities: _listOfCities,
-          changeTab: changeTab,
           changeText: changeText,
           changeLatAndLong: changeLatAndLong,
           changeLocation: changeLocation),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
-          currentTab: _currentTab,
-          changeTab: changeTab,
           iconColor: _iconColor,
           tabController: _tabController),
     );
