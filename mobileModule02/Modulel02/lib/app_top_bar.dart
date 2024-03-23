@@ -60,7 +60,6 @@ class _MyTopBarState extends State<MyTopBar> {
       onChanged: (value) {
         widget.changeText(value);
         widget.getCityInfo(widget.text);
-        
       },
       decoration: InputDecoration(
         hintText: 'Search location...',
@@ -71,7 +70,6 @@ class _MyTopBarState extends State<MyTopBar> {
   }
 
   Future<void> reverseGeocoding(double lat, double long) async {
-    // const String apiKey = '65f890b324662655210750wlrcc4094';
     final String lati = lat.toString();
     final String longi = long.toString();
     final url =
@@ -80,11 +78,17 @@ class _MyTopBarState extends State<MyTopBar> {
     try {
       final response = await http.get(Uri.parse(url));
       final responseData = json.decode(response.body);
-      final String cityName = responseData['address']['town'];
-      final String cityRegion = responseData['address']['state'];
-      final String cityCountry = responseData['address']['country'];
+      String cityName = responseData['address']['town'].toString();
+      if (cityName == "null") {
+        cityName = responseData['address']['city'].toString();
+      }
+      final String cityRegion = responseData['address']['state'].toString();
+      final String cityCountry = responseData['address']['country'].toString();
       widget.changeLocation(cityName, cityRegion, cityCountry);
+      widget.changeErrorText("");
     } catch (e) {
+      widget.changeErrorText(
+          "No Connexion\nPlease check your Internet connexion");
       throw Exception("$e");
     }
   }
@@ -132,10 +136,13 @@ class _MyTopBarState extends State<MyTopBar> {
                   if (lat != null && long != null) {
                     widget.changeLatAndLong(lat, long);
                     reverseGeocoding(lat, long);
-                    widget.changeErrorText("");
+                  } else {
+                    widget.changeErrorText(
+                        "No Connexion\nPlease check your Internet connexion");
                   }
                 } else {
-                  widget.changeErrorText("Geolocation is not available\nPlease enable it");
+                  widget.changeErrorText(
+                      "Geolocation is not available\nPlease enable it");
                 }
               },
               icon: const Icon(
