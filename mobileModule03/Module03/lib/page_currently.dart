@@ -17,17 +17,14 @@ class CurrentlyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return errorText.isEmpty
         ? Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
                 Text(
                   "${coord['cityName']}",
                 ),
                 Text(
-                  "${coord['region']}",
-                ),
-                Text(
-                  "${coord['country']}",
+                  "${coord['region']}, ${coord['country']}",
                 ),
                 Text(
                   "${current['temp']}",
