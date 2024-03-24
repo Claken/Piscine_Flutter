@@ -244,7 +244,14 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
         changeLatAndLong: changeLatAndLong,
         changeLocation: changeLocation,
       ),
-      body: BodyOfApp(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: BodyOfApp(
           text: _text,
           errorText: _errorText,
           controller: _tabController,
@@ -256,6 +263,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
           changeText: changeText,
           changeLatAndLong: changeLatAndLong,
           changeLocation: changeLocation),
+        ),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           iconColor: _iconColor,

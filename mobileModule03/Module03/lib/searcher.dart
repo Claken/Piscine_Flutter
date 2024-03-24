@@ -41,8 +41,15 @@ class CityInfoPage extends StatelessWidget {
                           listOfCities[index]['country']);
                     }
                   },
-                  title: Text(
-                      '${listOfCities?[index]['name']}, ${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']} '));
+                  title: Row(children: [
+                    Text('${listOfCities?[index]['name']} ',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text(
+                        '${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']}',
+                        style: const TextStyle(fontWeight: FontWeight.w300))
+                  ]));
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
