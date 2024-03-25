@@ -68,8 +68,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(initialIndex: 0, length: 3, vsync: this);
+    _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
   }
 
   @override
@@ -196,18 +195,36 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
     }
   }
 
+  String getFirstDayOfTheWeekInString() {
+    DateTime now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
+    DateTime realDate = date.subtract(Duration(days: date.weekday - 1));
+    var dateTime = realDate.toString();
+    dateTime = dateTime.substring(0, dateTime.indexOf(" "));
+    return dateTime;
+  }
+
   Future<void> getWeeklyInfo(String lat, String long) async {
+    var dateTime = getFirstDayOfTheWeekInString();
     var url =
-        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&start_date=2024-03-18&end_date=2024-03-24";
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=7&forecast_days=14";
 
     try {
       final response = await http.get(Uri.parse(url));
       final responseData = json.decode(response.body);
 
       if (responseData != null) {
+        int i = 0;
+        while (responseData['daily']['time'][i].toString() != dateTime) {
+          i++;
+          if (i > responseData['daily']['time'].length) {
+            debugPrint("error");
+            return;
+          }
+        }
         setState(() {
-          int i = -1;
-          while (++i < 7) {
+          int j = i + 7;
+          while (i < j) {
             String date = responseData['daily']['time'][i].toString();
             String max =
                 responseData['daily']['temperature_2m_max'][i].toString();
@@ -221,6 +238,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
               'max': "$max°C",
               'weather': weather,
             };
+            i++;
           }
         });
         changeErrorText('');
@@ -252,18 +270,18 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
           ),
         ),
         child: BodyOfApp(
-          text: _text,
-          errorText: _errorText,
-          controller: _tabController,
-          location: _location,
-          current: _current,
-          today: _today,
-          week: _week,
-          listOfCities: _listOfCities,
-          changeText: changeText,
-          changeLatAndLong: changeLatAndLong,
-          changeLocation: changeLocation),
-        ),
+            text: _text,
+            errorText: _errorText,
+            controller: _tabController,
+            location: _location,
+            current: _current,
+            today: _today,
+            week: _week,
+            listOfCities: _listOfCities,
+            changeText: changeText,
+            changeLatAndLong: changeLatAndLong,
+            changeLocation: changeLocation),
+      ),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
           iconColor: _iconColor,
