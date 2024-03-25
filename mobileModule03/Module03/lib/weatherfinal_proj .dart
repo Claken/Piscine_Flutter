@@ -5,6 +5,8 @@ import 'package:ex00/app_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'utils.dart';
+
 class WeatherApp extends StatefulWidget {
   const WeatherApp({
     super.key,
@@ -195,19 +197,10 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
     }
   }
 
-  String getFirstDayOfTheWeekInString() {
-    DateTime now = DateTime.now();
-    DateTime date = DateTime(now.year, now.month, now.day);
-    DateTime realDate = date.subtract(Duration(days: date.weekday - 1));
-    var dateTime = realDate.toString();
-    dateTime = dateTime.substring(0, dateTime.indexOf(" "));
-    return dateTime;
-  }
-
   Future<void> getWeeklyInfo(String lat, String long) async {
     var dateTime = getFirstDayOfTheWeekInString();
     var url =
-        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=7&forecast_days=14";
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=8&forecast_days=14";
 
     try {
       final response = await http.get(Uri.parse(url));
