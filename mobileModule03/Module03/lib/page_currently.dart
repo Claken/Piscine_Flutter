@@ -40,12 +40,12 @@ class CurrentlyPage extends StatelessWidget {
                     fontSize: 30.00,
                   ),
                 ),
-                 SizedBox(height: heightInt),
+                const SizedBox(height: 30.0),
                 Icon(weatherIcons[current['weather']], color: Colors.blue), 
                 Text(
                   "${current['weather']}", style: const TextStyle(color: Colors.blue)
                 ),
-                 SizedBox(height: heightInt),
+                SizedBox(height: heightInt),
                 const Icon(CupertinoIcons.wind, color: Colors.grey), 
                 Text(
                   "${current['wind']}", style: const TextStyle(color: Colors.grey)

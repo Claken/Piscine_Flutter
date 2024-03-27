@@ -48,7 +48,11 @@ class CityInfoPage extends StatelessWidget {
                         )),
                     Expanded(child: Text(
                         '${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']}',
-                        style: const TextStyle(fontWeight: FontWeight.w300))
+                        style: const TextStyle(fontWeight: FontWeight.w300),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        )
+                        
                   )])
                   
               );
