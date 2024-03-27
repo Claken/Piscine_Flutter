@@ -1,8 +1,11 @@
 import 'package:ex00/error_message.dart';
+import 'package:ex00/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class CurrentlyPage extends StatelessWidget {
-  const CurrentlyPage({
+  CurrentlyPage({
     super.key,
     required this.coord,
     required this.current,
@@ -13,33 +16,41 @@ class CurrentlyPage extends StatelessWidget {
   final Map<String, String> current;
   final String errorText;
 
+  final Map<String, IconData> wIcons = weatherIcons;
+  final double heightInt = 50.0;
+
   @override
   Widget build(BuildContext context) {
     return errorText.isEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+            children: coord['cityName'] != null && coord['cityName']!.isNotEmpty ? <Widget>[
                 Text(
-                  "${coord['cityName']}",
+                  "${coord['cityName']}", style: const TextStyle(color: Colors.white),
                 ),
                 Text(
-                  "${coord['region']}, ${coord['country']}",
+                  "${coord['region']}, ${coord['country']}", style: const TextStyle(color: Colors.white)
                 ),
+                 SizedBox(height: heightInt),
                 Text(
                   "${current['temp']}",
-                   style: const TextStyle(
+                  style: const TextStyle(
                     color: Colors.orange,
                     fontSize: 30.00,
-                    ),
+                  ),
                 ),
+                 SizedBox(height: heightInt),
+                Icon(weatherIcons[current['weather']], color: Colors.blue), 
                 Text(
-                  "${current['weather']}",
+                  "${current['weather']}", style: const TextStyle(color: Colors.blue)
                 ),
+                 SizedBox(height: heightInt),
+                const Icon(CupertinoIcons.wind, color: Colors.grey), 
                 Text(
-                  "${current['wind']}",
+                  "${current['wind']}", style: const TextStyle(color: Colors.grey)
                 ),
-              ])
+              ] : <Widget>[])
         : ErrorMessage(
             errorMessage: errorText,
           );

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 String getFirstDayOfTheWeekInString() {
   DateTime now = DateTime.now();
   DateTime date = DateTime(now.year, now.month, now.day);
@@ -38,34 +40,34 @@ final Map<String, String> weatherMap = {
   '99': 'Thunderstorm with heavy hail',
 };
 
-final Map<String, String> weatherIcons = {
-  'Clear sky': '',
-  'Mainly clear': '',
-  'Partly cloudy': '',
-  'Overcast': '',
-  'Fog and depositing rime fog': '',
-  'Drizzle: Light intensity': '',
-  'Drizzle: Moderate intensity': '',
-  'Drizzle: Dense intensity': '',
-  'Freezing Drizzle: Light intensity': '',
-  'Freezing Drizzle: Dense intensity': '',
-  'Rain: Slight intensity': '',
-  'Rain: Moderate intensity': '',
-  'Rain: Heavy intensity': '',
-  'Freezing Rain: Light intensity': '',
-  'Freezing Rain: Heavy intensity': '',
-  'Snow fall: Slight intensity': '',
-  'Snow fall: Moderate intensity': '',
-  'Snow fall: Heavy intensity': '',
-  'Snow grains': '',
-  'Rain showers: Slight intensity': '',
-  'Rain showers: Moderate intensity': '',
-  'Rain showers: Violent intensity': '',
-  'Snow showers: Slight intensity': '',
-  'Snow showers: Heavy intensity': '',
-  'Thunderstorm: Slight or moderate': '',
-  'Thunderstorm with slight hail': '',
-  'Thunderstorm with heavy hail': '',
+final Map<String, IconData> weatherIcons = {
+  'Clear sky': Icons.wb_sunny,
+  'Mainly clear': Icons.wb_sunny,
+  'Partly cloudy': Icons.wb_cloudy,
+  'Overcast': Icons.cloud,
+  'Fog and depositing rime fog': Icons.cloud,
+  'Drizzle: Light intensity': Icons.grain,
+  'Drizzle: Moderate intensity': Icons.grain,
+  'Drizzle: Dense intensity': Icons.grain,
+  'Freezing Drizzle: Light intensity': Icons.ac_unit,
+  'Freezing Drizzle: Dense intensity': Icons.ac_unit,
+  'Rain: Slight intensity': Icons.grain,
+  'Rain: Moderate intensity': Icons.grain,
+  'Rain: Heavy intensity': Icons.grain,
+  'Freezing Rain: Light intensity': Icons.ac_unit,
+  'Freezing Rain: Heavy intensity': Icons.ac_unit,
+  'Snow fall: Slight intensity': Icons.ac_unit,
+  'Snow fall: Moderate intensity': Icons.ac_unit,
+  'Snow fall: Heavy intensity': Icons.ac_unit,
+  'Snow grains': Icons.grain,
+  'Rain showers: Slight intensity': Icons.grain,
+  'Rain showers: Moderate intensity': Icons.grain,
+  'Rain showers: Violent intensity': Icons.grain,
+  'Snow showers: Slight intensity': Icons.ac_unit,
+  'Snow showers: Heavy intensity': Icons.ac_unit,
+  'Thunderstorm: Slight or moderate': Icons.flash_on,
+  'Thunderstorm with slight hail': Icons.flash_on,
+  'Thunderstorm with heavy hail': Icons.flash_on,
 };
 
 final Map<String, String> location = {
