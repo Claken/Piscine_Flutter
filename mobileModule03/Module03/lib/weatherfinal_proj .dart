@@ -21,43 +21,8 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
   late TabController _tabController;
   dynamic _listOfCities;
-  final Map<String, String> _location = {
-    'cityName': '',
-    'region': '',
-    'country': '',
-    'lat': '',
-    'long': ''
-  };
-  final Map<String, String> _weatherMap = {
-    '0': 'Clear sky',
-    '1': 'Mainly clear',
-    '2': 'Partly cloudy',
-    '3': 'Overcast',
-    '45': 'Fog and depositing rime fog',
-    '48': 'Fog and depositing rime fog',
-    '51': 'Drizzle: Light intensity',
-    '53': 'Drizzle: Moderate intensity',
-    '55': 'Drizzle: Dense intensity',
-    '56': 'Freezing Drizzle: Light intensity',
-    '57': 'Freezing Drizzle: Dense intensity',
-    '61': 'Rain: Slight intensity',
-    '63': 'Rain: Moderate intensity',
-    '65': 'Rain: Heavy intensity',
-    '66': 'Freezing Rain: Light intensity',
-    '67': 'Freezing Rain: Heavy intensity',
-    '71': 'Snow fall: Slight intensity',
-    '73': 'Snow fall: Moderate intensity',
-    '75': 'Snow fall: Heavy intensity',
-    '77': 'Snow grains',
-    '80': 'Rain showers: Slight intensity',
-    '81': 'Rain showers: Moderate intensity',
-    '82': 'Rain showers: Violent intensity',
-    '85': 'Snow showers: Slight intensity',
-    '86': 'Snow showers: Heavy intensity',
-    '95': 'Thunderstorm: Slight or moderate',
-    '96': 'Thunderstorm with slight hail',
-    '99': 'Thunderstorm with heavy hail',
-  };
+  final Map<String, String> _location = location;
+  final Map<String, String> _weatherMap = weatherMap;
 
   final _current = {'temp': '', 'weather': '', 'wind': ''};
   final Map<String, Map<String, String>> _today = {};
@@ -144,8 +109,8 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
         setState(() {
           _current['temp'] =
               "${responseData['current_weather']['temperature']}°C";
-          var code = responseData['current_weather']['weathercode'];
-          _current['weather'] = _weatherMap[code.toString()]!;
+          String code = responseData['current_weather']['weathercode'].toString();
+          _current['weather'] = _weatherMap[code]!;
           _current['wind'] =
               "${responseData['current_weather']['windspeed']} km/h";
         });
