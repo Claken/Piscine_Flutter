@@ -49,7 +49,7 @@ class CurrentlyPage extends StatelessWidget {
                 Text(
                   "${current['wind']}", style: const TextStyle(color: Colors.grey)
                 ),
-              ] : <Widget>[const Text('Please make a search of use the geolocation button')])
+              ] : <Widget>[const Text('Please make a search or use the geolocation button')])
         : ErrorMessage(
             errorMessage: errorText,
           );

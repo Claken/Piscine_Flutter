@@ -18,7 +18,7 @@ class WeatherApp extends StatefulWidget {
 
 class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   final Color _iconColor = Colors.white.withOpacity(0.7);
-  final Color _backgroundColor = const Color.fromARGB(255, 78, 68, 107);
+  final Color _backgroundColor = const Color.fromARGB(255, 26, 40, 231);
   late TabController _tabController;
   dynamic _listOfCities;
   final Map<String, String> _location = location;

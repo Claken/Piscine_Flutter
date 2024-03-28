@@ -26,41 +26,46 @@ class TodayPage extends StatelessWidget {
     // list.add(Center(child: Text("${coord['region']}")));
     // list.add(Center(child: Text("${coord['country']}")));
     list.addAll(today.entries.map(
-      (entry) => Column(
+      (entry) => Container (
+        padding: const EdgeInsets.all(30),
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [ 
-            
+            children: [
             Text("${entry.value['hour']}"),
             Text(
                   "${entry.value['temp']}",
                   style: const TextStyle(
                     color: Colors.orange,
-                    fontSize: 30.00,
+                    fontSize: 20.00,
                   ),
                 ),
-                const SizedBox(height: 30.0),
+                const SizedBox(height: 20.0),
                 Icon(weatherIcons[entry.value['weather']], color: Colors.blue), 
-                Text(
-                  "${entry.value['weather']}", style: const TextStyle(color: Colors.blue)
-                ),
-                const SizedBox(height: 50.0),
+                const SizedBox(height: 20.0),
                 const Icon(CupertinoIcons.wind, color: Colors.grey), 
                 Text(
                   "${entry.value['wind']}", style: const TextStyle(color: Colors.grey)
                 ),
               ] 
-    )));
+    ))));
     return list;
   }
 
   @override
   Widget build(BuildContext context) {
     return errorText.isEmpty
-        ? ListView(
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+          const SizedBox(height: 50.0),
+          Text("${coord['cityName']}", style: const TextStyle(color: Colors.white)),
+          Text("${coord['region']}, ${coord['country']}", style: const TextStyle(color: Colors.white)),
+          Expanded(child: ListView(
           scrollDirection: Axis.horizontal,
-          
           children: todayList())
+        )])
         : ErrorMessage(
             errorMessage: errorText,
           );
