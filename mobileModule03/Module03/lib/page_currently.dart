@@ -2,7 +2,6 @@ import 'package:ex00/error_message.dart';
 import 'package:ex00/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 
 class CurrentlyPage extends StatelessWidget {
   CurrentlyPage({
@@ -41,7 +40,7 @@ class CurrentlyPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30.0),
-                Icon(weatherIcons[current['weather']], color: Colors.blue), 
+                Icon(wIcons[current['weather']], color: Colors.blue), 
                 Text(
                   "${current['weather']}", style: const TextStyle(color: Colors.blue)
                 ),
@@ -50,7 +49,7 @@ class CurrentlyPage extends StatelessWidget {
                 Text(
                   "${current['wind']}", style: const TextStyle(color: Colors.grey)
                 ),
-              ] : <Widget>[])
+              ] : <Widget>[const Text('Please make a search of use the geolocation button')])
         : ErrorMessage(
             errorMessage: errorText,
           );
