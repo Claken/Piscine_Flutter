@@ -22,9 +22,6 @@ class TodayPage extends StatelessWidget {
   List<Widget> todayList() {
     List<Widget> list = [];
 
-    // list.add(Center(child: Text("${coord['cityName']}")));
-    // list.add(Center(child: Text("${coord['region']}")));
-    // list.add(Center(child: Text("${coord['country']}")));
     list.addAll(today.entries.map(
       (entry) => Container (
         padding: const EdgeInsets.all(30),
