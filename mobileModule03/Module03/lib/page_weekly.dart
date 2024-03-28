@@ -1,7 +1,6 @@
 import 'package:ex00/error_message.dart';
 import 'package:ex00/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 class WeeklyPage extends StatelessWidget {
   WeeklyPage({
