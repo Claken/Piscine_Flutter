@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class ChartData {
   ChartData(this.x, this.y);
@@ -17,8 +17,8 @@ class Chart extends StatelessWidget {
   final String mapType;
   final Map<String, Map<String, String>> map;
 
-  List<ChartData> chartList() {
-    List<ChartData> list = [];
+  List<FlSpot> chartList() {
+    List<FlSpot> list = [];
 
     list.addAll(map.entries.map((entry) {
       String? temp = entry.value['temp'];
@@ -27,25 +27,55 @@ class Chart extends StatelessWidget {
       if (temp != null && hour != null) {
         temp = temp.replaceAll('°C', '');
         double tempe = double.parse(temp);
+        hour = hour.replaceAll(':', '.');
+        double dhour = double.parse(hour);
 
-        return ChartData(tempe, hour);
+        return FlSpot(tempe, dhour);
       }
-      return ChartData(0.0, '');
+      return const FlSpot(0.0, 0.0);
     }));
     return list;
   }
 
+  double highestTemp() {
+    Map<String, String>? caca = map['temp'];
+    if (caca != null) {
+      String temp = caca.values.reduce((value, element) => value.length > element.length ? value : element);
+      temp = temp.replaceAll("°c", '');
+      double value = double.parse(temp);
+      return value;
+    }
+    return 0.0;
+  }
+
+    double lowestTemp() {
+    Map<String, String>? caca = map['temp'];
+    if (caca != null) {
+      String temp = caca.values.reduce((value, element) => value.length < element.length ? value : element);
+      temp = temp.replaceAll("°c", '');
+      double value = double.parse(temp);
+      return value;
+    }
+    return 0.0;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-            child: Container(
-                child: SfCartesianChart(series: <CartesianSeries>[
-      // Renders spline chart
-      SplineSeries<ChartData, int>(
-          dataSource: chartList(),
-          xValueMapper: (ChartData data, _) => data.x,
-          yValueMapper: (ChartData data, _) => data.y)
-    ]))));
+    return LineChart(
+      LineChartData(
+        minX: 0,
+        maxX: 24,
+        minY: lowestTemp(),
+        maxY: highestTemp(),
+        lineBarsData: [
+          LineChartBarData(
+            spots: chartList(),
+            color: Colors.blue,
+            
+          )
+        ]
+
+      )
+    )
   }
 }
