@@ -27,10 +27,12 @@ class ChartYeah extends StatelessWidget {
       if (temp != null && hour != null) {
         temp = temp.replaceAll('°C', '');
         double tempe = double.parse(temp);
+        debugPrint('temp == $temp');
         hour = hour.replaceAll(':', '.');
+        debugPrint('hour == $hour');
         double dhour = double.parse(hour);
 
-        return FlSpot(tempe, dhour);
+        return FlSpot(dhour, tempe);
       }
       return const FlSpot(0.0, 0.0);
     }));
@@ -38,36 +40,51 @@ class ChartYeah extends StatelessWidget {
   }
 
   double highestTemp() {
-    Map<String, String>? caca = map['temp'];
-    if (caca != null) {
-      String temp = caca.values.reduce((value, element) => value.length > element.length ? value : element);
-      temp = temp.replaceAll("°c", '');
-      double value = double.parse(temp);
-      return value;
+    double temp = 0.0;
+    double tmp = 0.0;
+    String str = '';
+    for (var v in map.values) {
+      str = v['temp']!.replaceAll('°C', "");
+      debugPrint(str);
+      tmp = double.parse(str);
+      if (temp < tmp) {
+        temp = tmp;
+      }
     }
-    return 0.0;
+    debugPrint("temp == $temp");
+    return temp;
   }
 
     double lowestTemp() {
-    Map<String, String>? caca = map['temp'];
-    if (caca != null) {
-      String temp = caca.values.reduce((value, element) => value.length < element.length ? value : element);
-      temp = temp.replaceAll("°c", '');
-      double value = double.parse(temp);
-      return value;
+    double temp = double.infinity;
+    double tmp = 0.0;
+    String str = '';
+    for (var v in map.values) {
+      str = v['temp']!.replaceAll('°C', "");
+      debugPrint(str);
+      tmp = double.parse(str);
+      if (temp > tmp) {
+        temp = tmp;
+      }
     }
-    return 0.0;
+    debugPrint("temp == $temp");
+    return temp;
   }
 
   @override
   Widget build(BuildContext context) {
-    return LineChart(
+    return SizedBox(
+      width: 300,
+      height: 300,
+      child: LineChart(
       LineChartData(
         minX: 0,
-        maxX: 24,
+        maxX: 23,
         minY: lowestTemp(),
         maxY: highestTemp(),
         // gridData: FlGridData(
+        //   show: true,
+        //   getDrawingHorizontalLine: 
 
         // )
 
@@ -80,6 +97,6 @@ class ChartYeah extends StatelessWidget {
         ]
 
       )
-    );
+    ));
   }
 }
