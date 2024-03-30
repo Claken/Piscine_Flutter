@@ -1,3 +1,4 @@
+import 'package:ex00/chart.dart';
 import 'package:ex00/error_message.dart';
 import 'package:ex00/utils.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class TodayPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
+                // ChartYeah(mapType: 'today', map: today),
                 Expanded(
                     child: ListView(
                         scrollDirection: Axis.horizontal,

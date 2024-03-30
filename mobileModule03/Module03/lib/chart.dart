@@ -7,8 +7,8 @@ class ChartData {
   final String y;
 }
 
-class Chart extends StatelessWidget {
-  const Chart({
+class ChartYeah extends StatelessWidget {
+  const ChartYeah({
     super.key,
     required this.mapType,
     required this.map,
@@ -67,6 +67,10 @@ class Chart extends StatelessWidget {
         maxX: 24,
         minY: lowestTemp(),
         maxY: highestTemp(),
+        // gridData: FlGridData(
+
+        // )
+
         lineBarsData: [
           LineChartBarData(
             spots: chartList(),
@@ -76,6 +80,6 @@ class Chart extends StatelessWidget {
         ]
 
       )
-    )
+    );
   }
 }
