@@ -69,9 +69,10 @@ class WeeklyPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      SizedBox(height: 45,),
                       Icon(Icons.show_chart, color: Colors.blue),
                       Text('min temperature'),
-                      SizedBox(width: 20,),
+                      SizedBox(width: 50,),
                       Icon(Icons.show_chart, color: Colors.orange),
                       Text('max temperature'),
                     ]),
