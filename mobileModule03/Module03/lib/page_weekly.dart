@@ -60,8 +60,21 @@ class WeeklyPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
-                const SizedBox(height: 20.0),
+                Container(
+                    height: 20.0,
+                    margin: const EdgeInsets.all(20),
+                    child: const Center(child: Text("Weekly temperatures"))),
                 ChartWeek(map: weekly),
+                const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.show_chart, color: Colors.blue),
+                      Text('min temperature'),
+                      SizedBox(width: 20,),
+                      Icon(Icons.show_chart, color: Colors.orange),
+                      Text('max temperature'),
+                    ]),
                 Expanded(
                     child: ListView(
                         scrollDirection: Axis.horizontal,

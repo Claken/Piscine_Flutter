@@ -57,7 +57,7 @@ class TodayPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
-                const SizedBox(height: 20.0),
+                Container(height: 20.0, margin: EdgeInsets.all(20), child: Center(child: Text("Today temperatures"))),
                 ChartToday(map: today),
                 Expanded(
                     child: ListView(

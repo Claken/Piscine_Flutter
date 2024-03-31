@@ -66,6 +66,10 @@ class ChartToday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+        // decoration: const BoxDecoration(
+        //   color: Color.fromARGB(255, 214, 209, 209),
+        // ),
+
         width: 500,
         height: 300,
         child: LineChart(LineChartData(
@@ -75,14 +79,21 @@ class ChartToday extends StatelessWidget {
             maxY: highestTemp(),
             titlesData: FlTitlesData(
                 show: true,
-                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                topTitles:
+                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles:
+                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 leftTitles: AxisTitles(
                     sideTitles: SideTitles(
                   reservedSize: 50,
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
-                    return Text("$value°C", style: const TextStyle(fontSize: 14, ),);
+                    return Text(
+                      "$value°C",
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    );
                   },
                 )),
                 bottomTitles: AxisTitles(
@@ -92,11 +103,13 @@ class ChartToday extends StatelessWidget {
                   getTitlesWidget: (value, meta) {
                     var str = value.toInt().toString();
                     str = "${str}h";
-                    if (str == "23h")
-                    {
+                    if (str == "23h") {
                       str = '';
                     }
-                   return Text(str, style: const TextStyle(fontSize: 15, ));
+                    return Text(str,
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ));
                   },
                 ))),
             // gridData: FlGridData(

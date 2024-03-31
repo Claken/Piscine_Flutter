@@ -93,14 +93,21 @@ class ChartWeek extends StatelessWidget {
             maxY: highestTemp(),
             titlesData: FlTitlesData(
                 show: true,
-                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                topTitles:
+                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles:
+                    const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 leftTitles: AxisTitles(
                     sideTitles: SideTitles(
                   reservedSize: 50,
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
-                    return Text("$value°C", style: const TextStyle(fontSize: 14, ),);
+                    return Text(
+                      "$value°C",
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    );
                   },
                 )),
                 bottomTitles: AxisTitles(
