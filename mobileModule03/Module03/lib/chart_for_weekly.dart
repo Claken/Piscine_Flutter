@@ -25,17 +25,16 @@ class ChartWeek extends StatelessWidget {
       if (temp != null) {
         temp = temp.replaceAll('°C', '');
         double tempe = double.parse(temp);
-        debugPrint(i.toString());
-        debugPrint(temp.toString());
         list.add(FlSpot(i, tempe));
-        i = i + 1.0;
+      } else {
+        list.add(const FlSpot(0.0, 0.0));
       }
-      list.add(const FlSpot(0.0, 0.0));
-    };
+      i = i + 1.0;
+    }
     return list;
   }
 
-    List<FlSpot> chartListMax() {
+  List<FlSpot> chartListMax() {
     List<FlSpot> list = [];
     double i = 0.0;
 
@@ -46,10 +45,11 @@ class ChartWeek extends StatelessWidget {
         temp = temp.replaceAll('°C', '');
         double tempe = double.parse(temp);
         list.add(FlSpot(i, tempe));
-        i = i + 1.0;
+      } else {
+        list.add(const FlSpot(0.0, 0.0));
       }
-      list.add(const FlSpot(0.0, 0.0));
-    };
+      i = i + 1.0;
+    }
     return list;
   }
 
@@ -64,6 +64,7 @@ class ChartWeek extends StatelessWidget {
         temp = tmp;
       }
     }
+    debugPrint('temp high $temp');
     return temp;
   }
 
@@ -78,6 +79,7 @@ class ChartWeek extends StatelessWidget {
         temp = tmp;
       }
     }
+    debugPrint('temp low $temp');
     return temp;
   }
 
@@ -102,10 +104,10 @@ class ChartWeek extends StatelessWidget {
                 spots: chartListMin(),
                 color: Colors.blue,
               ),
-              //  LineChartBarData(
-              //   spots: chartListMax(),
-              //   color: Colors.orange,
-              // )
+               LineChartBarData(
+                spots: chartListMax(),
+                color: Colors.orange,
+              )
             ])));
   }
 }

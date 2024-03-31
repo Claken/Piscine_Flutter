@@ -57,6 +57,7 @@ class TodayPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
+                const SizedBox(height: 20.0),
                 ChartToday(map: today),
                 Expanded(
                     child: ListView(

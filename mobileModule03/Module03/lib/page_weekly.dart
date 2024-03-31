@@ -60,6 +60,7 @@ class WeeklyPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
+                const SizedBox(height: 20.0),
                 ChartWeek(map: weekly),
                 Expanded(
                     child: ListView(
