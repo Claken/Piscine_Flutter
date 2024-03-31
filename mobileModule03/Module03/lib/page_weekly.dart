@@ -31,16 +31,16 @@ class WeeklyPage extends StatelessWidget {
               Icon(weatherIcons[entry.value['weather']], color: Colors.blue),
               const SizedBox(height: 20.0),
               Text(
-                "${entry.value['min']}",
+                "${entry.value['max']}",
                 style: const TextStyle(
-                  color: Color.fromARGB(255, 0, 204, 255),
+                  color: Colors.orange,
                   fontSize: 20.00,
                 ),
               ),
               Text(
-                "${entry.value['max']}",
+                "${entry.value['min']}",
                 style: const TextStyle(
-                  color: Colors.orange,
+                  color: Color.fromARGB(255, 0, 204, 255),
                   fontSize: 20.00,
                 ),
               ),

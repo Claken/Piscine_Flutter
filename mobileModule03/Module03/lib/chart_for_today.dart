@@ -66,7 +66,7 @@ class ChartToday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 300,
+        width: 500,
         height: 300,
         child: LineChart(LineChartData(
             minX: 0,
@@ -82,7 +82,7 @@ class ChartToday extends StatelessWidget {
             lineBarsData: [
               LineChartBarData(
                 spots: chartList(),
-                color: Colors.white,
+                color: Colors.orange,
               )
             ])));
   }

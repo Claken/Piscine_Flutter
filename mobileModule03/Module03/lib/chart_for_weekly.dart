@@ -64,7 +64,6 @@ class ChartWeek extends StatelessWidget {
         temp = tmp;
       }
     }
-    debugPrint('temp high $temp');
     return temp;
   }
 
@@ -79,20 +78,54 @@ class ChartWeek extends StatelessWidget {
         temp = tmp;
       }
     }
-    debugPrint('temp low $temp');
     return temp;
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 300,
+        width: 500,
         height: 300,
         child: LineChart(LineChartData(
             minX: 0,
             maxX: 6,
             minY: lowestTemp(),
             maxY: highestTemp(),
+            titlesData: FlTitlesData(
+                show: true,
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                  reservedSize: 50,
+                  showTitles: true,
+                  getTitlesWidget: (value, meta) {
+                    return Text("$value°C", style: const TextStyle(fontSize: 14, ),);
+                  },
+                )),
+                bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                  showTitles: true,
+                  getTitlesWidget: (value, meta) {
+                    switch (value) {
+                      case 0.0:
+                        return const Text('MON');
+                      case 1.0:
+                        return const Text('TUE');
+                      case 2.0:
+                        return const Text('WED');
+                      case 3.0:
+                        return const Text('THU');
+                      case 4.0:
+                        return const Text('FRY');
+                      case 5.0:
+                        return const Text('SAT');
+                      case 6.0:
+                        return const Text('SUN');
+                    }
+                    return const Text('');
+                  },
+                ))),
             // gridData: FlGridData(
             //   show: true,
             //   getDrawingHorizontalLine:
@@ -104,7 +137,7 @@ class ChartWeek extends StatelessWidget {
                 spots: chartListMin(),
                 color: Colors.blue,
               ),
-               LineChartBarData(
+              LineChartBarData(
                 spots: chartListMax(),
                 color: Colors.orange,
               )
