@@ -1,3 +1,4 @@
+import 'package:ex00/chart_for_weekly.dart';
 import 'package:ex00/error_message.dart';
 import 'package:ex00/utils.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class WeeklyPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white)),
                 Text("${coord['region']}, ${coord['country']}",
                     style: const TextStyle(color: Colors.white)),
+                ChartWeek(map: weekly),
                 Expanded(
                     child: ListView(
                         scrollDirection: Axis.horizontal,

@@ -7,14 +7,12 @@ class ChartData {
   final String y;
 }
 
-class ChartYeah extends StatelessWidget {
-  const ChartYeah({
+class ChartToday extends StatelessWidget {
+  const ChartToday({
     super.key,
-    required this.mapType,
     required this.map,
   });
 
-  final String mapType;
   final Map<String, Map<String, String>> map;
 
   List<FlSpot> chartList() {
@@ -27,9 +25,7 @@ class ChartYeah extends StatelessWidget {
       if (temp != null && hour != null) {
         temp = temp.replaceAll('°C', '');
         double tempe = double.parse(temp);
-        debugPrint('temp == $temp');
         hour = hour.replaceAll(':', '.');
-        debugPrint('hour == $hour');
         double dhour = double.parse(hour);
 
         return FlSpot(dhour, tempe);
@@ -45,58 +41,49 @@ class ChartYeah extends StatelessWidget {
     String str = '';
     for (var v in map.values) {
       str = v['temp']!.replaceAll('°C', "");
-      debugPrint(str);
       tmp = double.parse(str);
       if (temp < tmp) {
         temp = tmp;
       }
     }
-    debugPrint("temp == $temp");
     return temp;
   }
 
-    double lowestTemp() {
+  double lowestTemp() {
     double temp = double.infinity;
     double tmp = 0.0;
     String str = '';
     for (var v in map.values) {
       str = v['temp']!.replaceAll('°C', "");
-      debugPrint(str);
       tmp = double.parse(str);
       if (temp > tmp) {
         temp = tmp;
       }
     }
-    debugPrint("temp == $temp");
     return temp;
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 300,
-      child: LineChart(
-      LineChartData(
-        minX: 0,
-        maxX: 23,
-        minY: lowestTemp(),
-        maxY: highestTemp(),
-        // gridData: FlGridData(
-        //   show: true,
-        //   getDrawingHorizontalLine: 
+        width: 300,
+        height: 300,
+        child: LineChart(LineChartData(
+            minX: 0,
+            maxX: 23,
+            minY: lowestTemp(),
+            maxY: highestTemp(),
+            // gridData: FlGridData(
+            //   show: true,
+            //   getDrawingHorizontalLine:
 
-        // )
+            // )
 
-        lineBarsData: [
-          LineChartBarData(
-            spots: chartList(),
-            color: Colors.blue,
-            
-          )
-        ]
-
-      )
-    ));
+            lineBarsData: [
+              LineChartBarData(
+                spots: chartList(),
+                color: Colors.white,
+              )
+            ])));
   }
 }
