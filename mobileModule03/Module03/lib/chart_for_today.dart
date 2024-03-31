@@ -73,6 +73,32 @@ class ChartToday extends StatelessWidget {
             maxX: 23,
             minY: lowestTemp(),
             maxY: highestTemp(),
+            titlesData: FlTitlesData(
+                show: true,
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                  reservedSize: 50,
+                  showTitles: true,
+                  getTitlesWidget: (value, meta) {
+                    return Text("$value°C", style: const TextStyle(fontSize: 14, ),);
+                  },
+                )),
+                bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                  showTitles: true,
+                  reservedSize: 50,
+                  getTitlesWidget: (value, meta) {
+                    var str = value.toInt().toString();
+                    str = "${str}h";
+                    if (str == "23h")
+                    {
+                      str = '';
+                    }
+                   return Text(str, style: const TextStyle(fontSize: 15, ));
+                  },
+                ))),
             // gridData: FlGridData(
             //   show: true,
             //   getDrawingHorizontalLine:
