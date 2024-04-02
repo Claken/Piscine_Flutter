@@ -60,8 +60,8 @@ class TodayPage extends StatelessWidget {
               style: const TextStyle(color: Colors.white)),
           Container(
               height: 20.0,
-              margin: EdgeInsets.all(20),
-              child: Center(child: Text("Today temperatures"))),
+              margin: const EdgeInsets.all(20),
+              child: const Center(child: Text("Today temperatures"))),
           ChartToday(map: today),
           Expanded(
               child: ListView(
