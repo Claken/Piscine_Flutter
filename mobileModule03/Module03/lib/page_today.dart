@@ -35,9 +35,14 @@ class TodayPage extends StatelessWidget {
                   fontSize: 15.00,
                 ),
               ),
-              const Icon(CupertinoIcons.wind, color: Colors.grey),
-              Text("${entry.value['wind']}",
-                  style: const TextStyle(color: Colors.grey)),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(CupertinoIcons.wind, color: Colors.grey,),
+                    Text(" ${entry.value['wind']}",
+                        style: const TextStyle(color: Colors.grey)),
+                  ]),
             ]))));
     return list;
   }
@@ -45,23 +50,22 @@ class TodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-                const SizedBox(height: 20.0),
-                Text("${coord['cityName']}",
-                    style: const TextStyle(color: Colors.white)),
-                Text("${coord['region']}, ${coord['country']}",
-                    style: const TextStyle(color: Colors.white)),
-                Container(
-                    height: 20.0,
-                    margin: EdgeInsets.all(20),
-                    child: Center(child: Text("Today temperatures"))),
-                ChartToday(map: today),
-                Expanded(
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: todayList()))
-              ]);
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20.0),
+          Text("${coord['cityName']}",
+              style: const TextStyle(color: Colors.white)),
+          Text("${coord['region']}, ${coord['country']}",
+              style: const TextStyle(color: Colors.white)),
+          Container(
+              height: 20.0,
+              margin: EdgeInsets.all(20),
+              child: Center(child: Text("Today temperatures"))),
+          ChartToday(map: today),
+          Expanded(
+              child: ListView(
+                  scrollDirection: Axis.horizontal, children: todayList()))
+        ]);
   }
 }
