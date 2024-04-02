@@ -84,8 +84,8 @@ class ChartWeek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: 500,
-        height: 300,
+        width: 300,
+        height: 200,
         child: LineChart(LineChartData(
             minX: 0,
             maxX: 6,
@@ -105,7 +105,7 @@ class ChartWeek extends StatelessWidget {
                     return Text(
                       "$value°C",
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     );
                   },
@@ -116,19 +116,40 @@ class ChartWeek extends StatelessWidget {
                   getTitlesWidget: (value, meta) {
                     switch (value) {
                       case 0.0:
-                        return const Text('MON');
+                        return const Text('MON',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 1.0:
-                        return const Text('TUE');
+                        return const Text('TUE',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 2.0:
-                        return const Text('WED');
+                        return const Text('WED',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 3.0:
-                        return const Text('THU');
+                        return const Text('THU',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 4.0:
-                        return const Text('FRY');
+                        return const Text('FRY',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 5.0:
-                        return const Text('SAT');
+                        return const Text('SAT',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                       case 6.0:
-                        return const Text('SUN');
+                        return const Text('SUN',
+                            style: TextStyle(
+                              fontSize: 10,
+                            ));
                     }
                     return const Text('');
                   },

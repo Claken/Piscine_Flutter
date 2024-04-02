@@ -8,14 +8,12 @@ class CityInfoPage extends StatelessWidget {
     required this.changeText,
     required this.changeLatAndLong,
     required this.changeLocation,
-    required this.errorText,
   });
 
   final dynamic listOfCities;
   final Function(String newText) changeText;
   final Function(double lat, double long) changeLatAndLong;
   final Function(String name, String region, String country) changeLocation;
-  final String errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +58,9 @@ class CityInfoPage extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
           )
-        : errorText.isEmpty
-            ? const Column(
+        : const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Center(child: Text('no city found'))])
-            : ErrorMessage(errorMessage: errorText);
+                children: [Center(child: Text('no city found'))]);
   }
 }

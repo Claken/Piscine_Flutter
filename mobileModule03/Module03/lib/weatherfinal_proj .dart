@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:ex00/app_body.dart';
 import 'package:ex00/app_bottom_bar.dart';
 import 'package:ex00/app_top_bar.dart';
+import 'package:ex00/error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -109,7 +110,8 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
         setState(() {
           _current['temp'] =
               "${responseData['current_weather']['temperature']}°C";
-          String code = responseData['current_weather']['weathercode'].toString();
+          String code =
+              responseData['current_weather']['weathercode'].toString();
           _current['weather'] = _weatherMap[code]!;
           _current['wind'] =
               "${responseData['current_weather']['windspeed']} km/h";
@@ -227,18 +229,21 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
             fit: BoxFit.cover,
           ),
         ),
-        child: BodyOfApp(
-            text: _text,
-            errorText: _errorText,
-            controller: _tabController,
-            location: _location,
-            current: _current,
-            today: _today,
-            week: _week,
-            listOfCities: _listOfCities,
-            changeText: changeText,
-            changeLatAndLong: changeLatAndLong,
-            changeLocation: changeLocation),
+        child: _errorText.isEmpty
+            ? BodyOfApp(
+                text: _text,
+                controller: _tabController,
+                location: _location,
+                current: _current,
+                today: _today,
+                week: _week,
+                listOfCities: _listOfCities,
+                changeText: changeText,
+                changeLatAndLong: changeLatAndLong,
+                changeLocation: changeLocation)
+            : ErrorMessage(
+                errorMessage: _errorText,
+              ),
       ),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,

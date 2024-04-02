@@ -8,7 +8,6 @@ class BodyOfApp extends StatelessWidget {
   const BodyOfApp({
     super.key,
     required this.text,
-    required this.errorText,
     required this.controller,
     required this.location,
     required this.current,
@@ -21,7 +20,6 @@ class BodyOfApp extends StatelessWidget {
   });
 
   final String text;
-  final String errorText;
   final TabController controller;
   final Map<String, String> location;
   final Map<String, String> current;
@@ -39,8 +37,7 @@ class BodyOfApp extends StatelessWidget {
           listOfCities: listOfCities,
           changeText: changeText,
           changeLatAndLong: changeLatAndLong,
-          changeLocation: changeLocation,
-          errorText: errorText);
+          changeLocation: changeLocation);
     }
     return TabBarView(
         controller: controller,
@@ -48,17 +45,14 @@ class BodyOfApp extends StatelessWidget {
           CurrentlyPage(
             coord: location,
             current: current,
-            errorText: errorText,
           ),
           TodayPage(
             coord: location,
             today: today,
-            errorText: errorText,
           ),
           WeeklyPage(
             coord: location,
             weekly: week,
-            errorText: errorText,
           ),
         ]);
   }

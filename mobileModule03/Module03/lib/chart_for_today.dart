@@ -70,8 +70,8 @@ class ChartToday extends StatelessWidget {
         //   color: Color.fromARGB(255, 214, 209, 209),
         // ),
 
-        width: 500,
-        height: 300,
+        width: 300,
+        height: 240,
         child: LineChart(LineChartData(
             minX: 0,
             maxX: 23,
@@ -91,7 +91,7 @@ class ChartToday extends StatelessWidget {
                     return Text(
                       "$value°C",
                       style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     );
                   },
@@ -108,7 +108,7 @@ class ChartToday extends StatelessWidget {
                     }
                     return Text(str,
                         style: const TextStyle(
-                          fontSize: 15,
+                          fontSize: 10,
                         ));
                   },
                 ))),
