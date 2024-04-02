@@ -1,4 +1,3 @@
-import 'package:ex00/error_message.dart';
 import 'package:flutter/material.dart';
 
 class CityInfoPage extends StatelessWidget {

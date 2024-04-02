@@ -17,40 +17,34 @@ class CurrentlyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: coord['cityName'] != null && coord['cityName']!.isNotEmpty
-            ? <Widget>[
-                Text(
-                  "${coord['cityName']}",
-                  style: const TextStyle(color: Colors.white),
-                ),
-                Text("${coord['region']}, ${coord['country']}",
-                    style: const TextStyle(color: Colors.white)),
-                SizedBox(height: heightInt),
-                Text(
-                  "${current['temp']}",
-                  style: const TextStyle(
-                    color: Colors.orange,
-                    fontSize: 30.00,
-                  ),
-                ),
-                const SizedBox(height: 30.0),
-                Icon(wIcons[current['weather']], color: Colors.blue),
-                Text("${current['weather']}",
-                    style: const TextStyle(color: Colors.blue)),
-                SizedBox(height: heightInt),
-                const Icon(CupertinoIcons.wind, color: Colors.grey),
-                Text("${current['wind']}",
-                    style: const TextStyle(color: Colors.grey)),
-              ]
-            : <Widget>[
-                const Center(
-                    child: Text(
-                        'Please search a location\nor use the geolocation button',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 20)))
-              ]);
+    return Center(
+        child: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+          Text(
+            "${coord['cityName']}",
+            style: const TextStyle(color: Colors.white),
+          ),
+          Text("${coord['region']}, ${coord['country']}",
+              style: const TextStyle(color: Colors.white)),
+          SizedBox(height: heightInt),
+          Text(
+            "${current['temp']}",
+            style: const TextStyle(
+              color: Colors.orange,
+              fontSize: 30.00,
+            ),
+          ),
+          const SizedBox(height: 30.0),
+          Icon(wIcons[current['weather']], color: Colors.blue),
+          Text("${current['weather']}",
+              style: const TextStyle(color: Colors.blue)),
+          SizedBox(height: heightInt),
+          const Icon(CupertinoIcons.wind, color: Colors.grey),
+          Text("${current['wind']}",
+              style: const TextStyle(color: Colors.grey)),
+        ])));
   }
 }

@@ -230,17 +230,23 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
           ),
         ),
         child: _errorText.isEmpty
-            ? BodyOfApp(
-                text: _text,
-                controller: _tabController,
-                location: _location,
-                current: _current,
-                today: _today,
-                week: _week,
-                listOfCities: _listOfCities,
-                changeText: changeText,
-                changeLatAndLong: changeLatAndLong,
-                changeLocation: changeLocation)
+            ? _location['cityName'] != null && _location['cityName']!.isNotEmpty
+                ? BodyOfApp(
+                    text: _text,
+                    controller: _tabController,
+                    location: _location,
+                    current: _current,
+                    today: _today,
+                    week: _week,
+                    listOfCities: _listOfCities,
+                    changeText: changeText,
+                    changeLatAndLong: changeLatAndLong,
+                    changeLocation: changeLocation)
+                : const Center(
+                    child: Text(
+                        'Please search a location\nor use the geolocation button',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 20)))
             : ErrorMessage(
                 errorMessage: _errorText,
               ),
