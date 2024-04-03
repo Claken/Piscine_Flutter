@@ -88,8 +88,14 @@ class ChartToday extends StatelessWidget {
                   reservedSize: 50,
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
+                    String degree = "";
+                    if (value - value.toInt() != 0) {
+                      degree = "";
+                    } else {
+                      degree = "${value.toInt()}°C";
+                    }
                     return Text(
-                      "$value°C",
+                      degree,
                       style: const TextStyle(
                         fontSize: 10,
                       ),
