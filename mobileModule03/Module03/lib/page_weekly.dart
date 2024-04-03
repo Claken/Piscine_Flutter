@@ -48,7 +48,7 @@ class WeeklyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -77,7 +77,8 @@ class WeeklyPage extends StatelessWidget {
                 Icon(Icons.show_chart, color: Colors.orange),
                 Text('max temperature'),
               ]),
-          Expanded(
+          SizedBox(
+              height: 170,
               child: RawScrollbar(
                   thumbVisibility: true,
                   thumbColor: Colors.lightBlueAccent,
@@ -88,6 +89,6 @@ class WeeklyPage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       controller: yourScrollController,
                       children: weeklyList())))
-        ]);
+        ]));
   }
 }

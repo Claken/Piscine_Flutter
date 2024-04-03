@@ -47,6 +47,8 @@ void main() async {
   const String ll2 = '2.3488';
 
   const currentUrl = 'https://api.open-meteo.com/v1/forecast?latitude=$ll&longitude=$ll2&current_weather=true&weather_code';
+
+  const cityUrl = 'https://geocoding-api.open-meteo.com/v1/search?name=Rabat&count=5&language=en&format=json';
   
   
   
@@ -57,6 +59,12 @@ try {
 
   final responseData = json.decode(response.body);
   final currentResponseData = json.decode(currentResponse.body);
+
+  final rdt = await http.get(Uri.parse(cityUrl));
+  final dataGueule = json.decode(rdt.body);
+
+  debugPrint(dataGueule["results"][0].toString());
+  debugPrint("((pofkfkzeofkzepofkzpefkzpefokzepfokzpoefkzeofkzeofk))");
 
   // currently
   debugPrint("temperature ${currentResponseData['current_weather']['temperature']} °C");

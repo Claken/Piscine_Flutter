@@ -39,21 +39,19 @@ class BodyOfApp extends StatelessWidget {
           changeLatAndLong: changeLatAndLong,
           changeLocation: changeLocation);
     }
-    return TabBarView(
-        controller: controller,
-        children: [
-          CurrentlyPage(
-            coord: location,
-            current: current,
-          ),
-          TodayPage(
-            coord: location,
-            today: today,
-          ),
-          WeeklyPage(
-            coord: location,
-            weekly: week,
-          ),
-        ]);
+    return TabBarView(controller: controller, children: [
+      CurrentlyPage(
+        coord: location,
+        current: current,
+      ),
+      TodayPage(
+        coord: location,
+        today: today,
+      ),
+      WeeklyPage(
+        coord: location,
+        weekly: week,
+      ),
+    ]);
   }
 }

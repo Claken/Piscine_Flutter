@@ -23,43 +23,34 @@ class CityInfoPage extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                   onTap: () {
-                    if (listOfCities[index]["latitude"] != null &&
-                        listOfCities[index]["longitude"] != null) {
-                      changeLatAndLong(listOfCities[index]["latitude"],
-                          listOfCities[index]["longitude"]);
-                      changeText("");
-                    }
-                    if (listOfCities[index]['name'] != null &&
-                        listOfCities[index]['admin1'] != null &&
-                        listOfCities[index]['country'] != null) {
-                      changeLocation(
-                          listOfCities[index]['name'],
-                          listOfCities[index]['admin1'],
-                          listOfCities[index]['country']);
-                    }
+                    changeLatAndLong(listOfCities[index]["latitude"],
+                        listOfCities[index]["longitude"]);
+                    changeLocation(
+                        listOfCities[index]['name'],
+                        listOfCities[index]['admin1'] ?? listOfCities[index]['country'],
+                        listOfCities[index]['country']);
+                    changeText("");
                   },
                   title: Row(children: [
                     Text('${listOfCities?[index]['name']} ',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         )),
-                    Expanded(child: Text(
-                        '${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']}',
-                        style: const TextStyle(fontWeight: FontWeight.w300),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        )
-                        
-                  )])
-                  
-              );
+                    Expanded(
+                        child: Text(
+                      '${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']}',
+                      style: const TextStyle(fontWeight: FontWeight.w300),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ))
+                  ]));
             },
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
           )
         : const Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Center(child: Text('no city found'))]);
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [Center(child: Text('no city found'))]);
   }
 }

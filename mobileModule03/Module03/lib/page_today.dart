@@ -53,10 +53,11 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+    return SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
           const SizedBox(height: 20.0),
           Text("${coord['cityName']}",
               style: const TextStyle(color: Colors.white)),
@@ -67,7 +68,8 @@ class TodayPage extends StatelessWidget {
               margin: const EdgeInsets.all(20),
               child: const Center(child: Text("Today temperatures"))),
           ChartToday(map: today),
-          Expanded(
+          SizedBox(
+              height: 175,
               child: RawScrollbar(
                   thumbVisibility: true,
                   thumbColor: Colors.lightBlueAccent,
@@ -78,6 +80,6 @@ class TodayPage extends StatelessWidget {
                       controller: yourScrollController,
                       scrollDirection: Axis.horizontal,
                       children: todayList())))
-        ]);
+        ]));
   }
 }
