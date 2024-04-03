@@ -67,8 +67,13 @@ class TodayPage extends StatelessWidget {
               child: const Center(child: Text("Today temperatures"))),
           ChartToday(map: today),
           Expanded(
+            child: RawScrollbar(
+            thumbVisibility: true,
+            thumbColor: Colors.lightBlueAccent,
+            radius: const Radius.circular(20),
+            thickness: 5,
               child: ListView(
                   scrollDirection: Axis.horizontal, children: todayList()))
-        ]);
+        )]);
   }
 }

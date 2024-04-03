@@ -48,34 +48,43 @@ class WeeklyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-                const SizedBox(height: 20.0),
-                Text("${coord['cityName']}",
-                    style: const TextStyle(color: Colors.white)),
-                Text("${coord['region']}, ${coord['country']}",
-                    style: const TextStyle(color: Colors.white)),
-                Container(
-                    height: 20.0,
-                    margin: const EdgeInsets.all(20),
-                    child: const Center(child: Text("Weekly temperatures"))),
-                ChartWeek(map: weekly),
-                const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 45,),
-                      Icon(Icons.show_chart, color: Colors.blue),
-                      Text('min temperature'),
-                      SizedBox(width: 10,),
-                      Icon(Icons.show_chart, color: Colors.orange),
-                      Text('max temperature'),
-                    ]),
-                Expanded(
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: weeklyList()))
-              ]);
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20.0),
+          Text("${coord['cityName']}",
+              style: const TextStyle(color: Colors.white)),
+          Text("${coord['region']}, ${coord['country']}",
+              style: const TextStyle(color: Colors.white)),
+          Container(
+              height: 20.0,
+              margin: const EdgeInsets.all(20),
+              child: const Center(child: Text("Weekly temperatures"))),
+          ChartWeek(map: weekly),
+          const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 45,
+                ),
+                Icon(Icons.show_chart, color: Colors.blue),
+                Text('min temperature'),
+                SizedBox(
+                  width: 10,
+                ),
+                Icon(Icons.show_chart, color: Colors.orange),
+                Text('max temperature'),
+              ]),
+          Expanded(
+              child: RawScrollbar(
+                  thumbVisibility: true,
+                  thumbColor: Colors.lightBlueAccent,
+                  radius: const Radius.circular(20),
+                  thickness: 5,
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: weeklyList())))
+        ]);
   }
 }
