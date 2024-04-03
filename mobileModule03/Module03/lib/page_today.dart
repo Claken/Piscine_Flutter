@@ -12,6 +12,7 @@ class TodayPage extends StatelessWidget {
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> today;
+  final yourScrollController = ScrollController();
 
   final Map<String, IconData> wIcons = weatherIcons;
 
@@ -67,13 +68,16 @@ class TodayPage extends StatelessWidget {
               child: const Center(child: Text("Today temperatures"))),
           ChartToday(map: today),
           Expanded(
-            child: RawScrollbar(
-            thumbVisibility: true,
-            thumbColor: Colors.lightBlueAccent,
-            radius: const Radius.circular(20),
-            thickness: 5,
-              child: ListView(
-                  scrollDirection: Axis.horizontal, children: todayList()))
-        )]);
+              child: RawScrollbar(
+                  thumbVisibility: true,
+                  thumbColor: Colors.lightBlueAccent,
+                  radius: const Radius.circular(20),
+                  thickness: 5,
+                  controller: yourScrollController,
+                  child: ListView(
+                      controller: yourScrollController,
+                      scrollDirection: Axis.horizontal,
+                      children: todayList())))
+        ]);
   }
 }

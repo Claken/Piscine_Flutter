@@ -11,6 +11,7 @@ class WeeklyPage extends StatelessWidget {
 
   final Map<String, String> coord;
   final Map<String, Map<String, String>> weekly;
+  final yourScrollController = ScrollController();
 
   final Map<String, IconData> wIcons = weatherIcons;
 
@@ -82,8 +83,10 @@ class WeeklyPage extends StatelessWidget {
                   thumbColor: Colors.lightBlueAccent,
                   radius: const Radius.circular(20),
                   thickness: 5,
+                  controller: yourScrollController,
                   child: ListView(
                       scrollDirection: Axis.horizontal,
+                      controller: yourScrollController,
                       children: weeklyList())))
         ]);
   }
