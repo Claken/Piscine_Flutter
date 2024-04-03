@@ -230,7 +230,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
           ),
         ),
         child: _errorText.isEmpty
-            ? _location['cityName'] != null && _location['cityName']!.isNotEmpty
+            ? _location['cityName']!.isNotEmpty || _text.isNotEmpty
                 ? BodyOfApp(
                     text: _text,
                     controller: _tabController,

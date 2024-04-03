@@ -39,7 +39,10 @@ class TodayPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Icon(CupertinoIcons.wind, color: Colors.grey,),
+                    const Icon(
+                      CupertinoIcons.wind,
+                      color: Colors.grey,
+                    ),
                     Text(" ${entry.value['wind']}",
                         style: const TextStyle(color: Colors.grey)),
                   ]),
