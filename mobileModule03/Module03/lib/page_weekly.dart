@@ -24,7 +24,7 @@ class WeeklyPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("${entry.value['date']}", style: const TextStyle(color: Colors.white)),
+              Text("${entry.value['date']}"),
               const SizedBox(height: 20.0),
               Icon(weatherIcons[entry.value['weather']], color: Colors.blue),
               const SizedBox(height: 10.0),

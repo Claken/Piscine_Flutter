@@ -25,7 +25,7 @@ class TodayPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("${entry.value['hour']}", style: const TextStyle(color: Colors.white)),
+              Text("${entry.value['hour']}"),
               const SizedBox(height: 15.0),
               Icon(weatherIcons[entry.value['weather']], color: Colors.blue),
               const SizedBox(height: 15.0),

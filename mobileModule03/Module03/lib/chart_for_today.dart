@@ -113,8 +113,10 @@ class ChartToday extends StatelessWidget {
                             const TextStyle(fontSize: 10, color: Colors.white));
                   },
                 ))),
-
-
+            borderData: FlBorderData(
+              show: true,
+              border: Border.all(color: Colors.white, width: 1),
+            ),
             lineBarsData: [
               LineChartBarData(
                 spots: chartList(),
