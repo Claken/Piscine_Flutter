@@ -103,15 +103,14 @@ class ChartWeek extends StatelessWidget {
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
                     String degree = "";
-                    if (value - value.toInt() != 0) {
-                      degree = "";
-                    } else {
+                    if (value - value.toInt() == 0) {
                       degree = "${value.toInt()}°C";
                     }
                     return Text(
                       degree,
                       style: const TextStyle(
                         fontSize: 10,
+                        color: Colors.white
                       ),
                     );
                   },
@@ -125,36 +124,49 @@ class ChartWeek extends StatelessWidget {
                         return const Text('MON',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
                             ));
                       case 1.0:
                         return const Text('TUE',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                       case 2.0:
                         return const Text('WED',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                       case 3.0:
                         return const Text('THU',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                       case 4.0:
                         return const Text('FRY',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                       case 5.0:
                         return const Text('SAT',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                       case 6.0:
                         return const Text('SUN',
                             style: TextStyle(
                               fontSize: 10,
+                              color: Colors.white
+
                             ));
                     }
                     return const Text('');

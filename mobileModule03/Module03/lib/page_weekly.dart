@@ -24,7 +24,7 @@ class WeeklyPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("${entry.value['date']}"),
+              Text("${entry.value['date']}", style: const TextStyle(color: Colors.white)),
               const SizedBox(height: 20.0),
               Icon(weatherIcons[entry.value['weather']], color: Colors.blue),
               const SizedBox(height: 10.0),
@@ -60,7 +60,8 @@ class WeeklyPage extends StatelessWidget {
           Container(
               height: 20.0,
               margin: const EdgeInsets.all(20),
-              child: const Center(child: Text("Weekly temperatures"))),
+              child: const Center(child: Text("Weekly temperatures", style: TextStyle(color: Colors.white)))),
+            
           ChartWeek(map: weekly),
           const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -70,12 +71,12 @@ class WeeklyPage extends StatelessWidget {
                   height: 45,
                 ),
                 Icon(Icons.show_chart, color: Colors.blue),
-                Text('min temperature'),
+                Text('min temperature', style: TextStyle(color: Colors.white)),
                 SizedBox(
                   width: 10,
                 ),
                 Icon(Icons.show_chart, color: Colors.orange),
-                Text('max temperature'),
+                Text('max temperature', style: TextStyle(color: Colors.white)),
               ]),
           SizedBox(
               height: 170,

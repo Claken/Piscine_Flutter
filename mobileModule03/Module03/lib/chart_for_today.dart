@@ -89,16 +89,12 @@ class ChartToday extends StatelessWidget {
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
                     String degree = "";
-                    if (value - value.toInt() != 0) {
-                      degree = "";
-                    } else {
+                    if (value - value.toInt() == 0) {
                       degree = "${value.toInt()}°C";
                     }
                     return Text(
                       degree,
-                      style: const TextStyle(
-                        fontSize: 10,
-                      ),
+                      style: const TextStyle(fontSize: 10, color: Colors.white),
                     );
                   },
                 )),
@@ -113,16 +109,11 @@ class ChartToday extends StatelessWidget {
                       str = '';
                     }
                     return Text(str,
-                        style: const TextStyle(
-                          fontSize: 10,
-                        ));
+                        style:
+                            const TextStyle(fontSize: 10, color: Colors.white));
                   },
                 ))),
-            // gridData: FlGridData(
-            //   show: true,
-            //   getDrawingHorizontalLine:
 
-            // )
 
             lineBarsData: [
               LineChartBarData(

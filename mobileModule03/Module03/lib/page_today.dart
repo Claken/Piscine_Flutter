@@ -25,7 +25,7 @@ class TodayPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("${entry.value['hour']}"),
+              Text("${entry.value['hour']}", style: const TextStyle(color: Colors.white)),
               const SizedBox(height: 15.0),
               Icon(weatherIcons[entry.value['weather']], color: Colors.blue),
               const SizedBox(height: 15.0),
@@ -66,7 +66,7 @@ class TodayPage extends StatelessWidget {
           Container(
               height: 20.0,
               margin: const EdgeInsets.all(20),
-              child: const Center(child: Text("Today temperatures"))),
+              child: const Center(child: Text("Today temperatures", style: TextStyle(color: Colors.white)))),
           ChartToday(map: today),
           SizedBox(
               height: 175,
