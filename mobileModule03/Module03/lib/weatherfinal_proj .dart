@@ -244,7 +244,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
                     changeLocation: changeLocation)
                 : const Center(
                     child: Text(
-                        'Please search a location\nor use the geolocation button',
+                        'Please search a location\nor\nuse the geolocation button',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white, fontSize: 20)))
             : ErrorMessage(

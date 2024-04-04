@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/widgets.dart';
 
 class ChartData {
   ChartData(this.x, this.y);
@@ -151,9 +152,16 @@ class ChartWeek extends StatelessWidget {
                 ))),
             borderData: FlBorderData(
               show: true,
-              border: Border.all(
-                  color: Colors.white, width: 1),
+              border: Border.all(color: Colors.white, width: 1),
             ),
+            gridData: FlGridData(
+              getDrawingHorizontalLine: (value) {
+                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+              },
+              getDrawingVerticalLine: (value) {
+                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+              })
+            ,
             lineBarsData: [
               LineChartBarData(
                 spots: chartListMin(),

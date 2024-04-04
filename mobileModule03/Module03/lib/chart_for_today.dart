@@ -66,10 +66,6 @@ class ChartToday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        // decoration: const BoxDecoration(
-        //   color: Color.fromARGB(255, 214, 209, 209),
-        // ),
-
         width: 300,
         height: 240,
         child: LineChart(LineChartData(
@@ -117,6 +113,14 @@ class ChartToday extends StatelessWidget {
               show: true,
               border: Border.all(color: Colors.white, width: 1),
             ),
+            gridData: FlGridData(
+              getDrawingHorizontalLine: (value) {
+                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+              },
+              getDrawingVerticalLine: (value) {
+                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+              })
+            ,
             lineBarsData: [
               LineChartBarData(
                 spots: chartList(),
