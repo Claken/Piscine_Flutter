@@ -35,11 +35,13 @@ class CityInfoPage extends StatelessWidget {
                     Text('${listOfCities?[index]['name']} ',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         )),
                     Expanded(
                         child: Text(
                       '${listOfCities?[index]['admin1']}, ${listOfCities?[index]['country']}',
-                      style: const TextStyle(fontWeight: FontWeight.w300),
+                      style: const TextStyle(fontWeight: FontWeight.w300,
+                      ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ))
@@ -49,8 +51,8 @@ class CityInfoPage extends StatelessWidget {
                 const Divider(),
           )
         : const Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Center(child: Text('no city found'))]);
+            children: [Center(child: Text('NO CITY FOUND', style: TextStyle(color: Colors.white)))]);
   }
 }
