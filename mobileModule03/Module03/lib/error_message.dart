@@ -14,10 +14,10 @@ class ErrorMessage extends StatelessWidget {
         child: Container(
             margin: const EdgeInsets.all(15.0),
             padding: const EdgeInsets.all(3.0),
-            decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+            decoration: BoxDecoration(color: Colors.red, border: Border.all(color: Colors.red)),
             child: Text(
               errorMessage,
-              style: const TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
             )));
   }
