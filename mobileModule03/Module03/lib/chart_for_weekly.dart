@@ -100,7 +100,7 @@ class ChartWeek extends StatelessWidget {
                     const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 leftTitles: AxisTitles(
                     sideTitles: SideTitles(
-                  reservedSize: 50,
+                  reservedSize: 30,
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
                     String degree = "";

@@ -97,7 +97,7 @@ class ChartToday extends StatelessWidget {
                 bottomTitles: AxisTitles(
                     sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 50,
+                  reservedSize: 30,
                   getTitlesWidget: (value, meta) {
                     var str = value.toInt().toString();
                     str = "${str}h";
