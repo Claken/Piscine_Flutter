@@ -165,26 +165,17 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   }
 
   Future<void> getWeeklyInfo(String lat, String long) async {
-    var dateTime = getFirstDayOfTheWeekInString();
     var url =
-        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=8&forecast_days=14";
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$long&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=GMT&forecast_days=8";
 
     try {
       final response = await http.get(Uri.parse(url));
       final responseData = json.decode(response.body);
 
       if (responseData != null) {
-        int i = 0;
-        while (responseData['daily']['time'][i].toString() != dateTime) {
-          i++;
-          if (i > responseData['daily']['time'].length) {
-            debugPrint("error");
-            return;
-          }
-        }
         setState(() {
-          int j = i + 7;
-          while (i < j) {
+          int i = 1;
+          while (i < 8) {
             String date = responseData['daily']['time'][i].toString();
             String max =
                 responseData['daily']['temperature_2m_max'][i].toString();
@@ -192,7 +183,8 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
                 responseData['daily']['temperature_2m_min'][i].toString();
             String wcode = responseData['daily']['weather_code'][i].toString();
             String weather = _weatherMap[wcode] ?? '';
-            _week[i.toString()] = {
+            int j = i - 1;
+            _week[j.toString()] = {
               'date': date.replaceAll("-", "/"),
               'min': "$min°C",
               'max': "$max°C",

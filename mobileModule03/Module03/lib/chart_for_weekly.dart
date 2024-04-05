@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/widgets.dart';
 
 class ChartData {
   ChartData(this.x, this.y);
@@ -117,51 +116,34 @@ class ChartWeek extends StatelessWidget {
                     sideTitles: SideTitles(
                   showTitles: true,
                   getTitlesWidget: (value, meta) {
-                    switch (value) {
-                      case 0.0:
-                        return const Text('MON',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 1.0:
-                        return const Text('TUE',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 2.0:
-                        return const Text('WED',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 3.0:
-                        return const Text('THU',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 4.0:
-                        return const Text('FRY',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 5.0:
-                        return const Text('SAT',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
-                      case 6.0:
-                        return const Text('SUN',
-                            style:
-                                TextStyle(fontSize: 10, color: Colors.white));
+                    String date = "";
+                    String index = value.toInt().toString();
+
+                    if (map[index] != null) {
+                      if (map[index]?['date'] != null) {
+                        date = map[index]?['date'] ?? '';
+                        if (date != '') {
+                          date = date.substring(5);
+                        }
+                      }
                     }
-                    return const Text('');
+
+                    return Text(date,
+                        style:
+                            const TextStyle(fontSize: 10, color: Colors.white));
                   },
                 ))),
             borderData: FlBorderData(
               show: true,
               border: Border.all(color: Colors.white, width: 1),
             ),
-            gridData: FlGridData(
-              getDrawingHorizontalLine: (value) {
-                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
-              },
-              getDrawingVerticalLine: (value) {
-                return const FlLine(color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
-              })
-            ,
+            gridData: FlGridData(getDrawingHorizontalLine: (value) {
+              return const FlLine(
+                  color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+            }, getDrawingVerticalLine: (value) {
+              return const FlLine(
+                  color: Colors.white, strokeWidth: 0.25, dashArray: [7]);
+            }),
             lineBarsData: [
               LineChartBarData(
                 spots: chartListMin(),
