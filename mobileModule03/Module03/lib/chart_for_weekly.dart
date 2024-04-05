@@ -127,7 +127,6 @@ class ChartWeek extends StatelessWidget {
                         }
                       }
                     }
-
                     return Text(date,
                         style:
                             const TextStyle(fontSize: 10, color: Colors.white));
