@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auth0_flutter/auth0_flutter.dart';
+const   appScheme = "diary_app";
 
 class Diary extends StatefulWidget {
   const Diary({super.key});
@@ -11,12 +12,32 @@ class Diary extends StatefulWidget {
 class _DiaryState extends State<Diary> {
   bool _isToggle = false;
   bool _isBusy = false;
+  Credentials? _credentials;
+  late Auth0 auth0;
   late String errorMessage;
 
-  void _toggleButton() {
+  Future<void> loginAction() async {
     setState(() {
-      _isToggle = !_isToggle;
+      _isBusy = true;
+      errorMessage = '';
     });
+
+    try {
+      final Credentials credentials =
+          await auth0.webAuthentication(scheme: appScheme).login();
+
+      setState(() {
+        _isBusy = false;
+        _credentials = credentials;
+      });
+    } on Exception catch (e, s) {
+      debugPrint('login error: $e - stack: $s');
+
+      setState(() {
+        _isBusy = false;
+        errorMessage = e.toString();
+      });
+    }
   }
 
   @override
@@ -35,10 +56,9 @@ class _DiaryState extends State<Diary> {
                   child: Text('WELCOME TO YOUR\nDIARY',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor: Colors.brown
-                      ))),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          backgroundColor: Colors.brown))),
               ElevatedButton(
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.green,
@@ -46,11 +66,11 @@ class _DiaryState extends State<Diary> {
                   padding: const EdgeInsets.all(20),
                 ),
                 onPressed: () {
-                  _toggleButton();
+                  loginAction();
                 },
                 child:
                     const Text('Login', style: TextStyle(color: Colors.white)),
-              )
+              ),
             ])));
   }
 }
