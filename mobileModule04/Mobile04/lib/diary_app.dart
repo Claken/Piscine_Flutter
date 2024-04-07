@@ -16,6 +16,14 @@ class _DiaryState extends State<Diary> {
   late Auth0 auth0;
   late String errorMessage;
 
+  @override
+  void initState() {
+    super.initState();
+
+    auth0 = Auth0('{domain}', '{clientId}');
+    errorMessage = '';
+  }
+
   Future<void> loginAction() async {
     setState(() {
       _isBusy = true;
