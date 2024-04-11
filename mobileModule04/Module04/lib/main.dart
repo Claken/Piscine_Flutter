@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
     return 
     MaterialApp(home:
     Scaffold(
-        body: Container(
+        body: isBusy ? const Center(child: CircularProgressIndicator()) : Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/book-with-yellow-cover.jpg"),
