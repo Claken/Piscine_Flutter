@@ -1,4 +1,5 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:diaryapp/profile_page.dart';
 import 'package:flutter/material.dart';
 
 const appScheme = 'diaryapp';
@@ -82,6 +83,12 @@ class _MyDiaryState extends State<Diary> {
                         onPressed: () {
                           if (_credentials == null) {
                             loginAction();
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProfilePage()),
+                            );
                           }
                         },
                         child: const Text('Login',
