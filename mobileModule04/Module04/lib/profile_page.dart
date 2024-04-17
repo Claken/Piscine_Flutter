@@ -1,3 +1,4 @@
+import 'package:diaryapp/item_note.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,7 +14,9 @@ class ProfilePage extends StatelessWidget {
     body: ListView(
       padding: const EdgeInsets.all(15),
       children: [
-        
+        ItemNode(),
+        ItemNode(),
+        ItemNode(),
       ],
     )
     
