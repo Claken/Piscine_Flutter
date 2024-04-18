@@ -51,49 +51,55 @@ class _MyDiaryState extends State<Diary> {
     }
   }
 
+  Future<void> logoutAction() async {
+    await auth0.webAuthentication(scheme: appScheme).logout();
+
+    setState(() {
+      _credentials = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: isBusy
             ? const Center(child: CircularProgressIndicator())
-            : Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage("assets/images/book-with-yellow-cover.jpg"),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Center(
-                          child: Text('WELCOME TO YOUR\nDIARY',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  backgroundColor: Colors.brown))),
-                      ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          side: const BorderSide(width: 1, color: Colors.green),
-                          padding: const EdgeInsets.all(20),
-                        ),
-                        onPressed: () {
-                          if (_credentials == null) {
-                            loginAction();
-                          } else {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ProfilePage()),
-                            );
-                          }
-                        },
-                        child: const Text('Login',
-                            style: TextStyle(color: Colors.white)),
+            : _credentials == null
+                ? Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                            "assets/images/book-with-yellow-cover.jpg"),
+                        fit: BoxFit.fill,
                       ),
-                    ])));
+                    ),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Center(
+                              child: Text('WELCOME TO YOUR\nDIARY',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      backgroundColor: Colors.brown))),
+                          ElevatedButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.green,
+                              side: const BorderSide(
+                                  width: 1, color: Colors.green),
+                              padding: const EdgeInsets.all(20),
+                            ),
+                            onPressed: () {
+                              loginAction();
+                            },
+                            child: const Text('Login',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ]))
+                : ProfilePage(
+                    cred: _credentials,
+                    logout: logoutAction,
+                  ));
   }
 }
