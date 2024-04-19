@@ -7,7 +7,7 @@ class EntriesRepository {
   static const _tableName = 'notes';
 
   // static so we call call the function without the need to instantiate the class
-  static Future<Database> _database() async { 
+  static Future<Database> _database() async {
     final database = openDatabase(
       // Set the path to the database. Note: Using the `join` function from the
       // `path` package is best practice to ensure the path is correctly
@@ -30,10 +30,26 @@ class EntriesRepository {
 
   static insert({required MyEntry entry}) async {
     final db = await _database();
-    await db.insert(
-      _tableName,
-      entry.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace
-    );
+    await db.insert(_tableName, entry.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  static getEntries() async {
+    // Get a reference to the database.
+    final db = await _database();
+
+    // Query the table for all the dogs.
+    final List<Map<String, dynamic>> maps = await db.query(_tableName);
+
+    // Convert the list of each dog's fields into a list of `Dog` objects.
+    return List.generate(maps.length, (i) {
+      return MyEntry(
+          id: maps[i]['id'] as int,
+          usermail: maps[i]['usermail'] as String,
+          date: DateTime.parse(maps[i]['date']),
+          title: maps[i]['title'] as String,
+          feeling: maps[i]['feeling'] as String,
+          content: maps[i]['content'] as String);
+    });
   }
 }

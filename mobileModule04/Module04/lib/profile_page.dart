@@ -45,7 +45,7 @@ class ProfilePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddNoteScreen()),
+              MaterialPageRoute(builder: (context) => AddNoteScreen(cred: cred)),
             );
           }),
     );
