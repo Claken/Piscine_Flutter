@@ -52,4 +52,29 @@ class EntriesRepository {
           content: maps[i]['content'] as String);
     });
   }
+
+  static update({required MyEntry entry}) async {
+    final db = await _database();
+
+    await db.update(
+      _tableName,
+      entry.toMap(),
+      // Ensure that the Dog has a matching id.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [entry.id],
+    );
+  }
+
+  static delete({required MyEntry entry}) async {
+    final db = await _database();
+
+    await db.delete(
+      _tableName,
+      // Ensure that the Dog has a matching id.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [entry.id],
+    );
+  }
 }
