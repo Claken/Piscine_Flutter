@@ -1,6 +1,7 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/add_note.dart';
 import 'package:diaryapp/item_note.dart';
+import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -31,13 +32,22 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(15),
-        children: const [
-          ItemNode(),
-          ItemNode(),
-          ItemNode(),
-        ],
+      body: FutureBuilder(
+        future: EntriesRepository.getEntries(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData == false) {
+                return const Center(child: Text('Empty'));
+            }
+            return ListView(
+              padding: const EdgeInsets.all(15),
+              children: [
+              ],
+            );
+          }
+          return const SizedBox();
+        }
+        
       ),
       floatingActionButton: FloatingActionButton.extended(
           icon: const Icon(Icons.add),
