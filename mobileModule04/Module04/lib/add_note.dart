@@ -8,10 +8,12 @@ class AddNoteScreen extends StatefulWidget {
     super.key,
     required this.cred,
     required this.reloadPage,
+    this.entry,
   });
 
-  final Credentials?  cred;
-  final Function      reloadPage;
+  final Credentials? cred;
+  final Function reloadPage;
+  final MyEntry? entry;
 
   @override
   State<AddNoteScreen> createState() => _AddNoteScreenState();
@@ -22,15 +24,31 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   final _description = TextEditingController();
 
   @override
+  void initState() {
+    if (widget.entry != null) {
+      _title.text = widget.entry!.title;
+      _description.text = widget.entry!.content;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Add note'), actions: [
-          IconButton(
-              onPressed: () async {
-                await _insertEntry();
-                widget.reloadPage();
-              },
-              icon: const Icon(Icons.done))
+        appBar: AppBar(title: Text(widget.entry == null ? 'Add note' : 'Update note'), actions: [
+          widget.entry == null
+              ? IconButton(
+                  onPressed: () async {
+                    await _insertEntry();
+                    widget.reloadPage();
+                  },
+                  icon: const Icon(Icons.done))
+              : IconButton(
+                  onPressed: () async {
+                    await _updateEntry();
+                    widget.reloadPage();
+                  },
+                  icon: const Icon(Icons.update))
         ]),
         body: Padding(
           padding: const EdgeInsets.all(15),
@@ -66,5 +84,16 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         feeling: "TODO",
         content: _description.text);
     await EntriesRepository.insert(entry: entry);
+  }
+
+  _updateEntry() async {
+    final entry = MyEntry(
+        id: widget.entry!.id!,
+        usermail: widget.entry!.usermail,
+        date: widget.entry!.date,
+        title: _title.text,
+        feeling: "TODO",
+        content: _description.text);
+    await EntriesRepository.update(entry: entry);
   }
 }
