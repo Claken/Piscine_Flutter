@@ -7,9 +7,12 @@ class AddNoteScreen extends StatefulWidget {
   const AddNoteScreen({
     super.key,
     required this.cred,
+    required this.reloadPage,
   });
 
-  final Credentials? cred;
+  final Credentials?  cred;
+  final Function      reloadPage;
+
   @override
   State<AddNoteScreen> createState() => _AddNoteScreenState();
 }
@@ -23,8 +26,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     return Scaffold(
         appBar: AppBar(title: const Text('Add note'), actions: [
           IconButton(
-              onPressed: () {
-                _insertEntry();
+              onPressed: () async {
+                await _insertEntry();
+                widget.reloadPage();
               },
               icon: const Icon(Icons.done))
         ]),

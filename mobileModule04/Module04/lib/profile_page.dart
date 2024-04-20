@@ -5,7 +5,7 @@ import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({
     super.key,
     required this.cred,
@@ -16,10 +16,20 @@ class ProfilePage extends StatelessWidget {
   final Future<void> Function() logout;
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  
+  reloadPage() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${cred?.user.name}'),
+        title: Text('${widget.cred?.user.name}'),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -28,7 +38,7 @@ class ProfilePage extends StatelessWidget {
               color: Colors.black,
             ),
             onPressed: () {
-              logout();
+              widget.logout();
             },
           )
         ],
@@ -60,7 +70,10 @@ class ProfilePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AddNoteScreen(cred: cred)),
+              MaterialPageRoute(builder: (context) => AddNoteScreen(
+                cred: widget.cred,
+                reloadPage: reloadPage,
+                )),
             );
           }),
     );
