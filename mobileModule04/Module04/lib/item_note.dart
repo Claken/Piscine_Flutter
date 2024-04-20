@@ -1,7 +1,14 @@
+import 'package:diaryapp/models/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ItemNode extends StatelessWidget {
-  const ItemNode({super.key});
+  const ItemNode({
+    super.key,
+    required this.entry,
+  });
+
+  final MyEntry entry;
 
   @override
   Widget build(BuildContext context) {
@@ -10,17 +17,35 @@ class ItemNode extends StatelessWidget {
       children: [
         Container(
             child: Column(children: [
-          Text('DEC'),
-          Text('02'),
-          Text('2023'),
+          Text(
+            DateFormat(DateFormat.ABBR_MONTH).format(entry.date)
+          ),
+          Text(
+            DateFormat(DateFormat.DAY).format(entry.date)
+          ),
+          Text(
+            entry.date.year.toString()
+          ),
         ])),
         Expanded(
             child: Column(
           children: [
-            Text('This is the title'),
-            Text('Here is the description of this note'),
+            Text(
+              entry.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+            Text(
+              entry.content,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ],
-        ))
+        )),
+      Text(
+        DateFormat(DateFormat.HOUR_MINUTE).format(entry.date),
+        style: Theme.of(context).textTheme.bodySmall
+      )
       ],
     ));
   }

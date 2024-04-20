@@ -1,6 +1,7 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/add_note.dart';
 import 'package:diaryapp/item_note.dart';
+import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -39,10 +40,14 @@ class ProfilePage extends StatelessWidget {
             if (snapshot.hasData == false) {
                 return const Center(child: Text('Empty'));
             }
+            if (snapshot.hasError) {
+                return const Center(child: Text('Error'));
+            }
             return ListView(
               padding: const EdgeInsets.all(15),
               children: [
-              ],
+                for (MyEntry note in snapshot.data!) ItemNode(entry: note),
+              ]
             );
           }
           return const SizedBox();

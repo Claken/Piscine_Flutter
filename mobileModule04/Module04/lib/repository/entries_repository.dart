@@ -34,7 +34,7 @@ class EntriesRepository {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static getEntries() async {
+  static Future<List<MyEntry>> getEntries() async {
     // Get a reference to the database.
     final db = await _database();
 
