@@ -1,9 +1,10 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:diaryapp/add_note.dart';
+import 'package:diaryapp/note_screen.dart';
 import 'package:diaryapp/item_note.dart';
 import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({
@@ -20,7 +21,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
+  bool noteOverview = false;
+  MyEntry? noteOverviewed;
+
   reloadPage() {
     setState(() {});
   }
@@ -43,37 +46,114 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: FutureBuilder(
-        future: EntriesRepository.getEntries(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData == false) {
-                return const Center(child: Text('Empty'));
-            }
-            if (snapshot.hasError) {
-                return const Center(child: Text('Error'));
-            }
-            return ListView(
-              padding: const EdgeInsets.all(15),
-              children: [
-                for (MyEntry note in snapshot.data!) ItemNode(entry: note),
-              ]
-            );
-          }
-          return const SizedBox();
-        }
-        
-      ),
+      body: Stack(children: [
+        FutureBuilder(
+            future: EntriesRepository.getEntries(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData == false) {
+                  return const Center(child: Text('Empty'));
+                }
+                if (snapshot.hasError) {
+                  return const Center(child: Text('Error'));
+                }
+                return ListView(padding: const EdgeInsets.all(15), children: [
+                  for (MyEntry note in snapshot.data!)
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            noteOverview = !noteOverview; // a changer
+                            noteOverviewed = note;
+                          });
+                        },
+                        child: ItemNode(entry: note)),
+                ]);
+              }
+              return const SizedBox();
+            }),
+        noteOverview
+            ? Positioned(
+                child: Center(
+                    child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          color: Colors.white
+                        ),
+                        width: 300.0,
+                        height: 200.0,
+                        child: Column(
+                          children: [
+                            Text(DateFormat(
+                                    DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
+                                .format(noteOverviewed?.date ??
+                                    DateTime.timestamp())),
+                            const Divider(
+                              color: Colors.black,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '   My feeling : ${noteOverviewed?.feeling}',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                )),
+                            const Divider(
+                              color: Colors.black,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '   Content : ${noteOverviewed?.content}',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
+                                )),
+                            const Divider(
+                              color: Colors.black,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
+                            Center(child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  style: ButtonStyle(
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.red),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Delete This Entry'),
+                                ),
+                                TextButton(
+                                  style: ButtonStyle(
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.green),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Update This Entry'),
+                                )
+                              ],
+                            ))
+                          ],
+                        ))))
+            : const SizedBox()
+      ]),
       floatingActionButton: FloatingActionButton.extended(
           icon: const Icon(Icons.add),
           label: const Text('New entry'),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AddNoteScreen(
-                cred: widget.cred,
-                reloadPage: reloadPage,
-                )),
+              MaterialPageRoute(
+                  builder: (context) => NoteScreen(
+                        cred: widget.cred,
+                        reloadPage: reloadPage,
+                      )),
             );
           }),
     );

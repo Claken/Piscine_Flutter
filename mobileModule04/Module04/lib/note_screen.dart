@@ -3,8 +3,8 @@ import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
 
-class AddNoteScreen extends StatefulWidget {
-  const AddNoteScreen({
+class NoteScreen extends StatefulWidget {
+  const NoteScreen({
     super.key,
     required this.cred,
     required this.reloadPage,
@@ -16,10 +16,10 @@ class AddNoteScreen extends StatefulWidget {
   final MyEntry? entry;
 
   @override
-  State<AddNoteScreen> createState() => _AddNoteScreenState();
+  State<NoteScreen> createState() => _AddNoteScreenState();
 }
 
-class _AddNoteScreenState extends State<AddNoteScreen> {
+class _AddNoteScreenState extends State<NoteScreen> {
   final _title = TextEditingController();
   final _description = TextEditingController();
 
