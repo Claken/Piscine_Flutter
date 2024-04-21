@@ -21,11 +21,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool noteOverview = false;
-  MyEntry? noteOverviewed;
+  bool _noteOverview = false;
+  MyEntry? _noteOverviewed;
 
   reloadPage() {
     setState(() {});
+  }
+
+  changeNoteOverview(bool currentState, MyEntry? currentNote) {
+    setState(() {
+      _noteOverview = currentState;
+      _noteOverviewed = currentNote;
+    });
   }
 
   @override
@@ -61,31 +68,31 @@ class _ProfilePageState extends State<ProfilePage> {
                   for (MyEntry note in snapshot.data!)
                     GestureDetector(
                         onTap: () {
-                          setState(() {
-                            noteOverview = !noteOverview; // a changer
-                            noteOverviewed = note;
-                          });
+                          changeNoteOverview(true, note);
                         },
                         child: ItemNode(entry: note)),
                 ]);
               }
               return const SizedBox();
             }),
-        noteOverview
-            ? Positioned(
+        _noteOverview
+            ? Positioned(child:
+                TapRegion(
+                onTapOutside: (tap) {
+                  changeNoteOverview(false, null);
+                },
                 child: Center(
                     child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          color: Colors.white
-                        ),
+                            border: Border.all(color: Colors.black),
+                            color: Colors.white),
                         width: 300.0,
                         height: 200.0,
                         child: Column(
                           children: [
                             Text(DateFormat(
                                     DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
-                                .format(noteOverviewed?.date ??
+                                .format(_noteOverviewed?.date ??
                                     DateTime.timestamp())),
                             const Divider(
                               color: Colors.black,
@@ -95,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  '   My feeling : ${noteOverviewed?.feeling}',
+                                  '   My feeling : ${_noteOverviewed?.feeling}',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 )),
@@ -107,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  '   Content : ${noteOverviewed?.content}',
+                                  '   Content : ${_noteOverviewed?.content}',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 3,
                                 )),
@@ -116,7 +123,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               indent: 20,
                               endIndent: 20,
                             ),
-                            Center(child: Row(
+                            Center(
+                                child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextButton(
@@ -125,7 +133,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                         MaterialStateProperty.all<Color>(
                                             Colors.red),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await EntriesRepository.delete(
+                                        entry: _noteOverviewed!);
+                                    changeNoteOverview(false, null);
+                                  },
                                   child: const Text('Delete This Entry'),
                                 ),
                                 TextButton(
@@ -134,13 +146,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                         MaterialStateProperty.all<Color>(
                                             Colors.green),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => NoteScreen(
+                                                cred: widget.cred,
+                                                reloadPage: reloadPage,
+                                                entry: _noteOverviewed,
+                                              )),
+                                    );
+                                  },
                                   child: const Text('Update This Entry'),
                                 )
                               ],
                             ))
                           ],
-                        ))))
+                        )))))
             : const SizedBox()
       ]),
       floatingActionButton: FloatingActionButton.extended(

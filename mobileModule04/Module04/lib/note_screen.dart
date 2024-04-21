@@ -35,21 +35,26 @@ class _AddNoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.entry == null ? 'Add note' : 'Update note'), actions: [
-          widget.entry == null
-              ? IconButton(
-                  onPressed: () async {
-                    await _insertEntry();
-                    widget.reloadPage();
-                  },
-                  icon: const Icon(Icons.done))
-              : IconButton(
-                  onPressed: () async {
-                    await _updateEntry();
-                    widget.reloadPage();
-                  },
-                  icon: const Icon(Icons.update))
-        ]),
+        appBar: AppBar(
+            title: Text(widget.entry == null ? 'Add note' : 'Update note'),
+            actions: [
+              widget.entry == null
+                  ? IconButton(
+                      onPressed: () async {
+                        await _insertEntry();
+                        widget.reloadPage();
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      icon: const Icon(Icons.done))
+                  : IconButton(
+                      onPressed: () async {
+                        await _updateEntry();
+                        widget.reloadPage();
+                      },
+                      icon: const Icon(Icons.update))
+            ]),
         body: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
