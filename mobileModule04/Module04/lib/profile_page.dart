@@ -116,7 +116,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Expanded(
                               child: Container(
-                                padding: const EdgeInsets.only(left: 20, right: 20),
+                                padding:
+                                    const EdgeInsets.only(left: 20, right: 20),
                                 child: SingleChildScrollView(
                                   controller: _scrollController,
                                   child: Text(
@@ -150,6 +151,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 TextButton(
                                                     onPressed: () async {
                                                       await deleteNote();
+                                                      if (context.mounted) {
+                                                         Navigator.pop(
+                                                          context, 'Yes');
+                                                      }
                                                     },
                                                     child: const Text('Yes')),
                                                 TextButton(
@@ -199,7 +204,10 @@ class _ProfilePageState extends State<ProfilePage> {
       ]),
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.red,
-          icon: const Icon(Icons.add, color: Colors.white,),
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           label: const Text('New entry', style: TextStyle(color: Colors.white)),
           onPressed: () {
             Navigator.push(
