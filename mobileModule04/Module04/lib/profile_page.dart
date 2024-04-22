@@ -23,6 +23,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool _noteOverview = false;
   MyEntry? _noteOverviewed;
+  final _scrollController = ScrollController();
 
   reloadPage() {
     setState(() {});
@@ -104,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  '   My feeling : ${_noteOverviewed?.feeling}',
+                                  '     My feeling : ${_noteOverviewed?.feeling}',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 )),
@@ -113,13 +114,17 @@ class _ProfilePageState extends State<ProfilePage> {
                               indent: 20,
                               endIndent: 20,
                             ),
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  '   Content : ${_noteOverviewed?.content}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 10,
-                                )),
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.only(left: 20, right: 20),
+                                child: SingleChildScrollView(
+                                  controller: _scrollController,
+                                  child: Text(
+                                    '${_noteOverviewed?.content}',
+                                  ),
+                                ),
+                              ),
+                            ),
                             const Divider(
                               color: Colors.black,
                               indent: 20,
@@ -193,8 +198,9 @@ class _ProfilePageState extends State<ProfilePage> {
             : const SizedBox()
       ]),
       floatingActionButton: FloatingActionButton.extended(
-          icon: const Icon(Icons.add),
-          label: const Text('New entry'),
+          backgroundColor: Colors.red,
+          icon: const Icon(Icons.add, color: Colors.white,),
+          label: const Text('New entry', style: TextStyle(color: Colors.white)),
           onPressed: () {
             Navigator.push(
               context,
