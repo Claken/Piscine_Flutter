@@ -35,6 +35,12 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  deleteNote() async {
+    await EntriesRepository.delete(entry: _noteOverviewed!);
+    changeNoteOverview(false, null);
+    reloadPage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,18 +82,14 @@ class _ProfilePageState extends State<ProfilePage> {
               return const SizedBox();
             }),
         _noteOverview
-            ? Positioned(child:
-                TapRegion(
-                onTapOutside: (tap) {
-                  changeNoteOverview(false, null);
-                },
+            ? Positioned(
                 child: Center(
                     child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             color: Colors.white),
                         width: 300.0,
-                        height: 200.0,
+                        height: 400.0,
                         child: Column(
                           children: [
                             Text(DateFormat(
@@ -116,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Text(
                                   '   Content : ${_noteOverviewed?.content}',
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
+                                  maxLines: 10,
                                 )),
                             const Divider(
                               color: Colors.black,
@@ -133,10 +135,26 @@ class _ProfilePageState extends State<ProfilePage> {
                                         MaterialStateProperty.all<Color>(
                                             Colors.red),
                                   ),
-                                  onPressed: () async {
-                                    await EntriesRepository.delete(
-                                        entry: _noteOverviewed!);
-                                    changeNoteOverview(false, null);
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              content:
+                                                  const Text('Are you sure ?'),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () async {
+                                                      await deleteNote();
+                                                    },
+                                                    child: const Text('Yes')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context, 'No');
+                                                    },
+                                                    child: const Text('No'))
+                                              ],
+                                            ));
                                   },
                                   child: const Text('Delete This Entry'),
                                 ),
@@ -158,11 +176,20 @@ class _ProfilePageState extends State<ProfilePage> {
                                     );
                                   },
                                   child: const Text('Update This Entry'),
-                                )
+                                ),
                               ],
-                            ))
+                            )),
+                            TextButton(
+                              onPressed: () {
+                                changeNoteOverview(false, null);
+                              },
+                              child: const Text(
+                                'Close ',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            )
                           ],
-                        )))))
+                        ))))
             : const SizedBox()
       ]),
       floatingActionButton: FloatingActionButton.extended(
