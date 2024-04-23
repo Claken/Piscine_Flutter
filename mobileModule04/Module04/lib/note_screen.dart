@@ -75,7 +75,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
             children: [
               TextField(
                 controller: _title,
-                maxLength: 45,
+                maxLength: 40,
                 decoration: InputDecoration(
                     counterText: '',
                     hintText: 'Title',

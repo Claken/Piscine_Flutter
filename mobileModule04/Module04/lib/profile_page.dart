@@ -1,4 +1,5 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:diaryapp/models/feeling.dart';
 import 'package:diaryapp/note_screen.dart';
 import 'package:diaryapp/item_note.dart';
 import 'package:diaryapp/models/entry.dart';
@@ -110,13 +111,22 @@ class _ProfilePageState extends State<ProfilePage> {
                               indent: 20,
                               endIndent: 20,
                             ),
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  '     My feeling : ${_noteOverviewed?.feeling}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                )),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(emojiMap[_noteOverviewed?.feeling],
+                                      color:
+                                          colorMap[_noteOverviewed?.feeling]),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '${_noteOverviewed?.feeling}',
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  )
+                                ]),
                             const Divider(
                               color: Colors.black,
                               indent: 20,
@@ -124,18 +134,18 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Expanded(
                               child: Container(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 20),
-                                child: Scrollbar(
-                                  thumbVisibility: true,
-                                  controller: _scrollController,
-                                  child: SingleChildScrollView(
-                                  controller: _scrollController,
-                                  child: Text(
-                                    '${_noteOverviewed?.content}',
-                                  ),
-                                ),
-                              )),
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20),
+                                  child: Scrollbar(
+                                    thumbVisibility: true,
+                                    controller: _scrollController,
+                                    child: SingleChildScrollView(
+                                      controller: _scrollController,
+                                      child: Text(
+                                        '${_noteOverviewed?.content}',
+                                      ),
+                                    ),
+                                  )),
                             ),
                             const Divider(
                               color: Colors.black,
@@ -213,6 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ))))
             : const SizedBox()
       ]),
+      
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.red,
           icon: const Icon(
