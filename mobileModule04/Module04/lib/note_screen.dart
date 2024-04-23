@@ -1,5 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/models/entry.dart';
+import 'package:diaryapp/models/feeling.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,11 @@ class _AddNoteScreenState extends State<NoteScreen> {
   final _description = TextEditingController();
 
   final List<String> items = [
+    'Happy',
     'Satisfied',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item7',
-    'Item8',
+    'Normal',
+    'Sad',
+    'Angry',
   ];
   String? selectedValue;
 
@@ -80,9 +78,9 @@ class _AddNoteScreenState extends State<NoteScreen> {
                         borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 15),
-              Align(
-                alignment: Alignment.centerLeft,
-              child:
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
               DropdownButtonHideUnderline(
                   child: DropdownButton2<String>(
                     isExpanded: true,
@@ -131,7 +129,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
                     },
                     buttonStyleData: ButtonStyleData(
                       height: 50,
-                      width: 400,
+                      width: 200,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
@@ -157,10 +155,10 @@ class _AddNoteScreenState extends State<NoteScreen> {
                         borderRadius: BorderRadius.circular(14),
                         color: Colors.white,
                       ),
-                      offset: const Offset(-20, 0),
+                      offset: const Offset(0, 0),
                       scrollbarTheme: ScrollbarThemeData(
                         radius: const Radius.circular(40),
-                        thickness: MaterialStateProperty.all<double>(6),
+                        thickness: MaterialStateProperty.all<double>(10),
                         thumbVisibility: MaterialStateProperty.all<bool>(true),
                       ),
                     ),
@@ -169,7 +167,17 @@ class _AddNoteScreenState extends State<NoteScreen> {
                       padding: EdgeInsets.only(left: 14, right: 14),
                     ),
                   ),
-                )),
+                ),
+            Container(
+              padding: const EdgeInsets.only(left: 110),
+              child: Icon(
+                emojiMap[selectedValue ?? Icons.sentiment_neutral],
+                size: 50,
+                color: colorMap[selectedValue],
+                )
+                
+              ),
+            ]),
               const SizedBox(height: 15),
               Expanded(
                   child: TextField(
@@ -190,7 +198,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
         usermail: widget.cred?.user.email ?? '',
         date: DateTime.now(),
         title: _title.text,
-        feeling: "TODO",
+        feeling: selectedValue ?? '',
         content: _description.text);
     await EntriesRepository.insert(entry: entry);
   }
@@ -201,7 +209,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
         usermail: widget.entry!.usermail,
         date: widget.entry!.date,
         title: _title.text,
-        feeling: "TODO",
+        feeling: selectedValue ?? '',
         content: _description.text);
     await EntriesRepository.update(entry: entry);
   }
