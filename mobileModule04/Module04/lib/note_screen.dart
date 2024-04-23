@@ -22,8 +22,8 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<NoteScreen> {
-  final   _title = TextEditingController();
-  final   _description = TextEditingController();
+  final _title = TextEditingController();
+  final _description = TextEditingController();
   String? _selectedValue;
 
   final List<String> items = [
@@ -55,17 +55,21 @@ class _AddNoteScreenState extends State<NoteScreen> {
               widget.entry == null
                   ? IconButton(
                       onPressed: () async {
-                        await _insertEntry();
-                        widget.reloadPage();
-                        if (context.mounted) {
-                          Navigator.pop(context);
+                        if (_title.text.isNotEmpty) {
+                          await _insertEntry();
+                          widget.reloadPage();
+                          if (context.mounted) {
+                            Navigator.pop(context);
+                          }
                         }
                       },
                       icon: const Icon(Icons.done))
                   : IconButton(
                       onPressed: () async {
-                        await _updateEntry();
-                        widget.reloadPage();
+                        if (_title.text.isNotEmpty) {
+                          await _updateEntry();
+                          widget.reloadPage();
+                        }
                       },
                       icon: const Icon(Icons.update))
             ]),
@@ -78,7 +82,9 @@ class _AddNoteScreenState extends State<NoteScreen> {
                 maxLength: 40,
                 decoration: InputDecoration(
                     counterText: '',
-                    hintText: 'Title',
+                    hintText: 'Title is required',
+                    hintStyle:
+                        const TextStyle(color: Color.fromARGB(255, 255, 99, 88)),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),

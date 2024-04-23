@@ -223,8 +223,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ))))
             : const SizedBox()
       ]),
-      
-      floatingActionButton: FloatingActionButton.extended(
+      bottomNavigationBar: BottomAppBar(
+        child: FloatingActionButton.extended(
           backgroundColor: Colors.red,
           icon: const Icon(
             Icons.add,
@@ -240,7 +240,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         reloadPage: reloadPage,
                       )),
             );
-          }),
+          })
+      ),
     );
   }
 }
