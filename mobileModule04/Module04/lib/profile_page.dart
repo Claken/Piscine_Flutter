@@ -93,6 +93,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 400.0,
                         child: Column(
                           children: [
+                            Text(_noteOverviewed?.title ?? '',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                            const Divider(
+                              color: Colors.black,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
                             Text(DateFormat(
                                     DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
                                 .format(_noteOverviewed?.date ??
@@ -118,13 +126,16 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: Container(
                                 padding:
                                     const EdgeInsets.only(left: 20, right: 20),
-                                child: SingleChildScrollView(
+                                child: Scrollbar(
+                                  thumbVisibility: true,
+                                  controller: _scrollController,
+                                  child: SingleChildScrollView(
                                   controller: _scrollController,
                                   child: Text(
                                     '${_noteOverviewed?.content}',
                                   ),
                                 ),
-                              ),
+                              )),
                             ),
                             const Divider(
                               color: Colors.black,
@@ -152,8 +163,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                                     onPressed: () async {
                                                       await deleteNote();
                                                       if (context.mounted) {
-                                                         Navigator.pop(
-                                                          context, 'Yes');
+                                                        Navigator.pop(
+                                                            context, 'Yes');
                                                       }
                                                     },
                                                     child: const Text('Yes')),

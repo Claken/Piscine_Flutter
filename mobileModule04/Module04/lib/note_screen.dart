@@ -22,8 +22,9 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<NoteScreen> {
-  final _title = TextEditingController();
-  final _description = TextEditingController();
+  final   _title = TextEditingController();
+  final   _description = TextEditingController();
+  String? _selectedValue;
 
   final List<String> items = [
     'Happy',
@@ -32,13 +33,15 @@ class _AddNoteScreenState extends State<NoteScreen> {
     'Sad',
     'Angry',
   ];
-  String? selectedValue;
 
   @override
   void initState() {
     if (widget.entry != null) {
       _title.text = widget.entry!.title;
       _description.text = widget.entry!.content;
+      if (widget.entry!.feeling != '') {
+        _selectedValue = widget.entry!.feeling;
+      }
     }
     super.initState();
   }
@@ -72,16 +75,16 @@ class _AddNoteScreenState extends State<NoteScreen> {
             children: [
               TextField(
                 controller: _title,
+                maxLength: 45,
                 decoration: InputDecoration(
+                    counterText: '',
                     hintText: 'Title',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 15),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              DropdownButtonHideUnderline(
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                DropdownButtonHideUnderline(
                   child: DropdownButton2<String>(
                     isExpanded: true,
                     hint: const Row(
@@ -121,10 +124,10 @@ class _AddNoteScreenState extends State<NoteScreen> {
                               ),
                             ))
                         .toList(),
-                    value: selectedValue,
+                    value: _selectedValue,
                     onChanged: (String? value) {
                       setState(() {
-                        selectedValue = value;
+                        _selectedValue = value;
                       });
                     },
                     buttonStyleData: ButtonStyleData(
@@ -132,12 +135,11 @@ class _AddNoteScreenState extends State<NoteScreen> {
                       width: 200,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 158, 158, 158),
-                        ),
-                        color: Theme.of(context).canvasColor
-                      ),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 158, 158, 158),
+                          ),
+                          color: Theme.of(context).canvasColor),
                       elevation: 0,
                     ),
                     iconStyleData: const IconStyleData(
@@ -168,20 +170,19 @@ class _AddNoteScreenState extends State<NoteScreen> {
                     ),
                   ),
                 ),
-            Container(
-              padding: const EdgeInsets.only(left: 110),
-              child: Icon(
-                emojiMap[selectedValue ?? Icons.sentiment_neutral],
-                size: 50,
-                color: colorMap[selectedValue],
-                )
-                
-              ),
-            ]),
+                Container(
+                    padding: const EdgeInsets.only(left: 110),
+                    child: Icon(
+                      emojiMap[_selectedValue ?? Icons.sentiment_neutral],
+                      size: 50,
+                      color: colorMap[_selectedValue],
+                    )),
+              ]),
               const SizedBox(height: 15),
               Expanded(
                   child: TextField(
                 controller: _description,
+                maxLength: 4000,
                 maxLines: 50,
                 decoration: InputDecoration(
                     hintText: 'Start typing here...',
@@ -198,7 +199,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
         usermail: widget.cred?.user.email ?? '',
         date: DateTime.now(),
         title: _title.text,
-        feeling: selectedValue ?? '',
+        feeling: _selectedValue ?? '',
         content: _description.text);
     await EntriesRepository.insert(entry: entry);
   }
@@ -209,7 +210,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
         usermail: widget.entry!.usermail,
         date: widget.entry!.date,
         title: _title.text,
-        feeling: selectedValue ?? '',
+        feeling: _selectedValue ?? '',
         content: _description.text);
     await EntriesRepository.update(entry: entry);
   }
