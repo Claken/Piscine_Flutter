@@ -1,11 +1,10 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:diaryapp/models/feeling.dart';
+import 'package:diaryapp/note_overview.dart';
 import 'package:diaryapp/note_screen.dart';
 import 'package:diaryapp/item_note.dart';
 import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({
@@ -22,24 +21,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _noteOverview = false;
-  MyEntry? _noteOverviewed;
-  final _scrollController = ScrollController();
 
   reloadPage() {
     setState(() {});
   }
 
-  changeNoteOverview(bool currentState, MyEntry? currentNote) {
-    setState(() {
-      _noteOverview = currentState;
-      _noteOverviewed = currentNote;
-    });
-  }
-
-  deleteNote() async {
-    await EntriesRepository.delete(entry: _noteOverviewed!);
-    changeNoteOverview(false, null);
+  deleteNote(MyEntry? note) async {
+    await EntriesRepository.delete(entry: note!);
     reloadPage();
   }
 
@@ -61,187 +49,59 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: Stack(children: [
-        FutureBuilder(
-            future: EntriesRepository.getEntries(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData == false) {
-                  return const Center(child: Text('Empty'));
-                }
-                if (snapshot.hasError) {
-                  return const Center(child: Text('Error'));
-                }
-                return ListView(padding: const EdgeInsets.all(15), children: [
-                  for (MyEntry note in snapshot.data!)
-                    GestureDetector(
-                        onTap: () {
-                          changeNoteOverview(true, note);
-                        },
-                        child: ItemNode(entry: note)),
-                ]);
+      body: FutureBuilder(
+          future: EntriesRepository.getEntries(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData == false) {
+                return const Center(child: Text('Empty'));
               }
-              return const SizedBox();
-            }),
-        _noteOverview
-            ? Positioned(
-                child: Center(
-                    child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white),
-                        width: 300.0,
-                        height: 400.0,
-                        child: Column(
-                          children: [
-                            Text(_noteOverviewed?.title ?? '',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
-                            const Divider(
-                              color: Colors.black,
-                              indent: 20,
-                              endIndent: 20,
-                            ),
-                            Text(DateFormat(
-                                    DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
-                                .format(_noteOverviewed?.date ??
-                                    DateTime.timestamp())),
-                            const Divider(
-                              color: Colors.black,
-                              indent: 20,
-                              endIndent: 20,
-                            ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+              if (snapshot.hasError) {
+                return const Center(child: Text('Error'));
+              }
+              return ListView(padding: const EdgeInsets.all(15), children: [
+                for (MyEntry note in snapshot.data!)
+                  GestureDetector(
+                      onTap: () async {
+                        await showDialog(
+                            context: context,
+                            builder: (BuildContext cont) {
+                              return SimpleDialog(
                                 children: [
-                                  Icon(emojiMap[_noteOverviewed?.feeling],
-                                      color:
-                                          colorMap[_noteOverviewed?.feeling]),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    '${_noteOverviewed?.feeling}',
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                  )
-                                ]),
-                            const Divider(
-                              color: Colors.black,
-                              indent: 20,
-                              endIndent: 20,
-                            ),
-                            Expanded(
-                              child: Container(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20),
-                                  child: Scrollbar(
-                                    thumbVisibility: true,
-                                    controller: _scrollController,
-                                    child: SingleChildScrollView(
-                                      controller: _scrollController,
-                                      child: Text(
-                                        '${_noteOverviewed?.content}',
-                                      ),
-                                    ),
-                                  )),
-                            ),
-                            const Divider(
-                              color: Colors.black,
-                              indent: 20,
-                              endIndent: 20,
-                            ),
-                            Center(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextButton(
-                                  style: ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.red),
-                                  ),
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              content:
-                                                  const Text('Are you sure ?'),
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () async {
-                                                      await deleteNote();
-                                                      if (context.mounted) {
-                                                        Navigator.pop(
-                                                            context, 'Yes');
-                                                      }
-                                                    },
-                                                    child: const Text('Yes')),
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(
-                                                          context, 'No');
-                                                    },
-                                                    child: const Text('No'))
-                                              ],
-                                            ));
-                                  },
-                                  child: const Text('Delete This Entry'),
-                                ),
-                                TextButton(
-                                  style: ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.green),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => NoteScreen(
-                                                cred: widget.cred,
-                                                reloadPage: reloadPage,
-                                                entry: _noteOverviewed,
-                                              )),
-                                    );
-                                  },
-                                  child: const Text('Update This Entry'),
-                                ),
-                              ],
-                            )),
-                            TextButton(
-                              onPressed: () {
-                                changeNoteOverview(false, null);
-                              },
-                              child: const Text(
-                                'Close ',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            )
-                          ],
-                        ))))
-            : const SizedBox()
-      ]),
+                                  NoteOverview(
+                                      noteOverviewed: note,
+                                      deleteNote: deleteNote,
+                                      cred: widget.cred,
+                                      reloadPage: reloadPage,
+                                      superContext: cont)
+                                ],
+                              );
+                            });
+                      },
+                      child: ItemNode(entry: note)),
+              ]);
+            }
+            return const SizedBox();
+          }),
       bottomNavigationBar: BottomAppBar(
-        child: FloatingActionButton.extended(
-          backgroundColor: Colors.red,
-          icon: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          label: const Text('New entry', style: TextStyle(color: Colors.white)),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => NoteScreen(
-                        cred: widget.cred,
-                        reloadPage: reloadPage,
-                      )),
-            );
-          })
-      ),
+          child: FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              label: const Text('New entry',
+                  style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NoteScreen(
+                            cred: widget.cred,
+                            reloadPage: reloadPage,
+                          )),
+                );
+              })),
     );
   }
 }
