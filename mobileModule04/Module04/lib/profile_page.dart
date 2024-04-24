@@ -22,6 +22,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
+  final _scrollController = ScrollController();
+
   reloadPage() {
     setState(() {});
   }
@@ -59,7 +61,14 @@ class _ProfilePageState extends State<ProfilePage> {
               if (snapshot.hasError) {
                 return const Center(child: Text('Error'));
               }
-              return ListView(padding: const EdgeInsets.all(15), children: [
+              return Scrollbar(
+                controller: _scrollController,
+                thickness: 8,
+                thumbVisibility: true,
+                child: ListView(
+                padding: const EdgeInsets.all(15),
+                controller: _scrollController,
+                children: [
                 for (MyEntry note in snapshot.data!)
                   GestureDetector(
                       onTap: () async {
@@ -80,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             });
                       },
                       child: ItemNode(entry: note)),
-              ]);
+              ]));
             }
             return const SizedBox();
           }),

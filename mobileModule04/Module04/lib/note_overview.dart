@@ -20,7 +20,7 @@ class NoteOverview extends StatelessWidget {
   final Credentials? cred;
   final Function reloadPage;
   final BuildContext superContext;
-  final scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +71,13 @@ class NoteOverview extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
+                      alignment: Alignment.topLeft,
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Scrollbar(
                         thumbVisibility: true,
-                        controller: scrollController,
+                        controller: _scrollController,
                         child: SingleChildScrollView(
-                          controller: scrollController,
+                          controller: _scrollController,
                           child: Text(
                             noteOverviewed.content,
                           ),
@@ -101,7 +102,7 @@ class NoteOverview extends StatelessWidget {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  content: const Text('Are you sure ?'),
+                                  content: const Text('Do you really want to delete this entry ?'),
                                   actions: [
                                     TextButton(
                                         onPressed: () async {
@@ -130,6 +131,7 @@ class NoteOverview extends StatelessWidget {
                             MaterialStateProperty.all<Color>(Colors.green),
                       ),
                       onPressed: () {
+                        Navigator.pop(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
