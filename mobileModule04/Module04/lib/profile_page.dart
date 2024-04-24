@@ -26,8 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {});
   }
 
-  deleteNote(MyEntry? note) async {
-    await EntriesRepository.delete(entry: note!);
+  deleteNote(MyEntry note) async {
+    await EntriesRepository.delete(entry: note);
     reloadPage();
   }
 
@@ -67,6 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             context: context,
                             builder: (BuildContext cont) {
                               return SimpleDialog(
+                                backgroundColor: Colors.red,
                                 children: [
                                   NoteOverview(
                                       noteOverviewed: note,

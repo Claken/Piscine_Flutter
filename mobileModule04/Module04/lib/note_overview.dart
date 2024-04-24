@@ -15,8 +15,8 @@ class NoteOverview extends StatelessWidget {
     required this.superContext,
   });
 
-  final MyEntry? noteOverviewed;
-  final Function(MyEntry? note) deleteNote;
+  final MyEntry noteOverviewed;
+  final Function(MyEntry note) deleteNote;
   final Credentials? cred;
   final Function reloadPage;
   final BuildContext superContext;
@@ -26,14 +26,16 @@ class NoteOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black), color: Colors.white),
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                // border: Border.all(color: Colors.black),
+                color: Colors.white),
             width: 300.0,
-            height: 400.0,
+            height: 420.0,
             child: Column(
               children: [
                 const SizedBox(height: 5),
-                Text(noteOverviewed?.title ?? '',
+                Text(noteOverviewed.title,
                     style: const TextStyle(fontWeight: FontWeight.bold)),
                 const Divider(
                   color: Colors.black,
@@ -41,7 +43,7 @@ class NoteOverview extends StatelessWidget {
                   endIndent: 20,
                 ),
                 Text(DateFormat(DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
-                    .format(noteOverviewed?.date ?? DateTime.timestamp())),
+                    .format(noteOverviewed.date)),
                 const Divider(
                   color: Colors.black,
                   indent: 20,
@@ -51,13 +53,13 @@ class NoteOverview extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(emojiMap[noteOverviewed?.feeling],
-                          color: colorMap[noteOverviewed?.feeling]),
+                      Icon(emojiMap[noteOverviewed.feeling],
+                          color: colorMap[noteOverviewed.feeling]),
                       const SizedBox(
                         width: 5,
                       ),
                       Text(
-                        '${noteOverviewed?.feeling}',
+                        noteOverviewed.feeling,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       )
@@ -76,7 +78,7 @@ class NoteOverview extends StatelessWidget {
                         child: SingleChildScrollView(
                           controller: scrollController,
                           child: Text(
-                            '${noteOverviewed?.content}',
+                            noteOverviewed.content,
                           ),
                         ),
                       )),
@@ -106,9 +108,9 @@ class NoteOverview extends StatelessWidget {
                                           await deleteNote(noteOverviewed);
                                           if (context.mounted) {
                                             Navigator.pop(context, 'Yes');
-                                          if (superContext.mounted) {
-                                            Navigator.pop(superContext);
-                                          }
+                                            if (superContext.mounted) {
+                                              Navigator.pop(superContext);
+                                            }
                                           }
                                         },
                                         child: const Text('Yes')),
