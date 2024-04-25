@@ -34,13 +34,13 @@ class _MyDiaryState extends State<Diary> {
     });
 
     try {
-      final Credentials credentials =
-          await auth0.webAuthentication(scheme: appScheme).login();
-
+      final Credentials credentials = await auth0.webAuthentication(scheme: appScheme).login();
+      goToProfilePage();
       setState(() {
         isBusy = false;
         _credentials = credentials;
       });
+
     } on Exception catch (e, s) {
       debugPrint('login error: $e - stack: $s');
 
@@ -59,47 +59,73 @@ class _MyDiaryState extends State<Diary> {
     });
   }
 
+  void goToProfilePage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (cont) => ProfilePage(
+                  cred: _credentials,
+                  logout: logoutAction,
+                )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: isBusy
-            ? const Center(child: CircularProgressIndicator())
-            : _credentials == null
-                ? Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                            "assets/images/book-with-yellow-cover.jpg"),
-                        fit: BoxFit.fill,
+            ? const Center(
+                child: CircularProgressIndicator(
+                color: Colors.red,
+              ))
+            : Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                        AssetImage("assets/images/book-with-yellow-cover.jpg"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Center(
+                          child: Text('WELCOME TO YOUR\nDIARY',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  backgroundColor: Colors.brown))),
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          side: const BorderSide(width: 1, color: Colors.green),
+                          padding: const EdgeInsets.all(20),
+                        ),
+                        onPressed: () async {
+                          if (_credentials == null) {
+                            await loginAction();
+                          } else if (context.mounted) {
+                            goToProfilePage();
+                          }
+                        },
+                        child: const Text('Login',
+                            style: TextStyle(color: Colors.white)),
                       ),
-                    ),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Center(
-                              child: Text('WELCOME TO YOUR\nDIARY',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      backgroundColor: Colors.brown))),
-                          ElevatedButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.green,
-                              side: const BorderSide(
-                                  width: 1, color: Colors.green),
-                              padding: const EdgeInsets.all(20),
-                            ),
-                            onPressed: () {
-                              loginAction();
-                            },
-                            child: const Text('Login',
-                                style: TextStyle(color: Colors.white)),
+                      if (errorMessage != '')
+                        Container(
+                          width: 200,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
                           ),
-                        ]))
-                : ProfilePage(
-                    cred: _credentials,
-                    logout: logoutAction,
-                  ));
+                          child: Text(
+                            errorMessage,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                    ])));
   }
 }

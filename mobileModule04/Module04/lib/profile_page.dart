@@ -45,8 +45,11 @@ class _ProfilePageState extends State<ProfilePage> {
               Icons.logout,
               color: Colors.black,
             ),
-            onPressed: () {
-              widget.logout();
+            onPressed: () async {
+              await widget.logout();
+              if (context.mounted) {
+                Navigator.pop(context);
+              }
             },
           )
         ],
