@@ -14,6 +14,8 @@ class Diary extends StatefulWidget {
 class _MyDiaryState extends State<Diary> {
   Credentials? _credentials;
   late Auth0 auth0;
+  final String _domain = 'dev-zcqf4g3uweedwi8f.us.auth0.com';
+  final String _clientId = 'JFNDQYx5JmGVaLChFJ7zekqk4pYOKtpI';
 
   bool isBusy = false;
   late String errorMessage;
@@ -22,8 +24,7 @@ class _MyDiaryState extends State<Diary> {
   void initState() {
     super.initState();
 
-    auth0 = Auth0('dev-zcqf4g3uweedwi8f.us.auth0.com',
-        'JFNDQYx5JmGVaLChFJ7zekqk4pYOKtpI');
+    auth0 = Auth0(_domain, _clientId);
     errorMessage = '';
   }
 
@@ -34,13 +35,13 @@ class _MyDiaryState extends State<Diary> {
     });
 
     try {
-      final Credentials credentials = await auth0.webAuthentication(scheme: appScheme).login();
+      final Credentials credentials =
+          await auth0.webAuthentication(scheme: appScheme).login();
       goToProfilePage();
       setState(() {
         isBusy = false;
         _credentials = credentials;
       });
-
     } on Exception catch (e, s) {
       debugPrint('login error: $e - stack: $s');
 
@@ -52,10 +53,15 @@ class _MyDiaryState extends State<Diary> {
   }
 
   Future<void> logoutAction() async {
+    setState(() {
+      isBusy = true;
+    });
+
     await auth0.webAuthentication(scheme: appScheme).logout();
 
     setState(() {
       _credentials = null;
+      isBusy = false;
     });
   }
 

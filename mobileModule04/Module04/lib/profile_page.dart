@@ -46,10 +46,10 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.black,
             ),
             onPressed: () async {
-              await widget.logout();
               if (context.mounted) {
                 Navigator.pop(context);
               }
+              await widget.logout();
             },
           )
         ],
@@ -58,11 +58,12 @@ class _ProfilePageState extends State<ProfilePage> {
           future: EntriesRepository.getEntries(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasData == false) {
-                return const Center(child: Text('Empty'));
+              debugPrint(snapshot.data.toString());
+              if (snapshot.data!.isEmpty) {
+                return const Center(child: Text('THE DIARY IS EMPTY'));
               }
               if (snapshot.hasError) {
-                return const Center(child: Text('Error'));
+                return Center(child: Text('Error : ${snapshot.error.toString()}'));
               }
               return Scrollbar(
                 controller: _scrollController,
