@@ -21,7 +21,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   final _scrollController = ScrollController();
 
   reloadPage() {
@@ -38,18 +37,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        title: Text('${widget.cred?.user.name}'),
-        centerTitle: true,
+        backgroundColor: Colors.red,
+        title: Row(children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50.0),
+            child: Image.network(widget.cred?.user.pictureUrl.toString() ?? '',
+                width: 80),
+          ),
+          const SizedBox(
+            width: 40,
+          ),
+          Text(
+            "${widget.cred?.user.name}",
+            style: const TextStyle(color: Colors.white),
+          ),
+        ]),
         actions: <Widget>[
-          Image.network(
-            widget.cred?.user.pictureUrl.toString() ?? '',
-            
-            ),
-          
           IconButton(
             icon: const Icon(
               Icons.logout,
-              color: Colors.black,
+              color: Colors.white,
             ),
             onPressed: () async {
               if (context.mounted) {
@@ -60,49 +67,56 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: FutureBuilder(
-          future: EntriesRepository.getEntries(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              debugPrint(snapshot.data.toString());
-              if (snapshot.data!.isEmpty) {
-                return const Center(child: Text('THE DIARY IS EMPTY'));
-              }
-              if (snapshot.hasError) {
-                return Center(child: Text('Error : ${snapshot.error.toString()}'));
-              }
-              return Scrollbar(
-                controller: _scrollController,
-                thickness: 8,
-                thumbVisibility: true,
-                child: ListView(
-                padding: const EdgeInsets.all(15),
-                controller: _scrollController,
-                children: [
-                for (MyEntry note in snapshot.data!)
-                  GestureDetector(
-                      onTap: () async {
-                        await showDialog(
-                            context: context,
-                            builder: (BuildContext cont) {
-                              return SimpleDialog(
-                                backgroundColor: Colors.red,
-                                children: [
-                                  NoteOverview(
-                                      noteOverviewed: note,
-                                      deleteNote: deleteNote,
-                                      cred: widget.cred,
-                                      reloadPage: reloadPage,
-                                      superContext: cont)
-                                ],
-                              );
-                            });
-                      },
-                      child: ItemNode(entry: note)),
-              ]));
-            }
-            return const SizedBox();
-          }),
+      body: //SizedBox(
+      //     height: 300,
+      //     width: 500,
+      //     child: Column(children: [
+            
+            FutureBuilder(
+                future: EntriesRepository.getEntries(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    debugPrint(snapshot.data.toString());
+                    if (snapshot.data!.isEmpty) {
+                      return const Center(child: Text('THE DIARY IS EMPTY'));
+                    }
+                    if (snapshot.hasError) {
+                      return Center(
+                          child: Text('Error : ${snapshot.error.toString()}'));
+                    }
+                    return Scrollbar(
+                        controller: _scrollController,
+                        thickness: 8,
+                        thumbVisibility: true,
+                        child: ListView(
+                            padding: const EdgeInsets.all(15),
+                            controller: _scrollController,
+                            children: [
+                              for (MyEntry note in snapshot.data!)
+                                GestureDetector(
+                                    onTap: () async {
+                                      await showDialog(
+                                          context: context,
+                                          builder: (BuildContext cont) {
+                                            return SimpleDialog(
+                                              backgroundColor: Colors.red,
+                                              children: [
+                                                NoteOverview(
+                                                    noteOverviewed: note,
+                                                    deleteNote: deleteNote,
+                                                    cred: widget.cred,
+                                                    reloadPage: reloadPage,
+                                                    superContext: cont)
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    child: ItemNode(entry: note)),
+                            ]));
+                  }
+                  return const SizedBox();
+                }),
+          //])),
       bottomNavigationBar: BottomAppBar(
           child: FloatingActionButton.extended(
               backgroundColor: Colors.red,
