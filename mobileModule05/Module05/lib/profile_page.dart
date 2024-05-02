@@ -23,6 +23,13 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final _scrollController = ScrollController();
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _scrollController.jumpTo(0);
+    
+  // }
+
   reloadPage() {
     setState(() {});
   }
@@ -67,13 +74,15 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: //SizedBox(
-      //     height: 300,
-      //     width: 500,
-      //     child: Column(children: [
-            
-            FutureBuilder(
-                future: EntriesRepository.getEntries(),
+      body: Column(children: [
+        Container(
+            height: 190,
+            width: 500,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
+            child: FutureBuilder(
+                future: EntriesRepository.getLast(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     debugPrint(snapshot.data.toString());
@@ -89,6 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         thickness: 8,
                         thumbVisibility: true,
                         child: ListView(
+                          reverse: true,
                             padding: const EdgeInsets.all(15),
                             controller: _scrollController,
                             children: [
@@ -115,27 +125,27 @@ class _ProfilePageState extends State<ProfilePage> {
                             ]));
                   }
                   return const SizedBox();
-                }),
-          //])),
-      bottomNavigationBar: BottomAppBar(
-          child: FloatingActionButton.extended(
-              backgroundColor: Colors.red,
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-              label: const Text('New entry',
-                  style: TextStyle(color: Colors.white)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => NoteScreen(
-                            cred: widget.cred,
-                            reloadPage: reloadPage,
-                          )),
-                );
-              })),
+                })),
+        FloatingActionButton.extended(
+            backgroundColor: Colors.red,
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            label:
+                const Text('New entry', style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => NoteScreen(
+                          cred: widget.cred,
+                          reloadPage: reloadPage,
+                        )),
+              );
+            })
+      ]),
+      bottomNavigationBar: BottomAppBar(),
     );
   }
 }

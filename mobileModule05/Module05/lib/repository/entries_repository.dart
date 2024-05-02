@@ -1,4 +1,5 @@
 import 'package:diaryapp/models/entry.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -40,6 +41,7 @@ class EntriesRepository {
 
     // Query the table for all the dogs.
     final List<Map<String, dynamic>> maps = await db.query(_tableName);
+    debugPrint(maps.toString());
 
     // Convert the list of each dog's fields into a list of `Dog` objects.
     return List.generate(maps.length, (i) {
@@ -51,6 +53,14 @@ class EntriesRepository {
           feeling: maps[i]['feeling'] as String,
           content: maps[i]['content'] as String);
     });
+  }
+
+    static Future<List<MyEntry>> getLast() async {
+
+      final List<MyEntry> list = await getEntries();
+      int start = list.length-2 < 0 ? 0 : list.length-2;
+      var newList = list.getRange(start, list.length);
+      return newList.toList();
   }
 
   static update({required MyEntry entry}) async {
