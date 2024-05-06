@@ -22,6 +22,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final _scrollController = ScrollController();
+  // final _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
 
   // @override
   // void initState() {
@@ -145,7 +146,9 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             })
       ]),
-      bottomNavigationBar: BottomAppBar(),
+      bottomNavigationBar: const BottomAppBar(
+        
+      ),
     );
   }
 }

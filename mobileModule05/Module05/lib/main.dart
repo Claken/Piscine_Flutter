@@ -1,4 +1,4 @@
-import 'package:diaryapp/diary_app_final.dart';
+import 'package:diaryapp/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +11,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Diary());
+    return const MaterialApp(home: LoginPage());
   }
 }
