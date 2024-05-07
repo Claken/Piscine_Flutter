@@ -63,6 +63,11 @@ class EntriesRepository {
       return newList.toList();
   }
 
+  static Future<int> getEntriesNbr() async {
+      final List<MyEntry> list = await getEntries();
+      return list.length;
+  }
+
   static update({required MyEntry entry}) async {
     final db = await _database();
 

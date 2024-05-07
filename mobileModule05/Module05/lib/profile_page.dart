@@ -1,4 +1,5 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:diaryapp/models/feeling.dart';
 import 'package:diaryapp/note_overview.dart';
 import 'package:diaryapp/note_screen.dart';
 import 'package:diaryapp/item_note.dart';
@@ -21,15 +22,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final _scrollController = ScrollController();
-  // final _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+  late ScrollController _scrollController;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _scrollController.jumpTo(0);
-    
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController(
+
+    );
+  }
 
   reloadPage() {
     setState(() {});
@@ -67,9 +68,6 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.white,
             ),
             onPressed: () async {
-              if (context.mounted) {
-                Navigator.pop(context);
-              }
               await widget.logout();
             },
           )
@@ -79,14 +77,11 @@ class _ProfilePageState extends State<ProfilePage> {
         Container(
             height: 190,
             width: 500,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black)
-            ),
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
             child: FutureBuilder(
-                future: EntriesRepository.getLast(),
+                future: EntriesRepository.getEntries(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    debugPrint(snapshot.data.toString());
                     if (snapshot.data!.isEmpty) {
                       return const Center(child: Text('THE DIARY IS EMPTY'));
                     }
@@ -99,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         thickness: 8,
                         thumbVisibility: true,
                         child: ListView(
-                          reverse: true,
+                            reverse: true,
                             padding: const EdgeInsets.all(15),
                             controller: _scrollController,
                             children: [
@@ -127,6 +122,55 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
                   return const SizedBox();
                 })),
+        Container(
+            height: 190,
+            width: 500,
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              const Center(child: Text("Your feel for your entries")),
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  emojiMap["Happy"],
+                  size: 30,
+                  color: colorMap["Happy"],
+                ),
+              ),
+                            Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  emojiMap["Satisfied"],
+                  size: 30,
+                  color: colorMap["Satisfied"],
+                ),
+              ),
+                            Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  emojiMap["Normal"],
+                  size: 30,
+                  color: colorMap["Normal"],
+                ),
+              ),
+                            Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  emojiMap["Sad"],
+                  size: 30,
+                  color: colorMap["Sad"],
+                ),
+              ),
+                            Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  emojiMap["Angry"],
+                  size: 30,
+                  color: colorMap["Angry"],
+                ),
+              ),
+            ])),
         FloatingActionButton.extended(
             backgroundColor: Colors.red,
             icon: const Icon(

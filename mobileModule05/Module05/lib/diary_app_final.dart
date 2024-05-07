@@ -37,9 +37,6 @@ class _DiaryState extends State<Diary> with TickerProviderStateMixin {
           const Center(child: Text('caca'),),
         ],
       ),
-      
-      
-      
       bottomNavigationBar: Material(
         color: Colors.red,
         child: TabBar(
