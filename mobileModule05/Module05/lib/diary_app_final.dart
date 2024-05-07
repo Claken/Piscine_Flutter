@@ -30,7 +30,15 @@ class _DiaryState extends State<Diary> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ProfilePage(cred: widget.cred, logout: widget.logout),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          ProfilePage(cred: widget.cred, logout: widget.logout),
+          const Center(child: Text('caca'),),
+        ],
+      ),
+      
+      
       
       bottomNavigationBar: Material(
         color: Colors.red,
