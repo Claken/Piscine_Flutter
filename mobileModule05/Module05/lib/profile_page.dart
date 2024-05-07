@@ -146,9 +146,6 @@ class _ProfilePageState extends State<ProfilePage> {
               );
             })
       ]),
-      bottomNavigationBar: const BottomAppBar(
-        
-      ),
     );
   }
 }

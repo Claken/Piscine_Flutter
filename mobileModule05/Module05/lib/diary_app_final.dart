@@ -29,6 +29,29 @@ class _DiaryState extends State<Diary> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ProfilePage(cred: widget.cred, logout: widget.logout);
+    return Scaffold(
+      body: ProfilePage(cred: widget.cred, logout: widget.logout),
+      
+      bottomNavigationBar: Material(
+        color: Colors.red,
+        child: TabBar(
+            controller: _tabController,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.grey,
+            indicatorColor: Colors.white,
+            onTap: (value) {
+              _tabController.animateTo(value,
+                  duration: const Duration(milliseconds: 1),
+                  curve: Curves.bounceOut);
+            },
+            tabs: const [
+              Tab(
+                  icon: Icon(Icons.account_circle, color: Colors.white),
+                  text: 'Profile'),
+              Tab(
+                  icon: Icon(Icons.calendar_month, color: Colors.white),
+                  text: 'Agenda'),
+            ],
+    )));
   }
 }
