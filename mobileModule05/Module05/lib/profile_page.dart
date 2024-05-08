@@ -26,7 +26,6 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final _scrollController = ScrollController();
-  int _nbr = 0;
 
   reloadPage() {
     setState(() {});
@@ -35,6 +34,17 @@ class _ProfilePageState extends State<ProfilePage> {
   deleteNote(MyEntry note) async {
     await EntriesRepository.delete(entry: note);
     reloadPage();
+  }
+
+  double getPercentage(String feel, List<MyEntry> entries) {
+    int total = entries.length;
+    int nbr = 0;
+    for (MyEntry note in entries) {
+      if (note.feeling == feel) {
+        nbr++;
+      }
+    }
+    return (nbr / total) * 100;
   }
 
   @override
@@ -134,48 +144,63 @@ class _ProfilePageState extends State<ProfilePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
-                              child: Text(
-                                  "Your feel for your ${snapshot.data!.length} entries")),
+                              child: Text(snapshot.data!.isEmpty
+                                  ? "Diary empty : no feel"
+                                  : "The feel list of your ${snapshot.data!.length} ${snapshot.data!.length == 1 ? "entry" : "entries"}")),
                           Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Icon(
-                              emojiMap["Happy"],
-                              size: 30,
-                              color: colorMap["Happy"],
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(children: [
+                                Icon(
+                                  emojiMap["Happy"],
+                                  size: 30,
+                                  color: colorMap["Happy"],
+                                ),
+                                Text(
+                                    "${getPercentage("Happy", snapshot.data!).round().toString()}%")
+                              ])),
                           Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Icon(
-                              emojiMap["Satisfied"],
-                              size: 30,
-                              color: colorMap["Satisfied"],
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(children: [
+                                Icon(
+                                  emojiMap["Satisfied"],
+                                  size: 30,
+                                  color: colorMap["Satisfied"],
+                                ),
+                                Text("${getPercentage("Satisfied", snapshot.data!).round().toString()}%")
+                              ])),
                           Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Icon(
-                              emojiMap["Normal"],
-                              size: 30,
-                              color: colorMap["Normal"],
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(children: [
+                                Icon(
+                                  emojiMap["Normal"],
+                                  size: 30,
+                                  color: colorMap["Normal"],
+                                ),
+                                Text(
+                                    "${getPercentage("Normal", snapshot.data!).round().toString()}%"),
+                              ])),
                           Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Icon(
-                              emojiMap["Sad"],
-                              size: 30,
-                              color: colorMap["Sad"],
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(children: [
+                                Icon(
+                                  emojiMap["Sad"],
+                                  size: 30,
+                                  color: colorMap["Sad"],
+                                ),
+                                Text(
+                                    "${getPercentage("Sad", snapshot.data!).round().toString()}%")
+                              ])),
                           Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Icon(
-                              emojiMap["Angry"],
-                              size: 30,
-                              color: colorMap["Angry"],
-                            ),
-                          ),
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(children: [
+                                Icon(
+                                  emojiMap["Angry"],
+                                  size: 30,
+                                  color: colorMap["Angry"],
+                                ),
+                                Text(
+                                    "${getPercentage("Angry", snapshot.data!).round().toString()}%")
+                              ])),
                         ]);
                   }
                   return const SizedBox();
