@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/models/feeling.dart';
 import 'package:diaryapp/note_overview.dart';
@@ -6,6 +8,7 @@ import 'package:diaryapp/item_note.dart';
 import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({
@@ -22,15 +25,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late ScrollController _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController(
-
-    );
-  }
+  final _scrollController = ScrollController();
+  int _nbr = 0;
 
   reloadPage() {
     setState(() {});
@@ -94,11 +90,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         thickness: 8,
                         thumbVisibility: true,
                         child: ListView(
-                            reverse: true,
                             padding: const EdgeInsets.all(15),
                             controller: _scrollController,
+                            reverse: true,
                             children: [
-                              for (MyEntry note in snapshot.data!)
+                              for (MyEntry note in snapshot.data!.getRange(
+                                  snapshot.data!.length - 2 < 0
+                                      ? 0
+                                      : snapshot.data!.length - 2,
+                                  snapshot.data!.length))
                                 GestureDetector(
                                     onTap: () async {
                                       await showDialog(
@@ -126,51 +126,60 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 190,
             width: 500,
             decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              const Center(child: Text("Your feel for your entries")),
-              Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  emojiMap["Happy"],
-                  size: 30,
-                  color: colorMap["Happy"],
-                ),
-              ),
-                            Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  emojiMap["Satisfied"],
-                  size: 30,
-                  color: colorMap["Satisfied"],
-                ),
-              ),
-                            Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  emojiMap["Normal"],
-                  size: 30,
-                  color: colorMap["Normal"],
-                ),
-              ),
-                            Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  emojiMap["Sad"],
-                  size: 30,
-                  color: colorMap["Sad"],
-                ),
-              ),
-                            Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: Icon(
-                  emojiMap["Angry"],
-                  size: 30,
-                  color: colorMap["Angry"],
-                ),
-              ),
-            ])),
+            child: FutureBuilder(
+                future: EntriesRepository.getEntries(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                              child: Text(
+                                  "Your feel for your ${snapshot.data!.length} entries")),
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              emojiMap["Happy"],
+                              size: 30,
+                              color: colorMap["Happy"],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              emojiMap["Satisfied"],
+                              size: 30,
+                              color: colorMap["Satisfied"],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              emojiMap["Normal"],
+                              size: 30,
+                              color: colorMap["Normal"],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              emojiMap["Sad"],
+                              size: 30,
+                              color: colorMap["Sad"],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              emojiMap["Angry"],
+                              size: 30,
+                              color: colorMap["Angry"],
+                            ),
+                          ),
+                        ]);
+                  }
+                  return const SizedBox();
+                })),
         FloatingActionButton.extended(
             backgroundColor: Colors.red,
             icon: const Icon(

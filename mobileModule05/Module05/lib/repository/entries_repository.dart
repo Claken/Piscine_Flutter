@@ -55,14 +55,6 @@ class EntriesRepository {
     });
   }
 
-    static Future<List<MyEntry>> getLast() async {
-
-      final List<MyEntry> list = await getEntries();
-      int start = list.length-2 < 0 ? 0 : list.length-2;
-      var newList = list.getRange(start, list.length);
-      return newList.toList();
-  }
-
   static Future<int> getEntriesNbr() async {
       final List<MyEntry> list = await getEntries();
       return list.length;

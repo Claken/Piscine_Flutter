@@ -1,6 +1,5 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/diary_app_final.dart';
-import 'package:diaryapp/profile_page.dart';
 import 'package:flutter/material.dart';
 
 const appScheme = 'diaryapp';
