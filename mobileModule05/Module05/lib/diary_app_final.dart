@@ -33,7 +33,7 @@ class _DiaryState extends State<Diary> with TickerProviderStateMixin {
         controller: _tabController,
         children: [
           ProfilePage(cred: widget.cred, logout: widget.logout),
-          const Agenda()
+          Agenda(cred: widget.cred),
         ],
       ),
       bottomNavigationBar: Material(

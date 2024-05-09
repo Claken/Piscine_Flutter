@@ -55,9 +55,30 @@ class EntriesRepository {
     });
   }
 
-  static Future<int> getEntriesNbr() async {
-      final List<MyEntry> list = await getEntries();
-      return list.length;
+
+  static Future<List<MyEntry>> getEntriesByDate(DateTime date) async {
+    // Get a reference to the database.
+    final db = await _database();
+
+    // Query the table for all the dogs.
+    debugPrint(date.toString());
+    final List<Map<String, dynamic>> maps = await db.query(
+      _tableName,
+      where: 'date = ?',
+      whereArgs: [date.toString()],
+    );
+    debugPrint(maps.toString());
+
+    // Convert the list of each dog's fields into a list of `Dog` objects.
+    return List.generate(maps.length, (i) {
+      return MyEntry(
+          id: maps[i]['id'] as int,
+          usermail: maps[i]['usermail'] as String,
+          date: DateTime.parse(maps[i]['date']),
+          title: maps[i]['title'] as String,
+          feeling: maps[i]['feeling'] as String,
+          content: maps[i]['content'] as String);
+    });
   }
 
   static update({required MyEntry entry}) async {
