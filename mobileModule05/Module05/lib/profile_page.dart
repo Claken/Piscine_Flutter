@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget feelContainer(String feel, List<MyEntry> entries) {
     return Container(
-        padding: const EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 10, top: 2.5),
         child: Row(children: [
           Icon(
             emojiMap[feel],
@@ -93,10 +93,32 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: Column(children: [
+        const SizedBox(height: 20),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.pink,
+             borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10))
+          ),
+          child: const Center(
+              child: Text(
+            "Your last two entries",
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.white,
+            ),
+          )),
+        ),
         Container(
             height: 190,
             width: 500,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.pink, width: 2),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10))
+            ),
             child: FutureBuilder(
                 future: EntriesRepository.getEntries(),
                 builder: (context, snapshot) {
@@ -108,47 +130,47 @@ class _ProfilePageState extends State<ProfilePage> {
                       return Center(
                           child: Text('Error : ${snapshot.error.toString()}'));
                     }
-                    return Scrollbar(
+                    return ListView(
+                        padding: const EdgeInsets.all(15),
                         controller: _scrollController,
-                        thickness: 8,
-                        thumbVisibility: true,
-                        child: ListView(
-                            padding: const EdgeInsets.all(15),
-                            controller: _scrollController,
-                            reverse: true,
-                            children: [
-                              for (MyEntry note in snapshot.data!.getRange(
-                                  snapshot.data!.length - 2 < 0
-                                      ? 0
-                                      : snapshot.data!.length - 2,
-                                  snapshot.data!.length))
-                                GestureDetector(
-                                    onTap: () async {
-                                      await showDialog(
-                                          context: context,
-                                          builder: (BuildContext cont) {
-                                            return SimpleDialog(
-                                              backgroundColor: Colors.red,
-                                              children: [
-                                                NoteOverview(
-                                                    noteOverviewed: note,
-                                                    deleteNote: deleteNote,
-                                                    cred: widget.cred,
-                                                    reloadPage: reloadPage,
-                                                    superContext: cont)
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    child: ItemNode(entry: note)),
-                            ]));
+                        reverse: true,
+                        children: [
+                          for (MyEntry note in snapshot.data!.getRange(
+                              snapshot.data!.length - 2 < 0
+                                  ? 0
+                                  : snapshot.data!.length - 2,
+                              snapshot.data!.length))
+                            GestureDetector(
+                                onTap: () async {
+                                  await showDialog(
+                                      context: context,
+                                      builder: (BuildContext cont) {
+                                        return SimpleDialog(
+                                          backgroundColor: Colors.red,
+                                          children: [
+                                            NoteOverview(
+                                                noteOverviewed: note,
+                                                deleteNote: deleteNote,
+                                                cred: widget.cred,
+                                                reloadPage: reloadPage,
+                                                superContext: cont)
+                                          ],
+                                        );
+                                      });
+                                },
+                                child: ItemNode(entry: note)),
+                        ]);
                   }
                   return const SizedBox();
                 })),
+        const SizedBox(height: 20),
         Container(
-            height: 190,
+            height: 200,
             width: 500,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.pinkAccent, width: 2),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: FutureBuilder(
                 future: EntriesRepository.getEntries(),
                 builder: (context, snapshot) {
@@ -156,10 +178,20 @@ class _ProfilePageState extends State<ProfilePage> {
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                              child: Text(snapshot.data!.isEmpty
+                          Container(
+                            decoration: const BoxDecoration(color: Colors.pinkAccent),
+                            child: Center(
+                                child: Text(
+                              snapshot.data!.isEmpty
                                   ? "Diary empty : no feel"
-                                  : "The feel list of your ${snapshot.data!.length} ${snapshot.data!.length == 1 ? "entry" : "entries"}")),
+                                  : "The feel list of your ${snapshot.data!.length} ${snapshot.data!.length == 1 ? "entry" : "entries"}",
+                              maxLines: 1,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  overflow: TextOverflow.ellipsis),
+                            )),
+                          ),
                           feelContainer('Happy', snapshot.data!),
                           feelContainer('Satisfied', snapshot.data!),
                           feelContainer('Normal', snapshot.data!),
@@ -169,6 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
                   return const SizedBox();
                 })),
+        const SizedBox(height: 20),
         FloatingActionButton.extended(
             backgroundColor: Colors.red,
             icon: const Icon(
