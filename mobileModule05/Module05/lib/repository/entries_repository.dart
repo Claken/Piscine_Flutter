@@ -61,7 +61,8 @@ class EntriesRepository {
     final db = await _database();
 
     // Query the table for all the dogs.
-    debugPrint(date.toString());
+
+  
     final List<Map<String, dynamic>> maps = await db.query(
       _tableName,
       where: 'date = ?',

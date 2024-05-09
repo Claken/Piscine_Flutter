@@ -203,7 +203,7 @@ class _AddNoteScreenState extends State<NoteScreen> {
   _insertEntry() async {
     final entry = MyEntry(
         usermail: widget.cred?.user.email ?? '',
-        date: DateTime.now(),
+        date: DateUtils.dateOnly(DateTime.now()),
         title: _title.text,
         feeling: _selectedValue ?? '',
         content: _description.text);

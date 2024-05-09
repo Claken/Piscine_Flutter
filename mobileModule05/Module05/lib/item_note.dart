@@ -54,8 +54,6 @@ class ItemNode extends StatelessWidget {
             ),
           ],
         )),
-        Text(DateFormat(DateFormat.HOUR_MINUTE).format(entry.date),
-            style: Theme.of(context).textTheme.bodySmall)
       ],
     ));
   }

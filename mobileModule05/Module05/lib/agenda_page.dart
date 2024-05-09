@@ -21,6 +21,8 @@ class Agenda extends StatefulWidget {
 class _AgendaState extends State<Agenda> {
   var _focusedDay = DateTime.now();
   var _selectedDay = DateTime.now();
+  var _firstDay = DateTime(DateTime.now().year, DateTime.now().month, 1);
+  var _lastDay = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
   final _controller = ScrollController();
 
   void reloadPage() {
@@ -38,8 +40,8 @@ class _AgendaState extends State<Agenda> {
       TableCalendar(
         selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
         focusedDay: _focusedDay,
-        firstDay: DateTime(DateTime.now().year, DateTime.now().month, 1),
-        lastDay: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
+        firstDay: _firstDay,
+        lastDay: _lastDay,
         locale: 'en_US',
         onDaySelected: (selectedDay, focusedDay) => setState(() {
           _focusedDay = focusedDay;
@@ -60,7 +62,7 @@ class _AgendaState extends State<Agenda> {
               border: Border.all(color: Colors.pinkAccent, width: 2),
             ),
             child: FutureBuilder(
-          future: EntriesRepository.getEntriesByDate(_selectedDay),
+          future: EntriesRepository.getEntriesByDate(DateUtils.dateOnly(_selectedDay)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               debugPrint(snapshot.data.toString());
