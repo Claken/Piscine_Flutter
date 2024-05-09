@@ -21,8 +21,8 @@ class Agenda extends StatefulWidget {
 class _AgendaState extends State<Agenda> {
   var _focusedDay = DateTime.now();
   var _selectedDay = DateTime.now();
-  var _firstDay = DateTime(DateTime.now().year, DateTime.now().month, 1);
-  var _lastDay = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
+  final _firstDay = DateTime(DateTime.now().year, DateTime.now().month , 1);
+  final _lastDay = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
   final _controller = ScrollController();
 
   void reloadPage() {
@@ -38,6 +38,7 @@ class _AgendaState extends State<Agenda> {
   Widget build(BuildContext context) {
     return Column(children: [
       TableCalendar(
+        pageJumpingEnabled: true,
         selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
         focusedDay: _focusedDay,
         firstDay: _firstDay,
@@ -54,6 +55,7 @@ class _AgendaState extends State<Agenda> {
           selectedDecoration:
               BoxDecoration(color: Colors.red, shape: BoxShape.circle),
         ),
+
       ),
         Expanded(
           child:
@@ -65,7 +67,6 @@ class _AgendaState extends State<Agenda> {
           future: EntriesRepository.getEntriesByDate(DateUtils.dateOnly(_selectedDay)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              debugPrint(snapshot.data.toString());
               if (snapshot.data!.isEmpty) {
                 return const Center(child: Text('NO ENTRY AT THIS DATE'));
               }
@@ -103,7 +104,10 @@ class _AgendaState extends State<Agenda> {
                               child: ItemNode(entry: note)),
                       ]));
             }
-            return const SizedBox();
+            return const Center(
+                child: CircularProgressIndicator(
+                color: Colors.red,
+              ));
           }))),
     ]);
   }
