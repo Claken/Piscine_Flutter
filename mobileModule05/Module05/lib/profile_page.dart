@@ -47,6 +47,22 @@ class _ProfilePageState extends State<ProfilePage> {
     return (nbr / total) * 100;
   }
 
+  Widget feelContainer(String feel, List<MyEntry> entries) {
+    return Container(
+        padding: const EdgeInsets.only(left: 10),
+        child: Row(children: [
+          Icon(
+            emojiMap[feel],
+            size: 30,
+            color: colorMap[feel],
+          ),
+          const SizedBox(
+            width: 30,
+          ),
+          Text("${getPercentage(feel, entries).round().toString()}%")
+        ]));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,60 +163,11 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: Text(snapshot.data!.isEmpty
                                   ? "Diary empty : no feel"
                                   : "The feel list of your ${snapshot.data!.length} ${snapshot.data!.length == 1 ? "entry" : "entries"}")),
-                          Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(children: [
-                                Icon(
-                                  emojiMap["Happy"],
-                                  size: 30,
-                                  color: colorMap["Happy"],
-                                ),
-                                Text(
-                                    "${getPercentage("Happy", snapshot.data!).round().toString()}%")
-                              ])),
-                          Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(children: [
-                                Icon(
-                                  emojiMap["Satisfied"],
-                                  size: 30,
-                                  color: colorMap["Satisfied"],
-                                ),
-                                Text("${getPercentage("Satisfied", snapshot.data!).round().toString()}%")
-                              ])),
-                          Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(children: [
-                                Icon(
-                                  emojiMap["Normal"],
-                                  size: 30,
-                                  color: colorMap["Normal"],
-                                ),
-                                Text(
-                                    "${getPercentage("Normal", snapshot.data!).round().toString()}%"),
-                              ])),
-                          Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(children: [
-                                Icon(
-                                  emojiMap["Sad"],
-                                  size: 30,
-                                  color: colorMap["Sad"],
-                                ),
-                                Text(
-                                    "${getPercentage("Sad", snapshot.data!).round().toString()}%")
-                              ])),
-                          Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(children: [
-                                Icon(
-                                  emojiMap["Angry"],
-                                  size: 30,
-                                  color: colorMap["Angry"],
-                                ),
-                                Text(
-                                    "${getPercentage("Angry", snapshot.data!).round().toString()}%")
-                              ])),
+                          feelContainer('Happy', snapshot.data!),
+                          feelContainer('Satisfied', snapshot.data!),
+                          feelContainer('Normal', snapshot.data!),
+                          feelContainer('Sad', snapshot.data!),
+                          feelContainer('Angry', snapshot.data!),
                         ]);
                   }
                   return const SizedBox();
