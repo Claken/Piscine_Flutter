@@ -1,4 +1,5 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:diaryapp/agenda_page.dart';
 import 'package:diaryapp/profile_page.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class _DiaryState extends State<Diary> with TickerProviderStateMixin {
         controller: _tabController,
         children: [
           ProfilePage(cred: widget.cred, logout: widget.logout),
-          const Center(child: Text('caca'),),
+          const Agenda()
         ],
       ),
       bottomNavigationBar: Material(
