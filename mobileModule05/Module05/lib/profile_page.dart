@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/models/feeling.dart';
 import 'package:diaryapp/note_overview.dart';
@@ -8,7 +6,6 @@ import 'package:diaryapp/item_note.dart';
 import 'package:diaryapp/models/entry.dart';
 import 'package:diaryapp/repository/entries_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({

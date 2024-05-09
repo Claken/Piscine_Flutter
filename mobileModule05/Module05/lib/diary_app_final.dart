@@ -1,8 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:diaryapp/profile_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Diary extends StatefulWidget {
    const Diary({
