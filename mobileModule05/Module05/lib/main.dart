@@ -1,4 +1,4 @@
-import 'package:diaryapp/login_page.dart';
+import 'package:diaryapp/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

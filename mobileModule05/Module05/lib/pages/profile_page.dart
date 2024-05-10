@@ -96,11 +96,9 @@ class _ProfilePageState extends State<ProfilePage> {
         const SizedBox(height: 20),
         Container(
           decoration: const BoxDecoration(
-            color: Colors.pink,
-             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10))
-          ),
+              color: Colors.pink,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10))),
           child: const Center(
               child: Text(
             "Your last two entries",
@@ -114,11 +112,10 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 190,
             width: 500,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.pink, width: 2),
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10))
-            ),
+                border: Border.all(color: Colors.pink, width: 2),
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10))),
             child: FutureBuilder(
                 future: EntriesRepository.getEntries(),
                 builder: (context, snapshot) {
@@ -160,6 +157,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                 },
                                 child: ItemNode(entry: note)),
                         ]);
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ));
+                  } else if (snapshot.connectionState == ConnectionState.none) {
+                    return const Center(
+                        child: Text('NO CONNEXION TO THE DATABASE'));
                   }
                   return const SizedBox();
                 })),
@@ -179,7 +185,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            decoration: const BoxDecoration(color: Colors.pinkAccent),
+                            decoration:
+                                const BoxDecoration(color: Colors.pinkAccent),
                             child: Center(
                                 child: Text(
                               snapshot.data!.isEmpty

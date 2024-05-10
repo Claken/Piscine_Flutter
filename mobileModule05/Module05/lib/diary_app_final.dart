@@ -1,6 +1,6 @@
 import 'package:auth0_flutter/auth0_flutter.dart';
-import 'package:diaryapp/agenda_page.dart';
-import 'package:diaryapp/profile_page.dart';
+import 'package:diaryapp/pages/agenda_page.dart';
+import 'package:diaryapp/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class Diary extends StatefulWidget {
