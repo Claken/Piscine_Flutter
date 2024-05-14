@@ -11,4 +11,4 @@ With this project, I learn the basics of Dart and Flutter to build mobile applic
 
 # Prerequisites
 
-For this project, you need to install Flutter, Android SDK, and ...
+For this project, you need to install Flutter first
