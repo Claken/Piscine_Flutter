@@ -7,7 +7,7 @@ This project is part of the 42 school post-common-core curriculum.
 
 # What I gained from the project
 
-With this project, I learn the basics of Dart and Flutter to build mobile applications
+With this project, I learn the basics of Dart and Flutter to build mobile applications.
 
 # Prerequisites
 
