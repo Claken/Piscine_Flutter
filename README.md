@@ -6,3 +6,5 @@ This project's goal is to learn the [Dart](https://dart.dev/) language and the [
 # What I gained from the project
 
 # Prerequisites
+
+For this project, you need to install Flutter, Android SDK, and ...
