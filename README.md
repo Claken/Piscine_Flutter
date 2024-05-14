@@ -21,4 +21,4 @@ For this project, you need to install Flutter first. <br />
 Follow this [link](https://docs.flutter.dev/get-started/install) to get started. <br />
 <br />
 
-For more details about each day, click on the "mobileModules" folders.
+For more details about each module, click on the "mobileModules" folders.
