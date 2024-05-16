@@ -11,7 +11,7 @@ ex01 :
 
 ex02 :
 
-https://s3.ezgif.com/tmp/ezgif-3-759f7e4e18.gif
+![ex02calc](https://github.com/Claken/Piscine_Flutter/assets/51683861/7bc3f1fa-6ecc-4359-8fe4-cff5044c21a2)
 
 calculator_proj :
 
