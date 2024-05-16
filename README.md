@@ -12,7 +12,7 @@ With this project, I learn the basics of Dart and Flutter to build mobile applic
 - I learned how to manipulate the design of my applications
 - I learned to use [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html) to handle states in a class
 - I learned to manage data and API requests
-- I learned basic security connexion with [Auth0](https://auth0.com/)
+- I learned basic authentification systyem with [Auth0](https://auth0.com/)
 - I learned to handle a database for a web application with [SQLite (Flutter)](https://docs.flutter.dev/cookbook/persistence/sqlite)
 
 # Prerequisites
