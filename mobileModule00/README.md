@@ -12,8 +12,8 @@ For this exercice, I had to modify the button I coded to switch to an other titl
 
 ![buttonChangeTitle](https://github.com/Claken/Piscine_Flutter/assets/51683861/3c57faaf-3d5f-40c6-8d25-52625ef71e44)
 
-
 ## ex02 ##
+For this exercice, I had to code a prototy of calculator that, when you press a button, only triggers a debug message telling which button was pressed :
 
 ![ex02calc](https://github.com/Claken/Piscine_Flutter/assets/51683861/7bc3f1fa-6ecc-4359-8fe4-cff5044c21a2)
 
