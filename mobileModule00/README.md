@@ -2,8 +2,8 @@
 
 For this module, I had to do some little exercices to learn the basics of the mobile application.
 
-
 ## ex00 ##
+For this exercice, I had to code a simple button that triggers a debug message ("button pressed") when one clicks on it.
 
 ![simpleButton](https://github.com/Claken/Piscine_Flutter/assets/51683861/ab11dc24-59b4-409a-8806-69d19db7527b)
 
