@@ -4,11 +4,11 @@ For this module, we had to do some little exercices
 
 ex00 :
 
-[Screencast_from_16-05-2024_184008.webm](https://github.com/Claken/Piscine_Flutter/assets/51683861/679894c5-a498-47ec-a9b6-9b06836a5bea)
+[simple button](https://github.com/Claken/Piscine_Flutter/assets/51683861/679894c5-a498-47ec-a9b6-9b06836a5bea)
 
 ex01 :
 
-[Screencast_from_16-05-2024_193829.webm](https://github.com/Claken/Piscine_Flutter/assets/51683861/84ddb049-bff0-44a2-a736-fa1af38bc1dd)
+[button that changes title](https://github.com/Claken/Piscine_Flutter/assets/51683861/84ddb049-bff0-44a2-a736-fa1af38bc1dd)
 
 ex02 :
 
