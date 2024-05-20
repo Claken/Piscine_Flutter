@@ -8,7 +8,7 @@ When you switch tabs, the content of the page change to the name of the current 
 
 Then, I created the app bar (the bar above) that includes a search Textfield, and a geolocation button. <br/>
 When you click on the geolocation button, the text "Paris" is displayed in the middle of the app. <br/>
-When you click on the search button, you can then write on the textfield a text which will be displayed in the middle of the app (and replace the existing text) <br/>
+When you click on the search button, you can then write on the textfield a text which will be displayed in the middle of the app (and replace the existing text) : <br/>
 
 
 ![weatherapp_proj](https://github.com/Claken/Piscine_Flutter/assets/51683861/32320342-77db-4432-b507-67668445cb88)
