@@ -20,3 +20,11 @@ For this exercice, I had to code a prototype of calculator that, when you press 
 For the last exercice, I took the same code as the previous one and made a real calculator :
 
 ![calculator](https://github.com/Claken/Piscine_Flutter/assets/51683861/095b104e-f067-42a4-bdde-2baa81d772f3)
+
+# Launch an exercice
+
+Go to a folder a execute this command : <br/>
+
+```
+flutter run
+```
