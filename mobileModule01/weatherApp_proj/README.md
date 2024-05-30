@@ -1,6 +1,6 @@
 # Weather App Project Part 1 : Structure and logic 
-<br/>
-For this module, I had to conceive the structure and logic of my weather app application. <br/> <br/>
+
+For this module, I had to conceive the structure and logic of my weather app application. <br/>
 
 ## Bottom Bar
 
