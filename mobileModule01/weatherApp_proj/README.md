@@ -1,5 +1,3 @@
-# ! README IN CONSTRUCTION ! #
-
 # Weather App Project Part 1 : Structure and logic 
 
 For this module, I had to conceive the structure and logic of my weather app application. <br/> <br/>
