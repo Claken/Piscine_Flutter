@@ -47,11 +47,16 @@ class _MyTopBarState extends State<MyTopBar> {
 
   Widget textFieldOrNot() {
     if (_textFieldVisible == false) {
-      return Text(
-        'Search location...',
-        style: TextStyle(
-            fontStyle: FontStyle.italic, color: Colors.white.withOpacity(0.1)),
-      );
+      return InkWell(
+          onTap: () {
+            _toggleTextFieldVisibility();
+          },
+          child: Text(
+            'Search location...',
+            style: TextStyle(
+                fontStyle: FontStyle.italic,
+                color: Colors.white.withOpacity(0.1)),
+          ));
     }
     return TextField(
       style: TextStyle(
