@@ -4,7 +4,7 @@ For this module, I had to conceive the structure and logic of my weather app app
 
 ## Bottom Bar
 
-First, I created the bottom bar of my application with three tabs which have a name and a icon (“Currently”, “Today” and “Weekly”). <br/> <br/>
+First, I created the bottom bar of my application with three tabs which have a name and a icon (“Currently”, “Today” and “Weekly”). <br/>
 
 When you switch tabs, the content of the page change to the name of the current tab. <br/> 
 
