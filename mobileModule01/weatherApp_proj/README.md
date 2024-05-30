@@ -1,5 +1,5 @@
 # Weather App Project Part 1 : Structure and logic 
-
+<br/>
 For this module, I had to conceive the structure and logic of my weather app application. <br/> <br/> <br/>
 First, I created the bottom bar of my application with three tabs which have a name and a icon (“Currently”, “Today” and “Weekly”). <br/> 
 
