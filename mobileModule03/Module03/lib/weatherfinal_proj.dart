@@ -32,6 +32,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   String _text = "";
   String _errorText = "";
   final String errorAPI = "No Connexion\nPlease check your Internet connexion";
+  bool _isBusy = false;
 
   @override
   void initState() {
@@ -65,9 +66,15 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
       _location['long'] = longi;
     });
     if (lati != '' && longi != '') {
+      setState(() {
+        _isBusy = true;
+      });
       await getCurrentInfo(lati, longi);
       await getTodayInfo(lati, longi);
       await getWeeklyInfo(lati, longi);
+      setState(() {
+        _isBusy = false;
+      });
     }
   }
 
@@ -221,27 +228,33 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
             fit: BoxFit.cover,
           ),
         ),
-        child: _errorText.isEmpty
-            ? _location['cityName']!.isNotEmpty || _text.isNotEmpty
-                ? BodyOfApp(
-                    text: _text,
-                    controller: _tabController,
-                    location: _location,
-                    current: _current,
-                    today: _today,
-                    week: _week,
-                    listOfCities: _listOfCities,
-                    changeText: changeText,
-                    changeLatAndLong: changeLatAndLong,
-                    changeLocation: changeLocation)
-                : const Center(
-                    child: Text(
-                        'Please search a location\nor\nuse the geolocation button',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 20)))
-            : ErrorMessage(
-                errorMessage: _errorText,
-              ),
+        child: _isBusy
+            ? const Center(
+                child: CircularProgressIndicator(
+                color: Colors.white,
+              ))
+            : _errorText.isEmpty
+                ? _location['cityName']!.isNotEmpty || _text.isNotEmpty
+                    ? BodyOfApp(
+                        text: _text,
+                        controller: _tabController,
+                        location: _location,
+                        current: _current,
+                        today: _today,
+                        week: _week,
+                        listOfCities: _listOfCities,
+                        changeText: changeText,
+                        changeLatAndLong: changeLatAndLong,
+                        changeLocation: changeLocation)
+                    : const Center(
+                        child: Text(
+                            'Please search a location\nor\nuse the geolocation button',
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)))
+                : ErrorMessage(
+                    errorMessage: _errorText,
+                  ),
       ),
       bottomNavigationBar: BottomBar(
           backgroundColor: _backgroundColor,
