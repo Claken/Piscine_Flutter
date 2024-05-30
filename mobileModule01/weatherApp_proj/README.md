@@ -9,3 +9,11 @@ When you click on the geolocation button, the text "Paris" is displayed in the m
 When you click on the search button, you can then write on the textfield a text which will be displayed in the middle of the app (and replace the existing text) : <br/>
 
 ![weatherapp_proj](https://github.com/Claken/Piscine_Flutter/assets/51683861/a358a7a8-f384-43b9-9043-8568b4386d18)
+
+# Launch the project
+
+To launch the project, execute this command : <br/>
+
+```
+flutter run
+```
