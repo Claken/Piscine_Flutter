@@ -1,3 +1,2 @@
-# ex00
+# Weather App Project Part 2 : API and data 
 
-A new Flutter project.
