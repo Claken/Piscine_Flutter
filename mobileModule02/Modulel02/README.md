@@ -11,3 +11,7 @@ To do so, I had to use a weather API, a geolocation from the GPS of the device, 
 When you click on the geolocation button ...
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
+
+## Search bar
+
+
