@@ -8,7 +8,7 @@ To do so, I had to use a weather API, a geolocation from the GPS of the device, 
 
 ## Geolocation
 
-When you click on the geolocation button
+When you click on the geolocation button (top right), a pop-up window appears to ask you for permission to use the geolocation from the GPS of your device :
 
 ![geolocation](https://github.com/Claken/Piscine_Flutter/assets/51683861/66d10dcf-f189-488b-b917-ce095e7a289a)
 
