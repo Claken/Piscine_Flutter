@@ -24,18 +24,18 @@ If you accept, you will have :
   • The current weather description (cloudy, sunny, rainy, etc.). <br/>
   • the current wind speed (in km/h). <br/>
 
-- In the “Today” tab :
-  • The location (city name, region and country).
-  • The list of the weather for the day with the following data:
-  • The hours.
-  • The temperatures by hours.
+- In the “Today” tab : <br/>
+  • The location (city name, region and country). <br/>
+  • The list of the weather for the day with the following data: <br/>
+    • The hours.
+    • The temperatures by hours.
 
-- In your third tab “Weekly” you will have to display:
-  • The location (city name, region and country).
-  • The list of the weather for each day of the week with the following data:
-  • The date.
-  • The min and max temperatures of the day
-  • The weather description (cloudy, sunny, rainy, etc.).
+- In the “Weekly” tab : <br/>
+  • The location (city name, region and country). <br/>
+  • The list of the weather for each day of the week with the following data: <br/>
+    • The date.
+    • The min and max temperatures of the day
+    • The weather description (cloudy, sunny, rainy, etc.).
 
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
