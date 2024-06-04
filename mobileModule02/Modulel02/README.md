@@ -12,11 +12,11 @@ When you click on the geolocation button (top right), a pop-up window appears to
 
 ![geolocation](https://github.com/Claken/Piscine_Flutter/assets/51683861/66d10dcf-f189-488b-b917-ce095e7a289a)
 
-If you refuse to use it, this message appears on your screen :
+If you refuse to use it, this message will appear on your screen :
 
 ![geolocation_refus](https://github.com/Claken/Piscine_Flutter/assets/51683861/79813cb3-b821-4e91-966c-61f6e5553c3b)
 
-If you accept, ...
+If you accept, you will have 
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
 
