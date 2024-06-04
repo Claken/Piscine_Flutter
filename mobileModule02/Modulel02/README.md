@@ -1,5 +1,3 @@
-# ! README IN PROGRESS !
-
 # Weather App Project Part 2 : API and data 
 
 For this part of the flutter piscine, I had to add data to the weather app, and implement every functionality in order to handle it. <br/>
