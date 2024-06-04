@@ -1,3 +1,4 @@
-# ex00
+# !!! README IN PROGRESS !!!
 
-A new Flutter project.
+# The Weather App Project
+
