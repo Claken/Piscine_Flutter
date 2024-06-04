@@ -16,7 +16,13 @@ If you refuse to use it, this message will appear on your screen :
 
 ![geolocation_refus](https://github.com/Claken/Piscine_Flutter/assets/51683861/79813cb3-b821-4e91-966c-61f6e5553c3b)
 
-If you accept, you will have 
+If you accept, you will have :
+
+- In tab “Current” :
+  • The location (city name, region and country).
+  • The current temperature (in Celsius).
+  • The current weather description (cloudy, sunny, rainy, etc.).
+  • the current wind speed (in km/h).
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
 
