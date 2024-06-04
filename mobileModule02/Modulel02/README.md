@@ -18,11 +18,11 @@ If you refuse to use it, this message will appear on your screen :
 
 If you accept, you will have :
 
-- In tab “Current” :
-  • The location (city name, region and country).
-  • The current temperature (in Celsius).
-  • The current weather description (cloudy, sunny, rainy, etc.).
-  • the current wind speed (in km/h).
+- In tab “Current” : <br/>
+  • The location (city name, region and country). <br/>
+  • The current temperature (in Celsius). <br/>
+  • The current weather description (cloudy, sunny, rainy, etc.). <br/>
+  • the current wind speed (in km/h). <br/>
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
 
