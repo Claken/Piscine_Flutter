@@ -47,3 +47,6 @@ You will then see the informations about the city like this :
 
 ![api data2](https://github.com/Claken/Piscine_Flutter/assets/51683861/0c3afb9e-b931-4db5-8819-ff95df592320)
 
+## Launch the project
+
+...
