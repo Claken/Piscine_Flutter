@@ -43,7 +43,7 @@ If you accept, you will have :
 
 When you tab the search bar button (or the search bar itself), you can type any city you want in the world. <br/>
 When the city you want appears on the list below the search bar, tap on it. <br/>
-You will then see the informations about the city :
+You will then see the informations about the city like this :
 
 ![api data2](https://github.com/Claken/Piscine_Flutter/assets/51683861/0c3afb9e-b931-4db5-8819-ff95df592320)
 
