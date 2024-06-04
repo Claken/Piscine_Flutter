@@ -37,10 +37,12 @@ If you accept, you will have :
     • The min and max temperatures of the day <br/>
     • The weather description (cloudy, sunny, rainy, etc.). <br/>
 
-
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
 
 ## Search bar
+
+When you tab the search bar button (or the search bar itself), you can type any city you want in the world. <br/>
+When the city you want appears on the list below the search bar, tap on it. <br/>
 
 ![api data2](https://github.com/Claken/Piscine_Flutter/assets/51683861/0c3afb9e-b931-4db5-8819-ff95df592320)
 
