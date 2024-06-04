@@ -19,20 +19,20 @@ If you refuse to use it, this message will appear on your screen :
 If you accept, you will have :
 
 - In the “Current” tab : <br/>
-  • The location (city name, region and country). <br/>
+  • Your location (city name, region and country). <br/>
   • The current temperature (in Celsius). <br/>
   • The current weather description (cloudy, sunny, rainy, etc.). <br/>
   • the current wind speed (in km/h). <br/>
 
 - In the “Today” tab : <br/>
-  • The location (city name, region and country). <br/>
-  • The list of the weather for the day with the following data: <br/>
+  • Your location. <br/>
+  • A list of the weather for the day with the following data: <br/>
     • The hours.
     • The temperatures by hours.
 
 - In the “Weekly” tab : <br/>
-  • The location (city name, region and country). <br/>
-  • The list of the weather for each day of the week with the following data: <br/>
+  • Your location. <br/>
+  • A list of the weather for each day of the week with the following data: <br/>
     • The date.
     • The min and max temperatures of the day
     • The weather description (cloudy, sunny, rainy, etc.).
