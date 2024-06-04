@@ -27,15 +27,15 @@ If you accept, you will have :
 - In the “Today” tab : <br/>
   • Your location. <br/>
   • A list of the weather for the day with the following data: <br/>
-    • The hours.
-    • The temperatures by hours.
+    • The hours. <br/>
+    • The temperatures by hours. <br/>
 
 - In the “Weekly” tab : <br/>
   • Your location. <br/>
   • A list of the weather for each day of the week with the following data: <br/>
-    • The date.
-    • The min and max temperatures of the day
-    • The weather description (cloudy, sunny, rainy, etc.).
+    • The date. <br/>
+    • The min and max temperatures of the day <br/>
+    • The weather description (cloudy, sunny, rainy, etc.). <br/>
 
 
 ![api data](https://github.com/Claken/Piscine_Flutter/assets/51683861/1c03466c-e170-443e-9042-18feef4fdad0)
