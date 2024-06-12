@@ -55,5 +55,3 @@ When you have set your smartphone or your emulator, please use this command :
 ```
 flutter run
 ```
-
-...
