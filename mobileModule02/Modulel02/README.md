@@ -51,4 +51,9 @@ You will then see the informations about the city like this :
 
 You need to have either a smartphone or an emulator of smartphone in order to launch this project.
 
+When you have set your smartphone or your emulator, please use this command :
+```
+flutter run
+```
+
 ...
