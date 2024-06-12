@@ -49,4 +49,6 @@ You will then see the informations about the city like this :
 
 ## Launch the project
 
+You need to have either a smartphone or an emulator of smartphone in order to launch this project.
+
 ...
