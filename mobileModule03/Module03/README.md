@@ -14,7 +14,8 @@ This tab displays the chosen city, the current temperature, weather and wind :
 
 ## "TODAY" TAB
 
-This tab displays a graphic about the evolution of the weather during the current day, plus details for each hour of the day  :
+This tab displays a graphic about the evolution of the weather during the current day,
+plus details for each hour of the day  :
 
 ![current](https://github.com/Claken/Piscine_Flutter/assets/51683861/5fa8d66a-df7a-4d5a-9362-a2df89f4687c)
 
@@ -22,7 +23,8 @@ You need to swipe to the left to see every detailed information about each hour 
 
 ## "WEEKLY" TAB
 
-This tab displays a graphic about the evolution of the weather of the next seven days, plus details about each day :
+This tab displays a graphic about the evolution of the weather of the next seven days,
+plus details about each day :
 
 ![week](https://github.com/Claken/Piscine_Flutter/assets/51683861/d11298a3-2404-4f85-899a-bfb09b05bada)
 
