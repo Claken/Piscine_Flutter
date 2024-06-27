@@ -8,6 +8,8 @@ You can your current location with the geolocation button, or search for a city 
 
 ## "CURRENTLY" TAB
 
+This tab displays the city chosen, the current temperature, weather and wind :
+
 ![today](https://github.com/Claken/Piscine_Flutter/assets/51683861/355143ce-2134-43ce-abe2-66a150a17d6d)
 
 ## "TODAY" TAB
