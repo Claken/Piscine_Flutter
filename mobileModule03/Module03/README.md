@@ -12,7 +12,7 @@ You can your current location with the geolocation button, or search for a city 
 
 ## TODAY
 
-
+![current](https://github.com/Claken/Piscine_Flutter/assets/51683861/5fa8d66a-df7a-4d5a-9362-a2df89f4687c)
 
 ## WEEKLY
 
