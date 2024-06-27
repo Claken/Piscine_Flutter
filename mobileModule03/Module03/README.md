@@ -20,6 +20,8 @@ This tab displays a graphic about the evolution of the weather during the curren
 
 ## "WEEKLY" TAB
 
+This tab display the weather (and its evolution) of the next seven days :
+
 ![week](https://github.com/Claken/Piscine_Flutter/assets/51683861/d11298a3-2404-4f85-899a-bfb09b05bada)
 
 
