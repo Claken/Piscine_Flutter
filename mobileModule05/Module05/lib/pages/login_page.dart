@@ -75,22 +75,24 @@ class _MyLoginPageState extends State<LoginPage> {
             : _credentials == null
                 ? Container(
                     decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                            "assets/images/book-with-yellow-cover.jpg"),
-                        fit: BoxFit.fill,
-                      ),
+                      color: Colors.red
                     ),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Center(
-                              child: Text('WELCOME TO YOUR\nDIARY',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      backgroundColor: Colors.brown))),
+                          Container(
+                              color: Colors.white,
+                              height: 100,
+                              child: const Center(
+                                  child: Text('WELCOME TO YOUR\nDIARY',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)))),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           ElevatedButton(
                             style: TextButton.styleFrom(
                               backgroundColor: Colors.green,
