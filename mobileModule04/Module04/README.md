@@ -29,3 +29,7 @@ Here is an example of a profile page with two entries :
 When you tap on an entry, an information note about the entry pops up :
 
 ![seeentry](https://github.com/Claken/Piscine_Flutter/assets/51683861/25fde4ca-8792-411f-bc8f-1d3821c97f7d)
+
+If you choose to update the entry, you will come across this page :
+
+![update](https://github.com/Claken/Piscine_Flutter/assets/51683861/88fbb155-663d-48ec-a299-516acf704434)
