@@ -33,6 +33,7 @@ When you click on the "New Entry" button, this page will appear :
 (When you done typing, tap on the check button in the top right-hand corner)
 <br/>
 <br/>
+<br/>
 
 When you tap on an entry, an information note about the entry pops up :
 
