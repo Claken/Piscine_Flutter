@@ -14,3 +14,4 @@ Once you have logged in, you will be taken to your profile page.
 
 ## Profile Page
 
+On your profile page, you can create an entry in which you can write whatever you like, describing your mood, with a compulsory title.
