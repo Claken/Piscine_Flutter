@@ -25,3 +25,5 @@ Once you have logged in, you will be taken to your profile page.
 Here is an example of a profile page :
 
 ![profile](https://github.com/Claken/Piscine_Flutter/assets/51683861/504b943f-739d-461c-872c-87529726018e)
+
+![seeentry](https://github.com/Claken/Piscine_Flutter/assets/51683861/25fde4ca-8792-411f-bc8f-1d3821c97f7d)
