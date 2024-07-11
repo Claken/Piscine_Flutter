@@ -14,7 +14,7 @@ The login page os the first page which appears when you launch the page, with a 
 When you click on it, the authentification system will be launched <br/>
 
 ![authentification](https://github.com/Claken/Piscine_Flutter/assets/51683861/24beefdc-e352-461e-9b86-c5387565b327)
-(You need a Google account to log in)
+<br/> (You need a Google account to log in)
 
 Once you have logged in, you will be taken to your profile page.
 
