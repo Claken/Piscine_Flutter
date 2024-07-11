@@ -8,6 +8,9 @@ For the first part, I had to set up an authentication system to access the app, 
 ## Login Page
 
 The login page os the first page which appears when you launch the page, with a simple login button. <br/>
+
+![login page](https://github.com/Claken/Piscine_Flutter/assets/51683861/dfc79c22-9e7e-4b66-8a28-f37c1fe893f6)
+
 When you click on it, the authentification system will be launched. <br/>
 
 Once you have logged in, you will be taken to your profile page.
