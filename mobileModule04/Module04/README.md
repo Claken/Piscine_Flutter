@@ -11,7 +11,9 @@ The login page os the first page which appears when you launch the page, with a 
 
 ![login page](https://github.com/Claken/Piscine_Flutter/assets/51683861/dfc79c22-9e7e-4b66-8a28-f37c1fe893f6)
 
-When you click on it, the authentification system will be launched. <br/>
+When you click on it, the authentification system will be launched : <br/>
+
+![authentification](https://github.com/Claken/Piscine_Flutter/assets/51683861/24beefdc-e352-461e-9b86-c5387565b327)
 
 Once you have logged in, you will be taken to your profile page.
 
