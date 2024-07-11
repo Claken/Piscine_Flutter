@@ -10,7 +10,7 @@ For the second part of the diary app project, I had to add some design for the p
 
 For this new profile page, new information have been added :
   - A list of the last two entries
-  - A logout button that logout the user and redirect him to the login page.
+  - A logout button that logout the user and redirect him to the login page
   - A list of the feeling and the percentage of use for all entries
 
 ![profile2](https://github.com/Claken/Piscine_Flutter/assets/51683861/c52f8ede-f835-4a09-8ea0-b5b8d17a03fd)
