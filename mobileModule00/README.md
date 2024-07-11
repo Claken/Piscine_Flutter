@@ -25,7 +25,7 @@ For the last exercice, I took the same code as the previous one and made a real 
 
 # Launch an exercice
 
-Go to a folder a execute this command : <br/>
+Go to one of the four folders and execute this command : <br/>
 
 ```
 flutter run
