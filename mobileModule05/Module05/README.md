@@ -8,7 +8,7 @@ For the second part of the diary app project, I had to add some design for the p
 
 ## Profile Page
 
-For this new profile page, new information have been added :
+For this new profile page, new information has been added :
   - A list of the last two entries
   - A logout button that logout the user and redirect him to the login page
   - A list of the feeling and the percentage of use for all entries
