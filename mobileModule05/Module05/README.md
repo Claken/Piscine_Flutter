@@ -13,6 +13,7 @@ For this new profile page, new information has been added :
   - A logout button that logout the user and redirect him to the login page
   - A list of the last two entries
   - A list of the feeling and the percentage of use for all entries
+  - A profile tab, and an agenda tab
 
 ![profile2](https://github.com/user-attachments/assets/7248f38c-07d1-42aa-b1a4-93e4dfd7327d)
 
