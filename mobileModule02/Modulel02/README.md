@@ -49,7 +49,7 @@ You will then see the informations about the city like this :
 
 ## Launch the project
 
-You need to have either a smartphone or an emulator of smartphone in order to launch this project.
+You need to have either a smartphone or an emulator of smartphone in order to launch this project. <br/>
 (as well as for the reste of the piscine)
 
 When you have set your smartphone or your emulator, please use this command :
