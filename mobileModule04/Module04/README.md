@@ -22,4 +22,6 @@ Once you have logged in, you will be taken to your profile page.
 
 ## Profile Page
 
-On your profile page, you can create an entry in which you can write whatever you like, describing your mood, with a compulsory title.
+Here is an example of a profile page :
+
+![profile](https://github.com/Claken/Piscine_Flutter/assets/51683861/80136f84-f3a0-4e46-9956-aff48ffd36da)
