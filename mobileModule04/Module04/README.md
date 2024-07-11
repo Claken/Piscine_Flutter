@@ -37,3 +37,8 @@ When you tap on an entry, an information note about the entry pops up :
 If you choose to update the entry, you will come across this page :
 
 ![update](https://github.com/Claken/Piscine_Flutter/assets/51683861/88fbb155-663d-48ec-a299-516acf704434)
+
+If you choose to delete the entry, you will come across this page :
+
+![delete](https://github.com/Claken/Piscine_Flutter/assets/51683861/52986c28-f8df-4012-a6d7-ad48a816517c)
+
