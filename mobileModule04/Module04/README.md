@@ -17,6 +17,7 @@ When you click on it, the authentification system will be launched <br/>
 <br/> (You need a Google account to log in)
 <br/>
 
+<br/>
 Once you have logged in, you will be taken to your profile page.
 
 ## Profile Page
