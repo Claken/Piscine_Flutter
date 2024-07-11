@@ -26,6 +26,10 @@ Here is an example of a profile page with two entries :
 
 ![profile](https://github.com/Claken/Piscine_Flutter/assets/51683861/504b943f-739d-461c-872c-87529726018e)
 
+When you click on the "New Entry" button, this page will appear :
+
+![add_note](https://github.com/Claken/Piscine_Flutter/assets/51683861/08ce8a5e-4748-40b4-82a0-611a9e7a896d)
+
 When you tap on an entry, an information note about the entry pops up :
 
 ![seeentry](https://github.com/Claken/Piscine_Flutter/assets/51683861/25fde4ca-8792-411f-bc8f-1d3821c97f7d)
