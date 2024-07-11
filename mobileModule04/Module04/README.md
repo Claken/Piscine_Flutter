@@ -22,7 +22,7 @@ Once you have logged in, you will be taken to your profile page.
 
 ## Profile Page
 
-Here is an example of a profile page :
+Here is an example of a profile page with two entries :
 
 ![profile](https://github.com/Claken/Piscine_Flutter/assets/51683861/504b943f-739d-461c-872c-87529726018e)
 
