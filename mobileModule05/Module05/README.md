@@ -19,6 +19,6 @@ For this new profile page, new information has been added :
 
 ## Agenda Page
 
-The agenda page have a calendar and the entry
+The agenda page have a calendar on the first half of the page, and the list (or not) of the selected day's entries.
 
 ![agenda](https://github.com/Claken/Piscine_Flutter/assets/51683861/926a0619-d16a-4f84-9aa3-49c5405f0615)
