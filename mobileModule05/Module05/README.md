@@ -17,7 +17,7 @@ For this new profile page, new information has been added :
 
 ## Agenda Page
 
-The agenda page have a calendar on the first half of the page, and the list (or not) of the selected day's entries.
+The agenda page have a calendar on the first half of the page, and the list (or not) of the selected day's entries. <br/>
 Tap on a date, and see the selected day's entries. <br/>
 If there is no entry, you will see a message which says "NO ENTRY FOR THIS DATE"
 
