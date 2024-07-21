@@ -1,5 +1,3 @@
-# !!! README IN PROGRESS !!!
-
 # Diary App Part 2 : Manage data and display 
 
 For the last module of the flutter piscine, I had to finish the diary app that I started with the previous module. <br/>
