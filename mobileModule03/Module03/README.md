@@ -8,7 +8,8 @@ You can your current location with the geolocation button, or search for a city 
 
 ## Geolocation
 
-If the geolocation is refused or not enabled, the following warning is displayed : 
+If the geolocation is refused or not enabled, the following warning is displayed : <br/>
+
 ![no_geo](https://github.com/user-attachments/assets/a0a9f634-e002-40c8-bc95-067d9f88bd2a)
 
 ## "CURRENTLY" TAB
