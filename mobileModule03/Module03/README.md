@@ -6,6 +6,11 @@ This project consists of a weather app that provides the user informations on to
 
 You can your current location with the geolocation button, or search for a city with the search bar :
 
+## Geolocation
+
+If the geolocation is refused or not enabled, the following warning is displayed : 
+![no_geo](https://github.com/user-attachments/assets/a0a9f634-e002-40c8-bc95-067d9f88bd2a)
+
 ## "CURRENTLY" TAB
 
 This tab displays the chosen city, the current temperature, weather and wind :
