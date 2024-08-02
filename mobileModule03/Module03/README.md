@@ -23,6 +23,7 @@ If no message pops up, go the settings of your smartphone to enable it yourself.
 
 ## Search bar (and the different tabs)
 
-You can use the search bar to choose a city.
+You can use the search bar to choose a city. <br/>
+When you have chosen a city, ...
 
 ![gif_app](https://github.com/user-attachments/assets/c3eddc64-2023-448c-8e15-62880ab7ee1e)
