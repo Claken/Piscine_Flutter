@@ -24,6 +24,9 @@ If no message pops up, go the settings of your smartphone to enable it yourself.
 ## Search bar (and the different tabs)
 
 You can use the search bar to choose a city. <br/>
-When you have chosen a city, ...
+Once you have chosen a city, you will have different informations about its weather in three different tabs : <br/>
+- The "CURRENTLY" tab
+- The "TODAY" tab
+- The "WEEKLY" tab
 
 ![gif_app](https://github.com/user-attachments/assets/c3eddc64-2023-448c-8e15-62880ab7ee1e)
