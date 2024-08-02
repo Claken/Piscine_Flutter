@@ -10,6 +10,12 @@ You can your current location with the geolocation button, or search for a city 
 
 ## Geolocation
 
+You use the geolocation, click on the geolocation button at the top right of the app. <br>
+A message like this will pop up to ask you to allow geolocation :
+
+![allowing](https://github.com/user-attachments/assets/971c3b15-6336-4488-af0e-126c350db536)
+
+
 If the geolocation is refused or not enabled, the following warning is displayed : <br/>
 
 ![no_geo](https://github.com/user-attachments/assets/a0a9f634-e002-40c8-bc95-067d9f88bd2a)
