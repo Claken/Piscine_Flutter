@@ -30,6 +30,5 @@ Once you have chosen a city, you will have different informations about its weat
 - *The "TODAY" tab* <br/>
 &emsp; This tab displays
 - *The "WEEKLY" tab* <br/>
-&emsp; This tab displays <br/>
-<br/>
+&emsp; This tab displays <br/> <br/>
 ![gif_app](https://github.com/user-attachments/assets/c3eddc64-2023-448c-8e15-62880ab7ee1e)
