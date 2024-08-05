@@ -25,8 +25,9 @@ If no message pops up, go the settings of your smartphone to enable it yourself.
 
 You can use the search bar to choose a city. <br/>
 Once you have chosen a city, you will have different informations about its weather in three different tabs : <br/>
-- The "CURRENTLY" tab
-- The "TODAY" tab
-- The "WEEKLY" tab
+- The "CURRENTLY" tab <br/>
+    This tab displays the city you have chosen, it current temperature, and the wind
+- The "TODAY" tab <br/>
+- The "WEEKLY" tab<br/>
 
 ![gif_app](https://github.com/user-attachments/assets/c3eddc64-2023-448c-8e15-62880ab7ee1e)
