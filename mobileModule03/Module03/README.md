@@ -1,10 +1,8 @@
-# !!! README IN PROGRESS !!!
-
 # The Weather App Project
 
 This project consists of a weather app that provides the user informations on today's weather as well as that of the next seven days.
 
-You can your current location with the geolocation button, or search for a city with the search bar :
+You can search for your current location with the geolocation button, or search for a city with the search bar :
 
 ![daaaam](https://github.com/user-attachments/assets/5e3c2b79-dc58-4c2d-b688-a63b528bd146)
 
