@@ -28,7 +28,7 @@ Once you have chosen a city, you will have different informations about its weat
 - *The "CURRENTLY" tab* <br/>
 &emsp; This tab displays the name of the city you have chosen, it current temperature, its weather and the wind speed.
 - *The "TODAY" tab* <br/>
-&emsp; This tab displays a graph about the evolution of today's temperature (with the maximum and the minimum temperatures), along with some informations about each hour's weather.
+&emsp; This tab displays a graph about the evolution of today's temperature, along with some informations about each hour's weather.
 - *The "WEEKLY" tab* <br/>
 &emsp; This tab displays <br/> <br/>
 ![gif_app](https://github.com/user-attachments/assets/c3eddc64-2023-448c-8e15-62880ab7ee1e)
