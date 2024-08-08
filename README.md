@@ -74,7 +74,7 @@ Your Flutter application should now start running on the Android emulator. If yo
 - Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
 - SDK Issues: Make sure your Android SDK and Flutter SDK are up to date.
 
-For more detailed troubleshooting, refer to the official Flutter documentation and [Android Studio documentation](https://developer.android.com/studio/run/emulator).
+For more detailed troubleshooting, refer to the [official Flutter documentation](https://docs.flutter.dev/) and [Android Studio documentation](https://developer.android.com/studio/run/emulator).
 
 # More details
 
