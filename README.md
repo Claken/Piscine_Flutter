@@ -1,3 +1,5 @@
+# !!! README IN PROGRESS !!! #
+
 # PISCINE FLUTTER
 This project's goal is to learn the [Dart](https://dart.dev/) language and the [Flutter](https://flutter.dev/) framework through several exercices (a.k.a. modules) to be able to build mobile applications. <br />
 
@@ -24,9 +26,8 @@ Follow the link [here](https://docs.flutter.dev/get-started/install) to get star
 To run your Flutter application on an Android emulator, follow these steps:
 Prerequisites
 
-    Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from here.
-
-    Flutter SDK: Ensure you have the Flutter SDK installed. You can follow the installation guide here.
+- Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from here.
+- Flutter SDK: Ensure you have the Flutter SDK installed. You can follow the installation guide here.
 
 Steps to Set Up the Emulator
 
