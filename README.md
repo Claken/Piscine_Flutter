@@ -73,7 +73,6 @@ Troubleshooting
 
 For more detailed troubleshooting, refer to the official Flutter documentation and Android Studio documentation.
 
-
-
+# More details
 
 For more details about each module, click on the "mobileModules" folders.
