@@ -24,12 +24,13 @@ Follow the link [here](https://docs.flutter.dev/get-started/install) to get star
 ## Setting Up an Android Emulator for Flutter
 
 To run your Flutter application on an Android emulator, follow these steps:
-Prerequisites
+
+### Prerequisites
 
 - Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from here.
 - Flutter SDK: Ensure you have the Flutter SDK installed. You can follow the installation guide here.
 
-Steps to Set Up the Emulator
+### Steps to Set Up the Emulator
 
     Open Android Studio:
         Launch Android Studio on your computer.
@@ -53,7 +54,7 @@ Steps to Set Up the Emulator
         In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
         Wait for the emulator to boot up completely. This may take a few minutes.
 
-Running Your Flutter App
+### Running Your Flutter App
 
     Open Your Flutter Project:
         Open your Flutter project in your preferred IDE (e.g., Android Studio, VS Code).
