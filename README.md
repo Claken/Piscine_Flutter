@@ -56,22 +56,22 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
 
 ### Running Your Flutter App
 
-    Open Your Flutter Project:
-        Open your Flutter project in your preferred IDE (e.g., Android Studio, VS Code).
+1) Open Your Flutter Project:
+    - Open your Flutter project in your preferred IDE (e.g., Android Studio, VS Code).
 
-    Select the Emulator:
-        Ensure your emulator is running. You should see it listed in the device dropdown in the Flutter toolbar of your IDE.
-        Select the emulator from the dropdown list.
+2) Select the Emulator:
+    - Ensure your emulator is running. You should see it listed in the device dropdown in the Flutter toolbar of your IDE.
+    - Select the emulator from the dropdown list.
 
-    Run the App:
-        Run your Flutter app using the run button (usually a green play icon) or by executing flutter run in the terminal.
+3) Run the App:
+    - Run your Flutter app using the run button (usually a green play icon) or by executing flutter run in the terminal.
 
 Your Flutter application should now start running on the Android emulator. If you encounter any issues, make sure your emulator is running and properly configured, and that your Flutter environment is set up correctly.
-Troubleshooting
 
-    Emulator Performance: If the emulator is slow, consider enabling hardware acceleration in the Android Studio settings.
-    Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
-    SDK Issues: Make sure your Android SDK and Flutter SDK are up to date.
+### Troubleshooting
+    - Emulator Performance: If the emulator is slow, consider enabling hardware acceleration in the Android Studio settings.
+    - Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
+    - SDK Issues: Make sure your Android SDK and Flutter SDK are up to date.
 
 For more detailed troubleshooting, refer to the official Flutter documentation and Android Studio documentation.
 
