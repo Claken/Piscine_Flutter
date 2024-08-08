@@ -23,7 +23,7 @@ Follow the link [here](https://docs.flutter.dev/get-started/install) to get star
 
 ## Setting Up an Android Emulator for Flutter
 
-From the third module onwards, you will need an Android emulator. To set it up, follow these steps:
+From the **module03** onwards, you will need an smartphone emulator. To set up an Android Emulator, follow these steps:
 
 ### Prerequisites
 
@@ -32,27 +32,27 @@ From the third module onwards, you will need an Android emulator. To set it up, 
 
 ### Steps to Set Up the Emulator
 
-    Open Android Studio:
-        Launch Android Studio on your computer.
+1) Open Android Studio:
+- Launch Android Studio on your computer.
 
-    Open the AVD Manager:
-        Navigate to Tools > AVD Manager. Alternatively, you can click on the AVD Manager icon in the toolbar.
+2) Open the AVD Manager:
+- Navigate to Tools > AVD Manager. Alternatively, you can click on the AVD Manager icon in the toolbar.
 
-    Create a New Virtual Device:
-        In the AVD Manager, click on the Create Virtual Device button.
-        Choose a device from the list (e.g., Pixel 4) and click Next.
+3) Create a New Virtual Device:
+- In the AVD Manager, click on the Create Virtual Device button.
+- Choose a device from the list (e.g., Pixel 4) and click Next.
 
-    Select a System Image:
-        Select a system image (preferably one with the Play Store). You can choose the recommended option or any other as per your requirement.
-        Click Next.
+4) Select a System Image:
+- Select a system image (preferably one with the Play Store). You can choose the recommended option or any other as per your requirement.
+- Click Next.
 
-    Configure AVD:
-        Configure the AVD (Android Virtual Device) as per your needs. You can set the device orientation, scale, etc.
-        Click Finish to create the AVD.
+5) Configure AVD:
+- Configure the AVD (Android Virtual Device) as per your needs. You can set the device orientation, scale, etc.
+- Click Finish to create the AVD.
 
-    Start the Emulator:
-        In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
-        Wait for the emulator to boot up completely. This may take a few minutes.
+6) Start the Emulator:
+- In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
+- Wait for the emulator to boot up completely. This may take a few minutes.
 
 ### Running Your Flutter App
 
