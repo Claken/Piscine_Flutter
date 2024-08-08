@@ -69,9 +69,10 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
 Your Flutter application should now start running on the Android emulator. If you encounter any issues, make sure your emulator is running and properly configured, and that your Flutter environment is set up correctly.
 
 ### Troubleshooting
-    - Emulator Performance: If the emulator is slow, consider enabling hardware acceleration in the Android Studio settings.
-    - Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
-    - SDK Issues: Make sure your Android SDK and Flutter SDK are up to date.
+
+- Emulator Performance: If the emulator is slow, consider enabling hardware acceleration in the Android Studio settings.
+- Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
+- SDK Issues: Make sure your Android SDK and Flutter SDK are up to date.
 
 For more detailed troubleshooting, refer to the official Flutter documentation and Android Studio documentation.
 
