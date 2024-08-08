@@ -33,7 +33,7 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
 ### Steps to Set Up the Emulator
 
 1) Open Android Studio:
-- Launch Android Studio on your computer.
+    - Launch Android Studio on your computer.
 
 2) Open the AVD Manager:
 - Navigate to Tools > AVD Manager. Alternatively, you can click on the AVD Manager icon in the toolbar.
