@@ -23,7 +23,7 @@ Follow the link [here](https://docs.flutter.dev/get-started/install) to get star
 
 ## Setting Up an Android Emulator for Flutter
 
-To run your Flutter application on an Android emulator, follow these steps:
+From the third module onwards, you will need an Android emulator. To set it up, follow these steps:
 
 ### Prerequisites
 
