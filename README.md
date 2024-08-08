@@ -36,23 +36,23 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
     - Launch Android Studio on your computer.
 
 2) Open the AVD Manager:
-- Navigate to Tools > AVD Manager. Alternatively, you can click on the AVD Manager icon in the toolbar.
+    - Navigate to Tools > AVD Manager. Alternatively, you can click on the AVD Manager icon in the toolbar.
 
 3) Create a New Virtual Device:
-- In the AVD Manager, click on the Create Virtual Device button.
-- Choose a device from the list (e.g., Pixel 4) and click Next.
+    - In the AVD Manager, click on the Create Virtual Device button.
+    - Choose a device from the list (e.g., Pixel 4) and click Next.
 
 4) Select a System Image:
-- Select a system image (preferably one with the Play Store). You can choose the recommended option or any other as per your requirement.
-- Click Next.
+    - Select a system image (preferably one with the Play Store). You can choose the recommended option or any other as per your requirement.
+    - Click Next.
 
 5) Configure AVD:
-- Configure the AVD (Android Virtual Device) as per your needs. You can set the device orientation, scale, etc.
-- Click Finish to create the AVD.
+    - Configure the AVD (Android Virtual Device) as per your needs. You can set the device orientation, scale, etc.
+    - Click Finish to create the AVD.
 
 6) Start the Emulator:
-- In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
-- Wait for the emulator to boot up completely. This may take a few minutes.
+    - In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
+    - Wait for the emulator to boot up completely. This may take a few minutes.
 
 ### Running Your Flutter App
 
