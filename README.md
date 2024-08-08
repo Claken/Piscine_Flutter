@@ -1,5 +1,3 @@
-# !!! README IN PROGRESS !!! #
-
 # PISCINE FLUTTER
 This project's goal is to learn the [Dart](https://dart.dev/) language and the [Flutter](https://flutter.dev/) framework through several exercices (a.k.a. modules) to be able to build mobile applications. <br />
 
