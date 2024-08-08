@@ -27,7 +27,7 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
 
 ### Prerequisites
 
-1) Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from here.
+1) Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from [here](https://developer.android.com/studio).
 2) Flutter SDK: Ensure you have the Flutter SDK installed. You can follow the installation guide [here](https://developer.android.com/studio).
 
 ### Steps to Set Up the Emulator
