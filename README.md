@@ -75,6 +75,6 @@ Your Flutter application should now start running on the Android emulator. If yo
 
 For more detailed troubleshooting, refer to the [official Flutter documentation](https://docs.flutter.dev/) and [Android Studio documentation](https://developer.android.com/studio/run/emulator).
 
-# 🧐 For More details
+# 🧐 For more details
 
 For more details about each module, click on the "mobileModules" folders.
