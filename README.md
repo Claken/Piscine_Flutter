@@ -17,20 +17,19 @@ With this project, I learn the basics of Dart and Flutter to build mobile applic
 
 ## Install Flutter
 
-
 For this project, you need to install Flutter first. <br />
 Follow the link [here](https://docs.flutter.dev/get-started/install) to get started. <br />
 
-## Setting Up an Android Emulator for Flutter
+## 📳 Setting Up an Android Emulator for Flutter
 
 From the **module03** onwards, you will need an smartphone emulator. To set up an Android Emulator, follow these steps:
 
-### Prerequisites
+### 📦 Prerequisites
 
 1) Install Android Studio: Make sure you have Android Studio installed on your computer. You can download it from [here](https://developer.android.com/studio).
 2) Flutter SDK: Ensure you have the Flutter SDK installed. It would be normally be installed if you have installed Flutter.
 
-### Steps to Set Up the Emulator
+### 𓊍 Steps to Set Up the Emulator
 
 1) Open Android Studio:
     - Launch Android Studio on your computer.
@@ -54,7 +53,7 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
     - In the AVD Manager, find your newly created virtual device and click the Play button to start the emulator.
     - Wait for the emulator to boot up completely. This may take a few minutes.
 
-### Running Your Flutter App
+### 🚀 Running Your Flutter App
 
 1) Open Your Flutter Project:
     - Open your Flutter project in your preferred IDE (e.g., Android Studio, VS Code).
@@ -68,7 +67,7 @@ From the **module03** onwards, you will need an smartphone emulator. To set up a
 
 Your Flutter application should now start running on the Android emulator. If you encounter any issues, make sure your emulator is running and properly configured, and that your Flutter environment is set up correctly.
 
-### Troubleshooting
+### ⚠️ Troubleshooting
 
 - Emulator Performance: If the emulator is slow, consider enabling hardware acceleration in the Android Studio settings.
 - Device Not Showing Up: Ensure the emulator is started and running. Restart the emulator if necessary.
