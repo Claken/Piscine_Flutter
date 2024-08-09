@@ -15,10 +15,7 @@ With this project, I learn the basics of Dart and Flutter to build mobile applic
 
 # 📦 Prerequisites
 
-
-![flutter(2)(1)](https://github.com/user-attachments/assets/fef50f86-6af2-4163-a093-f9b5caf2f79e)
-
-## Install Flutter
+## ![flutter(2)(1)](https://github.com/user-attachments/assets/fef50f86-6af2-4163-a093-f9b5caf2f79e) Install Flutter
 
 For this project, you need to install Flutter first. <br />
 Follow the link [here](https://docs.flutter.dev/get-started/install) to get started. <br />
