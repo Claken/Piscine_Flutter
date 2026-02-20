@@ -3,7 +3,7 @@ This project's goal is to learn the [Dart](https://dart.dev/) language and the [
 
 This project is part of the 42 school post-common-core curriculum.
 
-# 👩🏻‍🏫 What I gained from the project
+# 👩🏻‍🏫 What I have gained from the project
 
 With this project, I learn the basics of Dart and Flutter to build mobile applications : <br />
 - I learned to use widgets like Scaffold, ListView, TabBar, Container, etc, to organize my code
